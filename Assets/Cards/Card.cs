@@ -44,6 +44,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         DeselectCard(); 
     }
+
+    public void SetCardValues(Suite cardSuite, int cardValue)
+    {
+        Suite = cardSuite;
+        Value = cardValue;
+        // add select card image here
+    }
+
+
 }
 
 public enum Suite
