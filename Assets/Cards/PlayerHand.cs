@@ -32,5 +32,10 @@ public class PlayerHand : MonoBehaviour
         deck = FindObjectOfType<Deck>();
     }
 
+    public List<Card> GetPlayerHand()
+    {
+        return playerHandCards;
+    }
+
 
 }
