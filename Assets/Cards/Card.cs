@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [field: SerializeField] public Suite Suite {get; private set;}
+    [field: SerializeField] public Suit Suit {get; private set;}
     [field: SerializeField] public int Value { get; private set; }
 
     [SerializeField] Image _baseCardImage; //reference to the UI Image component of the card.
@@ -45,17 +45,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         DeselectCard(); 
     }
 
-    public void SetCardValues(Suite cardSuite, int cardValue)
+    public void SetCardValues(Suit cardSuit, int cardValue)
     {
-        Suite = cardSuite;
+        Suit = cardSuit;
         Value = cardValue;
         // add select card image here
     }
-
-
 }
 
-public enum Suite
+
+public enum Suit
 {
     Hearts,
     Diamonds,
