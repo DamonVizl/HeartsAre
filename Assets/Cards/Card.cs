@@ -13,6 +13,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     [SerializeField] AudioClip _cardSelectSound; //sound to be played when a card is selected
 
+    [SerializeField] Sprite _cardSprite; // used to store the assigned sprite of the card
+
     // Shake the card transform for effect
     public void ShakeCard(float amount)
     {
@@ -45,11 +47,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         DeselectCard(); 
     }
 
-    public void SetCardValues(Suit cardSuit, int cardValue)
+    public void SetCardValues(Suit cardSuit, int cardValue, Sprite cardImage)
     {
-        Suit = cardSuit;
-        Value = cardValue;
-        // add select card image here
+        this.Suit = cardSuit;
+        this.Value = cardValue;
+        _cardSprite = cardImage;
     }
 }
 
