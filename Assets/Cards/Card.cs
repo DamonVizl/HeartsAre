@@ -6,12 +6,14 @@ using UnityEngine.EventSystems;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [field: SerializeField] public Suite Suite {get; private set;}
+    [field: SerializeField] public Suit Suit {get; private set;}
     [field: SerializeField] public int Value { get; private set; }
 
     [SerializeField] Image _baseCardImage; //reference to the UI Image component of the card.
 
     [SerializeField] AudioClip _cardSelectSound; //sound to be played when a card is selected
+
+    [SerializeField] Sprite _cardSprite; // used to store the assigned sprite of the card
 
     // Shake the card transform for effect
     public void ShakeCard(float amount)
@@ -44,9 +46,32 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         DeselectCard(); 
     }
+
+    public void SetCardValues(Suit cardSuit, int cardValue, Sprite cardImage)
+    {
+        this.Suit = cardSuit;
+        this.Value = cardValue;
+        _cardSprite = cardImage;
+    }
+
+    public Sprite GetCardSprite()
+    {
+        return _cardSprite;
+    }
+
+    public int GetCardValue()
+    {
+        return Value;
+    }
+
+    public Suit GetCardSuit()
+    {
+        return Suit;
+    }
 }
 
-public enum Suite
+
+public enum Suit
 {
     Hearts,
     Diamonds,
