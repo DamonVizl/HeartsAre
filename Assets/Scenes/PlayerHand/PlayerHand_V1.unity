@@ -290,7 +290,7 @@ MonoBehaviour:
   <Value>k__BackingField: 5
   _baseCardImage: {fileID: 377736766}
   _cardSelectSound: {fileID: 8300000, guid: d8b34f67c448ea04db32f94bc83a4238, type: 3}
-  _cardSprite: {fileID: 0}
+  _cardSprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
 --- !u!114 &377736766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aedb01cd4bdbaf24bb3dd9cc3a507aeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -703,7 +703,7 @@ MonoBehaviour:
   <Value>k__BackingField: 5
   _baseCardImage: {fileID: 1013490905}
   _cardSelectSound: {fileID: 8300000, guid: d8b34f67c448ea04db32f94bc83a4238, type: 3}
-  _cardSprite: {fileID: 0}
+  _cardSprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
 --- !u!114 &1013490905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cd2aa8bc2b0b06546b6c5f53bdff4938, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   <Value>k__BackingField: 5
   _baseCardImage: {fileID: 1795368345}
   _cardSelectSound: {fileID: 8300000, guid: d8b34f67c448ea04db32f94bc83a4238, type: 3}
-  _cardSprite: {fileID: 0}
+  _cardSprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
 --- !u!114 &1795368345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: feefbf65ea523664d8d5f68c3e97c55c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   <Value>k__BackingField: 5
   _baseCardImage: {fileID: 1979816266}
   _cardSelectSound: {fileID: 8300000, guid: d8b34f67c448ea04db32f94bc83a4238, type: 3}
-  _cardSprite: {fileID: 0}
+  _cardSprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
 --- !u!114 &1979816266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,7 +1207,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0558fb0afb48f2c42b688e07c533102f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   <Value>k__BackingField: 5
   _baseCardImage: {fileID: 1986110641}
   _cardSelectSound: {fileID: 8300000, guid: d8b34f67c448ea04db32f94bc83a4238, type: 3}
-  _cardSprite: {fileID: 0}
+  _cardSprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
 --- !u!114 &1986110641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1300,7 +1300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 671cae82354f3e64d98a9e37b99567c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba44859208d08fe4ab3b776f8e353548, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -14,7 +14,7 @@ public class UI_Manager : MonoBehaviour
     }
 
     // refreshes the UI card gameObjects to reflect what's in the player's hand
-    public void RefershHandUI()
+    public void RefreshHandUI()
     {
         int playerHandSize = playerHand.GetPlayerHand().Count;
 
@@ -28,6 +28,15 @@ public class UI_Manager : MonoBehaviour
 
             cardImage.sprite = card.GetCardSprite();
             card_UI.SetCardValues(card.GetCardSuit(), card.GetCardValue(), card.GetCardSprite());
+        }
+    }
+
+    private void Update()
+    {
+        // temporary implementation for testing player hand
+        if (Input.GetMouseButtonDown(0))
+        {
+            RefreshHandUI();
         }
     }
 

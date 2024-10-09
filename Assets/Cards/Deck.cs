@@ -108,6 +108,5 @@ public class Deck : MonoBehaviour
     void DealHand()
     {
         playerHand.DrawStartingHand();
-        //ui_Manager.RefershHandUI();
     }
 }
