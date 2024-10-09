@@ -108,5 +108,6 @@ public class Deck : MonoBehaviour
     void DealHand()
     {
         playerHand.DrawStartingHand();
+        cardParent.SetActive(false); // disable physical gameObjects from UI as temp solution
     }
 }

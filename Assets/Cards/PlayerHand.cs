@@ -7,7 +7,9 @@ public class PlayerHand : MonoBehaviour
     public Deck deck;
     public List<Card> playerHandCards = new List<Card>();
 
-    private const int MaxHandSize = 5;
+    private const int MaxHandSize = 10;
+
+    public int startingHandSize;
 
   
 
@@ -18,7 +20,7 @@ public class PlayerHand : MonoBehaviour
 
     public void DrawStartingHand() // draws the starting hand
     {
-        for (int i = 0; i < MaxHandSize; i++)
+        for (int i = 0; i < startingHandSize; i++)
         { 
             deck.DrawCard();
         }
@@ -26,7 +28,10 @@ public class PlayerHand : MonoBehaviour
 
     public void AddCardToHand(Card card) // adds a card to the player's hand
     {
-        playerHandCards.Add(card);
+        if (playerHandCards.Count < MaxHandSize)
+        {
+            playerHandCards.Add(card);
+        }
     }
 
     void SetStartingParameters()
@@ -38,6 +43,7 @@ public class PlayerHand : MonoBehaviour
     {
         return playerHandCards;
     }
+
 
 
 }

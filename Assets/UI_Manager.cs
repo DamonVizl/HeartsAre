@@ -7,29 +7,44 @@ public class UI_Manager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> playerHandCards_UI;
     private PlayerHand playerHand;
+    public GameObject cardPrefab_UI;
+    public Transform HandUI;
 
     private void Start()
     {
         playerHand = FindObjectOfType<PlayerHand>();
     }
 
-    // refreshes the UI card gameObjects to reflect what's in the player's hand
     public void RefreshHandUI()
     {
-        int playerHandSize = playerHand.GetPlayerHand().Count;
+        // Clear the current UI elements (assuming playerHandCards_UI is a List<GameObject>)
+        foreach (Transform child in HandUI)
+        {
+            Destroy(child.gameObject);
+        }
 
+        // Get the player's hand
+        List<Card> playerHandCards = playerHand.GetPlayerHand();
+        int playerHandSize = playerHandCards.Count;
+
+        // Instantiate UI elements for the player's hand
         for (int i = 0; i < playerHandSize; i++)
         {
-            Card card = playerHand.GetPlayerHand()[i];
+            Card card = playerHandCards[i];
 
-            Card card_UI = playerHandCards_UI[i].GetComponent<Card>();
+            // Instantiate the card UI prefab
+            GameObject cardUI = Instantiate(cardPrefab_UI, HandUI.transform); // Ensure playerHandCards_UI is the parent
 
-            Image cardImage = playerHandCards_UI[i].GetComponent<Image>();
-
+            // Set the sprite and values for the card
+            Image cardImage = cardUI.GetComponent<Image>();
             cardImage.sprite = card.GetCardSprite();
-            card_UI.SetCardValues(card.GetCardSuit(), card.GetCardValue(), card.GetCardSprite());
+
+            Card cardComponent = cardUI.GetComponent<Card>();
+            cardComponent.SetCardValues(card.GetCardSuit(), card.GetCardValue(), card.GetCardSprite());
         }
     }
+
+
 
     private void Update()
     {
