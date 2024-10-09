@@ -14,6 +14,8 @@ public class Deck : MonoBehaviour
 
     private Dictionary<string, Sprite> cardSpriteMap = new Dictionary<string, Sprite>(); // Dictionary with all the card sprites
 
+    public UI_Manager ui_Manager;
+
     public void Start()
     {
         InitializeSpriteMap(); // create a spritemap using a dictionary to assign sprite art based on card's value
@@ -22,6 +24,8 @@ public class Deck : MonoBehaviour
         ShuffleDeck();
        
         playerHand.DrawStartingHand();
+        ui_Manager.RefershHandUI();
+
     }
 
     public void GenerateDeck()
@@ -99,5 +103,6 @@ public class Deck : MonoBehaviour
     void SetStartingParameters()
     {
         playerHand = FindObjectOfType<PlayerHand>();
+        ui_Manager = FindObjectOfType<UI_Manager>();
     }
 }

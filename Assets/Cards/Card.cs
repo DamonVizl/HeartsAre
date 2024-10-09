@@ -53,6 +53,21 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         this.Value = cardValue;
         _cardSprite = cardImage;
     }
+
+    public Sprite GetCardSprite()
+    {
+        return _cardSprite;
+    }
+
+    public int GetCardValue()
+    {
+        return Value;
+    }
+
+    public Suit GetCardSuit()
+    {
+        return Suit;
+    }
 }
 
 

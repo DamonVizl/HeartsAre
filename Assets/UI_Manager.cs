@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private List<GameObject> playerHandCards_UI;
+    private PlayerHand playerHand;
+
+    private void Start()
     {
-        
+        playerHand = FindObjectOfType<PlayerHand>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // refreshes the UI card gameObjects to reflect what's in the player's hand
+    public void RefershHandUI()
     {
-        
+        for (int i = 0; i < playerHand.GetPlayerHand().Count; i++)
+        {
+            Card card = playerHand.GetPlayerHand()[i];
+
+            Card card_UI = playerHandCards_UI[i].GetComponent<Card>();
+
+            Image cardImage = playerHandCards_UI[i].GetComponent<Image>();
+
+            cardImage.sprite = card.GetCardSprite();
+            card_UI.SetCardValues(card.GetCardSuit(), card.GetCardValue(), card.GetCardSprite());
+        }
     }
+
 }
