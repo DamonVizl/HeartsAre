@@ -22,9 +22,6 @@ public class Deck : MonoBehaviour
         SetStartingParameters();
         GenerateDeck();
         ShuffleDeck();
-       
-        playerHand.DrawStartingHand();
-        ui_Manager.RefershHandUI();
 
     }
 
@@ -67,6 +64,8 @@ public class Deck : MonoBehaviour
             cards[i] = cards[randomCard];
             cards[randomCard] = temp;
         }
+
+        DealHand();
     }
 
     public void DrawCard()
@@ -104,5 +103,11 @@ public class Deck : MonoBehaviour
     {
         playerHand = FindObjectOfType<PlayerHand>();
         ui_Manager = FindObjectOfType<UI_Manager>();
+    }
+
+    void DealHand()
+    {
+        playerHand.DrawStartingHand();
+        //ui_Manager.RefershHandUI();
     }
 }

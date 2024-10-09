@@ -16,7 +16,9 @@ public class UI_Manager : MonoBehaviour
     // refreshes the UI card gameObjects to reflect what's in the player's hand
     public void RefershHandUI()
     {
-        for (int i = 0; i < playerHand.GetPlayerHand().Count; i++)
+        int playerHandSize = playerHand.GetPlayerHand().Count;
+
+        for (int i = 0; i < playerHandSize; i++)
         {
             Card card = playerHand.GetPlayerHand()[i];
 

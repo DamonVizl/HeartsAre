@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerHand : MonoBehaviour
 {
-    private Deck deck;
+    public Deck deck;
     public List<Card> playerHandCards = new List<Card>();
 
     private const int MaxHandSize = 5;
+
+  
 
     private void Start()
     {
