@@ -17,7 +17,7 @@ public class UI_Manager : MonoBehaviour
 
     public void RefreshHandUI()
     {
-        // Clear the current UI elements (assuming playerHandCards_UI is a List<GameObject>)
+        // destroy current Hand UI elements
         foreach (Transform child in HandUI)
         {
             Destroy(child.gameObject);
@@ -33,7 +33,7 @@ public class UI_Manager : MonoBehaviour
             Card card = playerHandCards[i];
 
             // Instantiate the card UI prefab
-            GameObject cardUI = Instantiate(cardPrefab_UI, HandUI.transform); // Ensure playerHandCards_UI is the parent
+            GameObject cardUI = Instantiate(cardPrefab_UI, HandUI.transform); // place cardUI object as a child of the HandUI parent
 
             // Set the sprite and values for the card
             Image cardImage = cardUI.GetComponent<Image>();
