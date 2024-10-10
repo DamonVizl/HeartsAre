@@ -29,7 +29,7 @@ public class EnemyTurnState : BaseState<PlayState>
     public override PlayState GetNextState()
     {
         // if the player has no health yet, return lose state. 
-        if(GameManager.Instance.PlayerHealth<=0)
+        if(!GameManager.Instance.PlayerHealth.IsAlive())
         {
             return PlayState.Lose; 
         }
