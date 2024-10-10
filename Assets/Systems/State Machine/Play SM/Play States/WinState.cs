@@ -5,8 +5,8 @@ using UnityEngine;
 public class WinState : BaseState<PlayState>
 {
 
-    PlaySM _stateMachine; //hold a reference to the statemachine 
-    public WinState(PlaySM sm, PlayState key) : base(key)
+    PlayStateMachine _stateMachine; //hold a reference to the statemachine 
+    public WinState(PlayStateMachine sm, PlayState key) : base(key)
     {
         _stateMachine = sm;
     }

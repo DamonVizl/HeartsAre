@@ -48,11 +48,11 @@ public class UI_Manager : MonoBehaviour
 
     private void Update()
     {
-        // temporary implementation for testing player hand
+/*        // temporary implementation for testing player hand
         if (Input.GetMouseButtonDown(0))
         {
             RefreshHandUI();
-        }
+        }*/
     }
 
 }

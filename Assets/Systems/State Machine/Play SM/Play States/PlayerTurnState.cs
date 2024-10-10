@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerTurnState : BaseState<PlayState> 
 {
-    PlaySM _stateMachine; //hold a reference to the statemachine 
-    public PlayerTurnState(PlaySM sm, PlayState key) : base(key)
+    PlayStateMachine _stateMachine; //hold a reference to the statemachine 
+    public PlayerTurnState(PlayStateMachine sm, PlayState key) : base(key)
     {
         _stateMachine = sm;
     }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class LoseState : BaseState<PlayState>
 {
 
-    PlaySM _stateMachine; //hold a reference to the statemachine 
-    public LoseState(PlaySM sm, PlayState key) : base(key)
+    PlayStateMachine _stateMachine; //hold a reference to the statemachine 
+    public LoseState(PlayStateMachine sm, PlayState key) : base(key)
     {
         _stateMachine = sm;
     }

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6160561038912605241}
   - component: {fileID: 2069930608099062657}
   - component: {fileID: -427420761322155061}
+  - component: {fileID: 2099257569825061844}
+  - component: {fileID: 8193136176572936587}
   m_Layer: 0
   m_Name: CardPrefab
   m_TagString: Untagged
@@ -102,3 +104,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2099257569825061844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787355265916884658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300494be4c920c4fa0434a8c69dfab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &8193136176572936587
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787355265916884658}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

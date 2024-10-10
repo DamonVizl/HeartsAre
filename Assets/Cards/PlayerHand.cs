@@ -1,49 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHand : MonoBehaviour
+public class PlayerHand : CardCollection
 {
-    public Deck deck;
-    public List<Card> playerHandCards = new List<Card>();
-
-    private const int MaxHandSize = 10;
-
-    public int startingHandSize;
-
-  
+    public int startingHandSize = 5;
+    public static event Action<Card> OnCardAddedToHand; 
 
     private void Start()
     {
-        SetStartingParameters();
-    }
-
-    public void DrawStartingHand() // draws the starting hand
-    {
-        for (int i = 0; i < startingHandSize; i++)
-        { 
-            deck.DrawCard();
-        }
-    }
-
-    public void AddCardToHand(Card card) // adds a card to the player's hand
-    {
-        if (playerHandCards.Count < MaxHandSize)
-        {
-            playerHandCards.Add(card);
-        }
-    }
-
-    void SetStartingParameters()
-    {
-        deck = FindObjectOfType<Deck>();
+        MaxCollectionSize = 7; 
     }
 
     public List<Card> GetPlayerHand()
     {
-        return playerHandCards;
+        return _cards;
     }
-
-
-
+    public override void AddCard(Card card)
+    {
+        base.AddCard(card);
+        //update UI
+        OnCardAddedToHand?.Invoke(card);
+    }
 }

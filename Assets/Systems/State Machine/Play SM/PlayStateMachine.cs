@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlaySM : BaseStateMachine<PlayState>
+public class PlayStateMachine : BaseStateMachine<PlayState>
 {
     [SerializeField] Text _stateLabelText; 
     //on awake add all the possible states and instantiate them.
