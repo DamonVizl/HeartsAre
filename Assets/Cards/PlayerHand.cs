@@ -18,9 +18,9 @@ public class PlayerHand : CardCollection
     {
         return _cards;
     }
-    public override void AddCard(Card card)
+    public override bool AddCard(Card card)
     {
-        if (card == null) return;
+        if (card == null) return false;
         //find an empty slot
         for(int i = 0; i < _cards.Length; i++)
         {
@@ -30,9 +30,10 @@ public class PlayerHand : CardCollection
                 _cards[i] = card;
                 //update UI
                 OnCardAddedToHand?.Invoke(i, card);
-                return;
+                return true;
             }
         }
+        return false;
     }
 /*    public override Card DrawCard(int index)
     {

@@ -31,9 +31,13 @@ public class CardManager : MonoBehaviour
         //only draw a card if in the player turn (and haven't exceed max allowable cards in hand)
         if(_psm.GetCurrentState() == PlayState.PlayerTurn && _hand.GetCurrentNumberOfCardsInCollection()<_hand.MaxCollectionSize)
         {
-            Debug.Log("Drawing a card"); 
+            //Debug.Log("Drawing a card"); 
             Card drawnCard = _drawPile.DrawCard();
-            _hand.AddCard(drawnCard);
+            if (!_hand.AddCard(drawnCard))
+            {
+                //if the card couldn't be added, return it back to the original. TODO: I don't think this is putting it back to original spot, it's putting it into the first empty (which may be...)
+                _drawPile.AddCard(drawnCard);
+            }
         }
     }
 

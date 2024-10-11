@@ -61,7 +61,7 @@ public class CardCollection : MonoBehaviour
 
     }
     //base AddCard method, adds the card to the list. extend this in the children classes to update UI in a bespoke way etc
-    public virtual void AddCard(Card card)
+    public virtual bool AddCard(Card card)
     {
         if(card != null)
         {
@@ -69,9 +69,14 @@ public class CardCollection : MonoBehaviour
             for(int i = 0; i<_cards.Length;i++)
             {
                 if (_cards[i] == null)
+                {
                     _cards[i] = card;
+                    return true;
+                }
             }
+
         }
+        return false;
     }
 
     public int GetCurrentNumberOfCardsInCollection()
