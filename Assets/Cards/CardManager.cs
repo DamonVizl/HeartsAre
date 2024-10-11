@@ -29,7 +29,7 @@ public class CardManager : MonoBehaviour
     private void DrawCardFromDeckToHand()
     {
         //only draw a card if in the player turn (and haven't exceed max allowable cards in hand)
-        if(_psm.GetCurrentState() == PlayState.PlayerTurn && _hand.GetNumCardsInCollection()<_hand.MaxCollectionSize)
+        if(_psm.GetCurrentState() == PlayState.PlayerTurn && _hand.GetCurrentNumberOfCardsInCollection()<_hand.MaxCollectionSize)
         {
             Debug.Log("Drawing a card"); 
             Card drawnCard = _drawPile.DrawCard();

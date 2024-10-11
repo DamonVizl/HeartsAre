@@ -9,12 +9,16 @@ using UnityEngine;
 public class CardCollection : MonoBehaviour
 {
     #region Fields
-    protected List<Card> _cards = new List<Card>();
+    protected Card[] _cards;
     public int MaxCollectionSize { get; protected set; }
     #endregion
 
     #region Init
-
+    protected virtual void Start()
+    {
+        //set the card array to it's max size
+        _cards = new Card[MaxCollectionSize];
+    }
     #endregion
     #region Deck Manipulation Methods
 
@@ -23,9 +27,9 @@ public class CardCollection : MonoBehaviour
     /// </summary>
     public void ShuffleCards()
     {
-        for (int i = 0; i < _cards.Count; i++)
+        for (int i = 0; i < _cards.Length; i++)
         {
-            int randomCard = UnityEngine.Random.Range(0, _cards.Count);
+            int randomCard = UnityEngine.Random.Range(0, _cards.Length);
             Card temp = _cards[i];
             _cards[i] = _cards[randomCard];
             _cards[randomCard] = temp;
@@ -35,15 +39,25 @@ public class CardCollection : MonoBehaviour
     /// <summary>
     /// Draw the top card on the deck and return it. remove the card drawn from this Deck
     /// </summary>
-    public Card DrawCard()
+    public virtual Card DrawCard()
     {
-        if (_cards.Count == 0)
-            return null;
+        Card card = null;
+        if (_cards.Length == 0)
+            return card;
 
-        Card drawnCard = _cards[0];
-        _cards.RemoveAt(0);
-        //playerHand.AddCardToHand(drawnCard);
-        return drawnCard;
+        //loop through and find the first non-null card
+        for(int i = 0; i<_cards.Length; i++)
+        {
+            if(_cards[i] == null) continue;
+            
+            card = _cards[i]; //store the card
+            _cards[i] = null; //remove the card
+            break;
+        }
+        Debug.Log("card is " + card.Value);
+
+
+        return card;
 
     }
     //base AddCard method, adds the card to the list. extend this in the children classes to update UI in a bespoke way etc
@@ -51,14 +65,24 @@ public class CardCollection : MonoBehaviour
     {
         if(card != null)
         {
-            _cards.Add(card);
+            //find first empty spot
+            for(int i = 0; i<_cards.Length;i++)
+            {
+                if (_cards[i] == null)
+                    _cards[i] = card;
+            }
         }
     }
 
-    public int GetNumCardsInCollection()
+    public int GetCurrentNumberOfCardsInCollection()
     {
-        Debug.Log("getting cards from " + this.name + " there are " + _cards.Count + " cards");
-        return _cards.Count;
+        int count = 0; 
+        for(int i = 0;i<_cards.Length; i++)
+        {
+            if (_cards[i] != null) count++;
+        }
+        //Debug.Log("getting cards from " + this.name + " there are " + _cards.Count + " cards");
+        return count;
     }
     #endregion
 }

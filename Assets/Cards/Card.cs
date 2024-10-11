@@ -45,9 +45,10 @@ public class Card
     /// <param name="value"></param>
     public void SetCardGraphics(Suit suit, int value)
     {
-        _suitSprite = (Sprite)Resources.Load(suit.ToString()); //suit sprites should be saved in the Resources folder named "heart.png" for e.g.
-        _valueSprite = (Sprite)Resources.Load(value.ToString()); //value sprites (1,2,K,4, etc) should be saved in the Resources folder named "king.png" for e.g.
-        _centreImageSprite = (Sprite)Resources.Load(suit.ToString() +"_"+value.ToString()); //card centre images should be saved in the Resources folder named "heart_king.png" for e.g. 
+        Debug.Log(suit.ToString() + " vs "+ Resources.Load<Sprite>(suit.ToString()));
+        _suitSprite = Resources.Load<Sprite>(suit.ToString()); //suit sprites should be saved in the Resources folder named "heart.png" for e.g.
+        _valueSprite = Resources.Load<Sprite>(value.ToString()); //value sprites (1,2,K,4, etc) should be saved in the Resources folder named "king.png" for e.g.
+        _centreImageSprite = Resources.Load<Sprite>("Big"+suit.ToString()); //card centre images should be saved in the Resources folder named "heart_king.png" for e.g. 
         // Set sprite colours based off suit. 
         SetSpriteColours(suit); 
     }

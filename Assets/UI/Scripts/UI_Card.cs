@@ -11,16 +11,34 @@ public class UI_Card : MonoBehaviour
     [SerializeField] Image _valueImage;
     [SerializeField] Image _centreImage;
 
+    Card _cardReference;
+
     public void AttachCard(Card card)
     {
         UpdateCardSprites(card);
         card.OnColourChanged += UpdateCardGraphics;
+        _cardReference = card;
     }
     public void RemoveCard(Card card)
     {
         card.OnColourChanged -= UpdateCardGraphics;
         CleanCard();
+        _cardReference = null;
     }
+
+    public Card SelectCard()
+    {
+        //move card up slightly
+    
+        return _cardReference; 
+    }
+    public void UnSelectCard()
+    {
+        //move card back to original position
+
+    }
+
+    #region Graphics Stuff
     private void UpdateCardGraphics(Color colour)
     {
         _backgroundCardImage.enabled = false;
@@ -42,4 +60,5 @@ public class UI_Card : MonoBehaviour
         _centreImage.sprite = null;
         _backgroundCardImage.enabled = false;
     }
+    #endregion
 }

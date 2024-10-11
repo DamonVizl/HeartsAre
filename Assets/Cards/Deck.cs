@@ -1,87 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Deck : CardCollection
 {
-
-    //public PlayerHand playerHand; //LLB. Removed this so the deck doesn't know about the hand. 
-
-    //[SerializeField] List<Sprite> cardSprites;
-
-    //private Dictionary<string, Sprite> cardSpriteMap = new Dictionary<string, Sprite>(); // Dictionary with all the card sprites
-
-    //public UI_Manager ui_Manager;
-
     #region Setup Methods
-    public void Start()
+    protected override void Start()
     {
+        MaxCollectionSize = 52;
         //InitializeSpriteMap(); // create a spritemap using a dictionary to assign sprite art based on card's value
         //SetStartingParameters();
+        base.Start();
         GenerateDeck();
         ShuffleCards();
     }
-/*    // generates a parent object for card objects (to keep the hierarchy tidy)
-    void GenerateParentObject()
-    {
-        cardParent = new GameObject("Cards Parent Object");
-    }
-
-    // creates a sprite map in order to assign card sprites based on their value
-    void InitializeSpriteMap()
-    {
-        foreach (Sprite sprite in cardSprites)
-        {
-            string spriteName = sprite.name;
-            cardSpriteMap[spriteName] = sprite;
-        }
-    }*/
 
     /// <summary>
     /// Generates a deck of 52 standard playing cards
     /// </summary>
     public void GenerateDeck()
     {
+        int i = 0; //counter for whole deck. 
+
         // generate all standard cards in the deck
         foreach (Suit suit in (Suit[])System.Enum.GetValues(typeof(Suit)))
         {
-            AddStandardCards(suit);
+            for(int j = 1; j< 14; j++) //counts from 1 to 13
+            {
+                Card card = new Card(suit, j); //the card sets it's self up. check Card.cs constructor for details
+                _cards[i] = card;
+                i++;
+            }
         }
     }
 
-
-    // generates all standard cards in the deck (for the passed suit)
-    public void AddStandardCards(Suit suit)
-    {
-        for (int i = 1; i <= 13; i++)
-        {
-            //GameObject playingCard = Instantiate(cardPrefab, cardParent.transform);
-
-            Card card = new Card(suit, i); //the card sets it's self up. check Card.cs constructor for details
-
-/*            string key = "card_" + suit.ToString().ToLower() + "_" + i.ToString(); // create a key that gets a string for the card's sprite based on the card's value
-
-            Sprite cardSprite = cardSpriteMap[key]; // assign card art based on the key
-
-            card.SetCardValues(suit, i, cardSprite);*/
-            _cards.Add(card);
-        }
-        Debug.Log("Cards count for deck is: "+ _cards.Count);
-    }
-    #endregion
-    #region Removed Stuff
-
-    //LLB. Removed these two methods as the player should draw the cards, not the deck feeding them to the player, this way the deck doesn't know about the player. 
-    /*    void SetStartingParameters()
-        {
-            playerHand = FindObjectOfType<PlayerHand>();
-            ui_Manager = FindObjectOfType<UI_Manager>();
-        }*/
-
-    /*    void DealHand()
-        {
-            //playerHand.DrawStartingHand();
-            cardParent.SetActive(false); // disable physical gameObjects from UI as temp solution
-        }*/
     #endregion
 }
