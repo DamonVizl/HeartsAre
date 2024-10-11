@@ -13,6 +13,9 @@ public class CardCollection : MonoBehaviour
     public int MaxCollectionSize { get; protected set; }
     #endregion
 
+    #region Init
+
+    #endregion
     #region Deck Manipulation Methods
 
     /// <summary>
@@ -54,6 +57,7 @@ public class CardCollection : MonoBehaviour
 
     public int GetNumCardsInCollection()
     {
+        Debug.Log("getting cards from " + this.name + " there are " + _cards.Count + " cards");
         return _cards.Count;
     }
     #endregion

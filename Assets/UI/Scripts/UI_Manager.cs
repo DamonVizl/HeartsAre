@@ -10,7 +10,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject cardPrefab_UI;
     public Transform HandUI;
 
-    private void Start()
+/*    private void Start()
     {
         playerHand = FindObjectOfType<PlayerHand>();
     }
@@ -42,7 +42,7 @@ public class UI_Manager : MonoBehaviour
             Card cardComponent = cardUI.GetComponent<Card>();
             cardComponent.SetCardValues(card.GetCardSuit(), card.GetCardValue(), card.GetCardSprite());
         }
-    }
+    }*/
 
 
 

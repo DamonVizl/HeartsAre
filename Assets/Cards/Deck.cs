@@ -4,27 +4,24 @@ using UnityEngine;
 
 public class Deck : CardCollection
 {
-    [SerializeField] 
-    public GameObject cardPrefab;
-    private GameObject cardParent;
 
     //public PlayerHand playerHand; //LLB. Removed this so the deck doesn't know about the hand. 
 
-    [SerializeField] List<Sprite> cardSprites;
+    //[SerializeField] List<Sprite> cardSprites;
 
-    private Dictionary<string, Sprite> cardSpriteMap = new Dictionary<string, Sprite>(); // Dictionary with all the card sprites
+    //private Dictionary<string, Sprite> cardSpriteMap = new Dictionary<string, Sprite>(); // Dictionary with all the card sprites
 
-    public UI_Manager ui_Manager;
+    //public UI_Manager ui_Manager;
 
     #region Setup Methods
     public void Start()
     {
-        InitializeSpriteMap(); // create a spritemap using a dictionary to assign sprite art based on card's value
+        //InitializeSpriteMap(); // create a spritemap using a dictionary to assign sprite art based on card's value
         //SetStartingParameters();
         GenerateDeck();
         ShuffleCards();
     }
-    // generates a parent object for card objects (to keep the hierarchy tidy)
+/*    // generates a parent object for card objects (to keep the hierarchy tidy)
     void GenerateParentObject()
     {
         cardParent = new GameObject("Cards Parent Object");
@@ -38,15 +35,13 @@ public class Deck : CardCollection
             string spriteName = sprite.name;
             cardSpriteMap[spriteName] = sprite;
         }
-    }
+    }*/
 
     /// <summary>
     /// Generates a deck of 52 standard playing cards
     /// </summary>
     public void GenerateDeck()
     {
-        // generate a parent object for cards to organize under in the hierarchy
-        GenerateParentObject();
         // generate all standard cards in the deck
         foreach (Suit suit in (Suit[])System.Enum.GetValues(typeof(Suit)))
         {
@@ -60,17 +55,18 @@ public class Deck : CardCollection
     {
         for (int i = 1; i <= 13; i++)
         {
-            GameObject playingCard = Instantiate(cardPrefab, cardParent.transform);
+            //GameObject playingCard = Instantiate(cardPrefab, cardParent.transform);
 
-            Card card = playingCard.GetComponent<Card>();
+            Card card = new Card(suit, i); //the card sets it's self up. check Card.cs constructor for details
 
-            string key = "card_" + suit.ToString().ToLower() + "_" + i.ToString(); // create a key that gets a string for the card's sprite based on the card's value
+/*            string key = "card_" + suit.ToString().ToLower() + "_" + i.ToString(); // create a key that gets a string for the card's sprite based on the card's value
 
             Sprite cardSprite = cardSpriteMap[key]; // assign card art based on the key
 
-            card.SetCardValues(suit, i, cardSprite);
+            card.SetCardValues(suit, i, cardSprite);*/
             _cards.Add(card);
         }
+        Debug.Log("Cards count for deck is: "+ _cards.Count);
     }
     #endregion
     #region Removed Stuff

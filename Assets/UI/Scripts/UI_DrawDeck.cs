@@ -13,6 +13,7 @@ public class UI_DrawDeck : MonoBehaviour, IPointerDownHandler
     public static event Action OnDrawDeckClicked; 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log("Clicked");
         OnDrawDeckClicked?.Invoke();
     }
     //TODO: make a fancy shuffle animation

@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Card))]
 public class UI_DraggableCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     Transform _originalParent;

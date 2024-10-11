@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
-/// A UI component that allows the card to be dragged and dropped
+/// A UI component that allows the card to be dragged and dropped. This is not the card itself, this is where the card sits on the table
 /// </summary>
 public class UI_CardSlot : MonoBehaviour
 {

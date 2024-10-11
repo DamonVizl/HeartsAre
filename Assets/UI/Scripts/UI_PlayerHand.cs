@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class UI_PlayerHand : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private UI_CardSlot[] _handSlots;
+    private UI_Card[] _cards;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
