@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI; 
 
-public class UI_Card : MonoBehaviour
+public class UI_Card : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] Image _backOfCard; 
     [SerializeField] Image _backgroundCardImage; 
@@ -12,6 +13,7 @@ public class UI_Card : MonoBehaviour
     [SerializeField] Image _centreImage;
 
     Card _cardReference;
+    bool _cardSelected = false; //true when the card has been clicked on, false if not. used for creating tricks
 
     public void AttachCard(Card card)
     {
@@ -25,10 +27,17 @@ public class UI_Card : MonoBehaviour
         CleanCard();
         _cardReference = null;
     }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(!_cardSelected) SelectCard();
 
+        
+
+    }
     public Card SelectCard()
     {
         //move card up slightly
+        _cardSelected.SelectCard();
     
         return _cardReference; 
     }
@@ -60,5 +69,7 @@ public class UI_Card : MonoBehaviour
         _centreImage.sprite = null;
         _backgroundCardImage.enabled = false;
     }
+
+
     #endregion
 }

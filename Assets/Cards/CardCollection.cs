@@ -71,6 +71,8 @@ public class CardCollection : MonoBehaviour
                 if (_cards[i] == null)
                 {
                     _cards[i] = card;
+                    //sets this as the card collection that the card is in (i.e. if it's just been added to the hand from the deck)
+                    card.CurrentCardHolder = this;
                     return true;
                 }
             }

@@ -29,7 +29,8 @@ public class Deck : CardCollection
             for(int j = 1; j< 14; j++) //counts from 1 to 13
             {
                 Card card = new Card(suit, j); //the card sets it's self up. check Card.cs constructor for details
-                _cards[i] = card;
+                AddCard(card);
+                //_cards[i] = card;
                 i++;
             }
         }

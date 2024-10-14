@@ -28,12 +28,22 @@ public class PlayerHand : CardCollection
             {
                 Debug.Log("Card "+card.Value+" added to "+ i);
                 _cards[i] = card;
+                card.OnCardSelectedInHand += CardSelected;
+                card.OnCardDeselectedInHand += CardDeselected;
                 //update UI
                 OnCardAddedToHand?.Invoke(i, card);
                 return true;
             }
         }
         return false;
+    }
+    public void CardSelected(Card card)
+    {
+
+    }
+    public void CardDeselected(Card card)
+    {
+        
     }
 /*    public override Card DrawCard(int index)
     {

@@ -7,15 +7,11 @@ using System;
 
 public class Card
 {
+    #region Fields
+    public CardCollection CurrentCardHolder; //a reference to where the card currently sits. 
     [field: SerializeField] public Suit Suit {get; private set;}
     [field: SerializeField] public int Value { get; private set; }
-
-    //[SerializeField] Image _baseCardImage; //reference to the UI Image component of the card.
-
     [SerializeField] AudioClip _cardSelectSound; //sound to be played when a card is selected
-
-    //[SerializeField] Sprite _cardSprite; // used to store the assigned sprite of the card
-
 
     //a sprite for the suit
     Sprite _suitSprite;
@@ -26,8 +22,10 @@ public class Card
     //sprite for the image in the middle (e.g. number of hearts/picture of a queen)
     Sprite _centreImageSprite;
     public Sprite GetCentreSprite() { return _centreImageSprite; }
+    #endregion
     #region Events
     public event Action<Color> OnColourChanged; //the card UI can sub to this when the card gets added to it (and unsub when it is removed)
+    public event Action<Card> OnCardSelectedInHand, OnCardDeselectedInHand, OnCardSelectedInHeartDefenderHand, OnCardDeselectedInHeartDefenderHand;
     #endregion
     #region Constructor
     public Card(Suit suit, int value)
@@ -76,49 +74,6 @@ public class Card
         OnColourChanged?.Invoke(color);
     }
 
-    /*    // Shake the card transform for effect
-        public void ShakeCard(float amount)
-        {
-            //do something to the _baseCardImage
-        }
-        //on card selected, highlight in UI somehow. Potentially set the card as selected in a higher HandManager/DrawManager/DiscardManager etc. 
-        public void SelectCard()
-        {
-            //move card up a little
-            _baseCardImage.transform.position = new Vector3(_baseCardImage.transform.position.x, _baseCardImage.transform.position.y + 50, _baseCardImage.transform.position.z);
-            //shake card a little
-
-            //play a sound
-            SFXManager.Instance.PlaySound(_cardSelectSound);
-        }
-        public void DeselectCard()
-        {
-            //move card back down to original spot
-            _baseCardImage.transform.position = new Vector3(_baseCardImage.transform.position.x, _baseCardImage.transform.position.y - 50, _baseCardImage.transform.position.z);
-            //
-        }
-
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            SelectCard(); 
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            DeselectCard(); 
-        }*/
-
-/*    public void SetCardValues(Suit cardSuit, int cardValue, Sprite cardImage)
-    {
-        this.Suit = cardSuit;
-        this.Value = cardValue;
-        _cardSprite = cardImage;
-    }*/
-
-/*    public Sprite GetCardSprite()
-    {
-        return _cardSprite;
-    }*/
 
     public int GetCardValue()
     {
@@ -128,6 +83,23 @@ public class Card
     public Suit GetCardSuit()
     {
         return Suit;
+    }
+    /// <summary>
+    /// Select the card (when it's been clicked on), this is used when forming tricks, or updating heart cards
+    /// </summary>
+    public void SelectCard()
+    {
+        if(CurrentCardHolder is PlayerHand)
+        {
+            OnCardSelectedInHand?.Invoke(this);
+        }
+    }
+    public void DeselectCard()
+    {
+        if (CurrentCardHolder is PlayerHand)
+        {
+            OnCardDeselectedInHand?.Invoke(this);
+        }
     }
 }
 
