@@ -7,12 +7,23 @@ using UnityEngine.UI;
 
 public class HeartDefender : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     [SerializeField] private int heartRank;
     [SerializeField] private int heartDmgRate;
     public TextMeshProUGUI rankCounter;
     public int levelUpCost;
+    [SerializeField] private GameManager gameManager;
+    private PlayerHealth playerHealth;
+
+    public int testDamage;
+    public int testMoney;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        playerHealth = GameManager.Instance.PlayerHealth;
+        UpdateRankCounter_UI();
+
+    }
 
     // updates the badge counter
     public void UpdateRankCounter_UI()
@@ -36,32 +47,53 @@ public class HeartDefender : MonoBehaviour
     // if heart takes enough damage that surpasses it's rank's damage threshold, decrease its rank
     public void TakeDamage(int damage)
     {
-        if (damage > heartRank * heartDmgRate)
+        // track damage amt that surpasses defender's rank
+        int overDamage = 0;
+        // if damage amount is higher than the defender's, decrease the rank of the heart by the difference between the amount of damage and the heart's rank
+        if (damage > heartRank)
         {
-            DecreaseRank();
+            overDamage = damage - heartRank;
+            DecreaseRank(overDamage);
         }
     }
 
-    void DecreaseRank()
+    void DecreaseRank(int damage)
     {
-        heartRank--;
+        // tracks overkill damage
+        int overKillDmg = 0;
+
+        heartRank -= damage;
+
+        overKillDmg = Mathf.Abs(heartRank);
+
         UpdateRankCounter_UI();
+
+        // if heartRank is 0 or lower, destroy it and apply overkill damage to player
+        if (heartRank <= 0)
+        {
+            DestroyHeart(overKillDmg);
+        }
     }
 
     void UpgradeRank()
     {
         heartRank++;
+        // add SubtractDifferenceToPlayer()
         UpdateRankCounter_UI();
     }
 
-    void CheckForOverKill()
-    { 
-        // add logic for if this heart dies, player will receive overkill damage
+    void OverKillDamage(int damage)
+    {
+        // if this heart dies, player will receive overkill damage
+        playerHealth.RemoveHealth(damage);
     }
 
-    void DestroyHeart()
-    { 
-        // add logic for destroying heart
+    void DestroyHeart(int damage)
+    {
+        // apply overkill
+        OverKillDamage(damage);
+        // destroy this heart
+        Destroy(this.gameObject);
     }
 
 
@@ -77,12 +109,12 @@ public class HeartDefender : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            PurchaseRankUpgrade(50);
+            PurchaseRankUpgrade(testMoney);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            TakeDamage(25);
+            TakeDamage(testDamage);
         }
     }
 
