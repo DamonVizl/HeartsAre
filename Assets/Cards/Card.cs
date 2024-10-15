@@ -10,7 +10,7 @@ public class Card
     #region Fields
     public CardCollection CurrentCardHolder; //a reference to where the card currently sits. 
     [field: SerializeField] public Suit Suit {get; private set;}
-    [field: SerializeField] public int Value { get; private set; }
+    [field: SerializeField] public Value Value { get; private set; }
     [SerializeField] AudioClip _cardSelectSound; //sound to be played when a card is selected
 
     //a sprite for the suit
@@ -31,7 +31,7 @@ public class Card
     public Card(Suit suit, int value)
     {
         Suit = suit;
-        Value = value;
+        Value = (Value) value;
         SetCardGraphics(Suit, Value);
     }
     #endregion
@@ -41,7 +41,7 @@ public class Card
     /// </summary>
     /// <param name="suit"></param>
     /// <param name="value"></param>
-    public void SetCardGraphics(Suit suit, int value)
+    public void SetCardGraphics(Suit suit, Value value)
     {
         Debug.Log(suit.ToString() + " vs "+ Resources.Load<Sprite>(suit.ToString()));
         _suitSprite = Resources.Load<Sprite>(suit.ToString()); //suit sprites should be saved in the Resources folder named "heart.png" for e.g.
@@ -75,9 +75,9 @@ public class Card
     }
 
 
-    public int GetCardValue()
+    public int GetCardValueAsInt()
     {
-        return Value;
+        return (int)Value;
     }
 
     public Suit GetCardSuit()
@@ -106,8 +106,26 @@ public class Card
 
 public enum Suit
 {
-    Hearts,
-    Diamonds,
-    Spades,
-    Clubs
+    Clubs = 1,
+    Diamonds = 2,
+    Hearts = 3,
+    Spades = 4,
+}
+
+[System.Flags]
+public enum Value
+{
+    Ace = 1,
+    Two = 2,
+    Three = 3,
+    Four  = 4,
+    Five = 5,
+    Six = 6,
+    Seven = 7,
+    Eight = 8,
+    Nine = 9, 
+    Ten = 10, 
+    Jack = 11,
+    Queen = 12,
+    King = 13,
 }

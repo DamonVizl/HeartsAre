@@ -29,6 +29,7 @@ public class UI_CardSlot : MonoBehaviour
         _cardCanvasGroup.alpha = 1;
         _cardCanvasGroup.blocksRaycasts = true;
         _cardCanvasGroup.interactable = true;
+        _UICard.FlipCard();
 
     }
     public void RemoveCardFromSlot()
