@@ -22,6 +22,6 @@ public class UI_ScorePopup : MonoBehaviour
     private void HandleTrickScored(string message, int score)
     {
         _TMPText.text = message;
-        tr
+        
     }
 }

@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
     #region Fields
     public static GameManager Instance;
     private int _startingHealth = 5;
+    private int _startingMoney = 20;
     public int TurnsSurvived { get; private set; } = 0; //the number of turns the player has survived, if it exceeds a threshold the player wins the round
     public int TurnsRequiredToWin { get; private set; } = 4; //how many turns the player must survive to pass the level. 
     public PlayerHealth PlayerHealth { get; private set; } //player's health class. 
+    public CurrencyManager CurrencyManager { get; private set; }
     #endregion
     #region Events
     public static event Action<int> OnTurnUpdated; 
@@ -27,7 +29,8 @@ public class GameManager : MonoBehaviour
     {
         PlayerHealth = new PlayerHealth(_startingHealth);
         TurnsSurvived = 0;
-        OnTurnUpdated?.Invoke(TurnsSurvived); 
+        OnTurnUpdated?.Invoke(TurnsSurvived);
+        CurrencyManager = new CurrencyManager(_startingMoney);
     }
     #endregion
 

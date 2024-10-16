@@ -526,9 +526,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 227900518}
-  - component: {fileID: 227900521}
   - component: {fileID: 227900520}
   - component: {fileID: 227900519}
+  - component: {fileID: 227900521}
   m_Layer: 5
   m_Name: Amount
   m_TagString: Untagged
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 227900517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e009b537982304c8723ac7471fc85e, type: 3}
+  m_Script: {fileID: 11500000, guid: 76dc70472ffd9e24d854171d1c393d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &234993112
@@ -2831,50 +2831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e009b537982304c8723ac7471fc85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1623996364
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1623996366}
-  - component: {fileID: 1623996365}
-  m_Layer: 0
-  m_Name: CurrencyManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1623996365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623996364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47f7edd931726fb4586c9a8efdfaee03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1623996366
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623996364}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 323.56567, y: 225.33403, z: -1.5119538}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1673899506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3974,4 +3930,3 @@ SceneRoots:
   - {fileID: 107545380}
   - {fileID: 2098959031}
   - {fileID: 2057407294}
-  - {fileID: 1623996366}

@@ -1,18 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrencyManager : MonoBehaviour
+public class CurrencyManager
 {
+    private int _currentMoney;
+    public static event Action<int> OnCurrencyChanged;
+
     // Start is called before the first frame update
-    void Start()
+    public CurrencyManager(int startingValue)
     {
-        
+        _currentMoney = startingValue;
+        OnCurrencyChanged?.Invoke(_currentMoney);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
