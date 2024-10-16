@@ -15,7 +15,7 @@ public class CurrencyManager
         OnCurrencyChanged?.Invoke(_currentMoney);
     }
 
-    public void AddMoney(int value)
+    public static void AddMoney(int value)
     {
         _currentMoney += value;
         OnCurrencyChanged?.Invoke(_currentMoney);
@@ -26,11 +26,17 @@ public class CurrencyManager
         if (_currentMoney >= value)
         {
             _currentMoney -= value;
+            OnCurrencyChanged?.Invoke(_currentMoney);
         }
         else
         {
             Debug.Log("not enough money for this action");
         }
+    }
+
+    public static int GetCurrentMoney()
+    {
+        return _currentMoney;
     }
 
 

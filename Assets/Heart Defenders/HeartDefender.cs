@@ -32,11 +32,11 @@ public class HeartDefender : MonoBehaviour
     }
 
     // if player tries to purchase a rank upgrade and has enough currency, upgrade the card's rank
-    public void PurchaseRankUpgrade(int playerCurrencyAmt)
+    public void PurchaseRankUpgrade()
     {
         int upgradeCost = levelUpCost * heartRank;
 
-        if (playerCurrencyAmt > levelUpCost * heartRank)
+        if (CurrencyManager.GetCurrentMoney() > levelUpCost * heartRank)
         {
             UpgradeRank(upgradeCost);
         }
@@ -103,7 +103,7 @@ public class HeartDefender : MonoBehaviour
 
     private void Update()
     {
-        //CheckForTestInputs();
+        CheckForTestInputs();
     }
 
 
@@ -112,7 +112,7 @@ public class HeartDefender : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            PurchaseRankUpgrade(testMoney);
+            PurchaseRankUpgrade();
         }
 
         if (Input.GetKeyDown(KeyCode.E))
