@@ -34,9 +34,11 @@ public class HeartDefender : MonoBehaviour
     // if player tries to purchase a rank upgrade and has enough currency, upgrade the card's rank
     public void PurchaseRankUpgrade(int playerCurrencyAmt)
     {
+        int upgradeCost = levelUpCost * heartRank;
+
         if (playerCurrencyAmt > levelUpCost * heartRank)
         {
-            UpgradeRank();
+            UpgradeRank(upgradeCost);
         }
         else
         {
@@ -75,8 +77,9 @@ public class HeartDefender : MonoBehaviour
         }
     }
 
-    void UpgradeRank()
+    void UpgradeRank(int cost)
     {
+        CurrencyManager.RemoveMoney(cost);
         heartRank++;
         // add SubtractDifferenceToPlayer()
         UpdateRankCounter_UI();
