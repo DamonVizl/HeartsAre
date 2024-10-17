@@ -130,15 +130,18 @@ public class HeartDefender : MonoBehaviour
 
     void CheckIfCanUpgrade()
     {
-        if (playStateMachine.GetCurrentState() == PlayState.PlayerTurn)
+        if (playStateMachine != null)
         {
-            if (IsAbleToUpgrade())
+            if (playStateMachine.GetCurrentState() == PlayState.PlayerTurn)
             {
-                EnableIcon();
-            }
-            else
-            {
-                DisableIcon();
+                if (IsAbleToUpgrade())
+                {
+                    EnableIcon();
+                }
+                else
+                {
+                    DisableIcon();
+                }
             }
         }
     }
