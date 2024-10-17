@@ -10,18 +10,26 @@ public class HeartDefender : MonoBehaviour
     [SerializeField] private int heartRank;
     [SerializeField] private int heartDmgRate;
     public TextMeshProUGUI rankCounter;
-    public int levelUpCost;
+    [SerializeField] private float levelUpRateIncrease;
     [SerializeField] private GameManager gameManager;
     private PlayerHealth playerHealth;
+
+    public Image upgradeArrowIcon;
+    private float iconDisabledSaturation = .1f;
+
+    [SerializeField] private PlayStateMachine playStateMachine;
 
     public int testDamage;
     public int testMoney;
 
+   
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         playerHealth = GameManager.Instance.PlayerHealth;
         UpdateRankCounter_UI();
+        DisableIcon();
+        playStateMachine = FindObjectOfType<PlayStateMachine>();
 
     }
 
@@ -34,11 +42,9 @@ public class HeartDefender : MonoBehaviour
     // if player tries to purchase a rank upgrade and has enough currency, upgrade the card's rank
     public void PurchaseRankUpgrade()
     {
-        int upgradeCost = levelUpCost * heartRank;
-
-        if (CurrencyManager.GetCurrentMoney() > levelUpCost * heartRank)
+        if (IsAbleToUpgrade())
         {
-            UpgradeRank(upgradeCost);
+            UpgradeRank(GetNextUpgradeCost());
         }
         else
         {
@@ -99,28 +105,56 @@ public class HeartDefender : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void DisableIcon()
+    {
+        Color iconColor = upgradeArrowIcon.color;
+        iconColor.a = iconDisabledSaturation;
+        upgradeArrowIcon.color = iconColor;  
+    }
 
+    void EnableIcon()
+    {
+        Color iconColor = upgradeArrowIcon.color;
+        iconColor.a = 1f;
+        upgradeArrowIcon.color = iconColor;
+    }
+
+    public bool IsAbleToUpgrade()
+    {
+        if (CurrencyManager.GetCurrentMoney() > GetNextUpgradeCost())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    void CheckIfCanUpgrade()
+    {
+        if (playStateMachine.GetCurrentState() == PlayState.PlayerTurn)
+        {
+            if (IsAbleToUpgrade())
+            {
+                EnableIcon();
+            }
+            else
+            {
+                DisableIcon();
+            }
+        }
+    }
+
+
+    private int GetNextUpgradeCost()
+    {
+        int levelUpCost = 0;
+        levelUpCost = Mathf.RoundToInt(heartRank * levelUpRateIncrease);
+
+        return levelUpCost;
+    }
 
     private void Update()
     {
-        CheckForTestInputs();
+        CheckIfCanUpgrade();
     }
-
-
-    // just for quick testing of upgrade and decreasing rank - remove
-    private void CheckForTestInputs()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            PurchaseRankUpgrade();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TakeDamage(testDamage);
-        }
-    }
-
-
 
 }
