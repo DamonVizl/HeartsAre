@@ -14,9 +14,18 @@ public class UI_HeartDefender : MonoBehaviour
 
     public int addDefenderCost;
 
+    public Button addDefenderButton;
+
     [SerializeField] private int maxDefenders;
 
+    void Start()
+    {
+        // assign the listener to the starting addHeartDefender UI element
+        addDefenderButton.onClick.AddListener(BuyDefender);
+    }
 
+
+    // if player has enough $ and hasn't exceeded the defender limit, add a new defender
     public void BuyDefender()
     {
         if (heartDefenders.Count < maxDefenders)
@@ -36,6 +45,7 @@ public class UI_HeartDefender : MonoBehaviour
         }
     }
 
+    // add a new defender by swapping it with the addDefender placeholder and then move the buy UI element to the next slot down
     private void AddDefender()
     {
         CurrencyManager.RemoveMoney(addDefenderCost);
@@ -44,10 +54,10 @@ public class UI_HeartDefender : MonoBehaviour
         SwapWithDefender(currentPlaceHolder);
 
         AddNewPlaceHolder();
-
     }
 
 
+    // swap the buy UI element with the heart defender
     private void SwapWithDefender(GameObject placeholder)
     {
         GameObject newDefender = Instantiate(heartDefenderPrefab, placeholder.transform.position, Quaternion.identity);
@@ -58,10 +68,20 @@ public class UI_HeartDefender : MonoBehaviour
         Destroy(placeholder);
     }
 
+    // add a new UI buy element in place of the old one, moved down to the end of the row
     private void AddNewPlaceHolder()
     {
         GameObject newPlaceholder = Instantiate(addHeartDefenderPrefab, cardContainer);
+        AssignListener(newPlaceholder);
 
+    }
+
+    // assigns the click functionality for the buy UI element
+    private void AssignListener(GameObject placeholder)
+    {
+        addDefenderButton = placeholder.GetComponent<Button>();
+
+        addDefenderButton.onClick.AddListener(BuyDefender);
     }
 
 
