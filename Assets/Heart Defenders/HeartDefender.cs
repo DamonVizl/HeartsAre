@@ -19,10 +19,6 @@ public class HeartDefender : MonoBehaviour
 
     [SerializeField] private PlayStateMachine playStateMachine;
 
-    public int testDamage;
-    public int testMoney;
-
-   
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -105,6 +101,7 @@ public class HeartDefender : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    // shows upgrade arrow in transparent, inactive state
     public void DisableIcon()
     {
         Color iconColor = upgradeArrowIcon.color;
@@ -112,6 +109,7 @@ public class HeartDefender : MonoBehaviour
         upgradeArrowIcon.color = iconColor;  
     }
 
+    // show upgrade arrow in active state with full saturation
     void EnableIcon()
     {
         Color iconColor = upgradeArrowIcon.color;
@@ -119,15 +117,17 @@ public class HeartDefender : MonoBehaviour
         upgradeArrowIcon.color = iconColor;
     }
 
+    // checks if player has enough money to upgrade this heart defender
     public bool IsAbleToUpgrade()
     {
-        if (CurrencyManager.GetCurrentMoney() > GetNextUpgradeCost())
+        if (CurrencyManager.GetCurrentMoney() >= GetNextUpgradeCost())
         {
             return true;
         }
         return false;
     }
 
+    // checks if heart defender is upgradable at runtime
     void CheckIfCanUpgrade()
     {
         if (playStateMachine != null)
@@ -146,7 +146,7 @@ public class HeartDefender : MonoBehaviour
         }
     }
 
-
+    // calculates this heart defender's next upgrade cost
     private int GetNextUpgradeCost()
     {
         int levelUpCost = 0;
