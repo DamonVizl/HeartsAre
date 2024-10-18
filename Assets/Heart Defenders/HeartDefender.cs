@@ -19,6 +19,9 @@ public class HeartDefender : MonoBehaviour
 
     [SerializeField] private PlayStateMachine playStateMachine;
 
+    RectTransform parentRectTransform; // UI parent reference for camera shake
+
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -26,6 +29,7 @@ public class HeartDefender : MonoBehaviour
         UpdateRankCounter_UI();
         DisableIcon();
         playStateMachine = FindObjectOfType<PlayStateMachine>();
+        parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
 
     }
 
@@ -45,6 +49,7 @@ public class HeartDefender : MonoBehaviour
         else
         {
             Debug.Log("You do not have enough money to upgrade this heart");
+            Camera.main.GetComponent<CameraShake>().StartCameraShake(.2f, .5f, parentRectTransform); // camera shake effect to signal unable to perform action
         }
     }
 
