@@ -49,7 +49,7 @@ public class HeartDefender : MonoBehaviour
         else
         {
             Debug.Log("You do not have enough money to upgrade this heart");
-            Camera.main.GetComponent<CameraShake>().StartCameraShake(.2f, .5f, parentRectTransform); // camera shake effect to signal unable to perform action
+            ShakeCamera();
         }
     }
 
@@ -163,6 +163,16 @@ public class HeartDefender : MonoBehaviour
     private void Update()
     {
         CheckIfCanUpgrade();
+    }
+
+    private void ShakeCamera()
+    {
+        CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
+
+        if (cameraShake != null && parentRectTransform != null)
+        {
+            cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
+        }
     }
 
 }

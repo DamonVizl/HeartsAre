@@ -17,11 +17,13 @@ public class UI_HeartDefender : MonoBehaviour
     public Button addDefenderButton;
 
     [SerializeField] private int maxDefenders;
+    RectTransform parentRectTransform; // UI parent reference for camera shake
 
     void Start()
     {
         // assign the listener to the starting addHeartDefender UI element
         addDefenderButton.onClick.AddListener(BuyDefender);
+        parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
     }
 
 
@@ -37,6 +39,7 @@ public class UI_HeartDefender : MonoBehaviour
             else
             {
                 Debug.Log("not enough money");
+                ShakeCamera();
             }
         }
         else
@@ -82,6 +85,16 @@ public class UI_HeartDefender : MonoBehaviour
         addDefenderButton = placeholder.GetComponent<Button>();
 
         addDefenderButton.onClick.AddListener(BuyDefender);
+    }
+
+    private void ShakeCamera()
+    {
+        CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
+
+        if (cameraShake != null && parentRectTransform != null)
+        {
+            cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
+        }
     }
 
 
