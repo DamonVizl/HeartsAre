@@ -8,7 +8,7 @@ public class UI_HeartDefender : MonoBehaviour
     public GameObject heartDefenderPrefab;
     public GameObject addHeartDefenderPrefab;
 
-    private List<GameObject> heartDefenders = new List<GameObject>();
+    private List<HeartDefender> heartDefenders = new List<HeartDefender>();
 
     public Transform cardContainer;
 
@@ -63,10 +63,12 @@ public class UI_HeartDefender : MonoBehaviour
     // swap the buy UI element with the heart defender
     private void SwapWithDefender(GameObject placeholder)
     {
-        GameObject newDefender = Instantiate(heartDefenderPrefab, placeholder.transform.position, Quaternion.identity);
-        newDefender.transform.SetParent(cardContainer, false);
+        GameObject newDefenderObj = Instantiate(heartDefenderPrefab, placeholder.transform.position, Quaternion.identity);
+        newDefenderObj.transform.SetParent(cardContainer, false);
 
-        heartDefenders.Add(newDefender);
+        HeartDefender heartDefender = newDefenderObj.GetComponent<HeartDefender>();
+
+        heartDefenders.Add(heartDefender);
 
         Destroy(placeholder);
     }
@@ -96,6 +98,12 @@ public class UI_HeartDefender : MonoBehaviour
             cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
         }
     }
+
+    public List<HeartDefender> getHeartDefenderList()
+    {
+        return heartDefenders;
+    }
+
 
 
 
