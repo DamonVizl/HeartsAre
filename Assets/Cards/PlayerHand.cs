@@ -6,22 +6,22 @@ using UnityEngine;
 public class PlayerHand : CardCollection
 {
     public int startingHandSize = 5;
-    public static event Action<int,Card> OnCardAddedToHand;
+    public static event Action<int, Card> OnCardAddedToHand;
 
-    public event Action<int> OnTrickScore; 
+    public event Action<int> OnTrickScore;
 
     //a trick is a collection of cards used to score
-    private Trick _trickAttempt; 
+    private Trick _trickAttempt;
 
     protected override void Start()
     {
-        MaxCollectionSize = 7; 
-        _trickAttempt = new Trick();    
+        MaxCollectionSize = 7;
+        _trickAttempt = new Trick();
         base.Start();
     }
     private void OnEnable()
     {
-        UI_Button_SubmitTrick.OnSubmitButtonPressed += SubmitTrick; 
+        UI_Button_SubmitTrick.OnSubmitButtonPressed += SubmitTrick;
     }
     private void OnDisable()
     {
@@ -36,7 +36,7 @@ public class PlayerHand : CardCollection
     {
         if (card == null) return false;
         //find an empty slot
-        for(int i = 0; i < _cards.Length; i++)
+        for (int i = 0; i < _cards.Length; i++)
         {
             if (_cards[i] == null)
             {

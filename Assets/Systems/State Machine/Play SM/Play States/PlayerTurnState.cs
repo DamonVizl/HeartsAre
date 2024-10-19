@@ -15,12 +15,14 @@ public class PlayerTurnState : BaseState<PlayState>
         Debug.Log("Entering Player Turn state. This is where the player will draw cards, play rummy hands and set themselves up for the enemy's turn");
         //update UI to show that it's the players turn
         //enable player control
+        UI_Button_EndPlayerTurn.OnEndTurnButtonPressed += EndTurn;
         
     }
 
     public override void ExitState()
     {
         //remove player control
+        UI_Button_EndPlayerTurn.OnEndTurnButtonPressed -= EndTurn;
     }
 
     public override PlayState GetNextState()
@@ -32,5 +34,11 @@ public class PlayerTurnState : BaseState<PlayState>
     public override void UpdateState()
     {
         //await the player confirming they are done, then move to the play state. 
+    }
+
+    public void EndTurn()
+    {
+        _stateMachine.TransitionToState(PlayState.EnemyTurn);
+        Debug.Log("transitioning to the enemy's turn");
     }
 }
