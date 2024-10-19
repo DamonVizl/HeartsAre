@@ -18,18 +18,20 @@ public class Enemy
 
     public static void Attack()
     {
+        // get a random number of attacks to use this turn
         int numberOfAttacks = CalculateNumOfAttacks();
 
+        // loop through each attack and target a different defender with random damage with each iteration of the loop
         for (int i = 0; i < numberOfAttacks; i++)
         {
             HeartDefender defenderToAttack = GetRandomDefender();
             int dmg = CalculateDamage();
 
             defenderToAttack.TakeDamage(dmg);
-            Debug.Log(dmg);
         }
     }
 
+    // get the current list of defenders and return a random defender
     private static HeartDefender GetRandomDefender()
     {
         HeartDefender ranDefender = null;
@@ -44,6 +46,7 @@ public class Enemy
         return ranDefender;
     }
 
+    // calculates a random number of attacks for this turn
     private static int CalculateNumOfAttacks()
     {
         int randomNumAttacks = 0;
@@ -52,6 +55,7 @@ public class Enemy
         return randomNumAttacks;
     }
 
+    // calculate a random amount of damage for an attack
     private static int CalculateDamage()
     {
         int randomDamage = 0;

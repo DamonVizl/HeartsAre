@@ -19,6 +19,7 @@ public class EnemyTurnState : BaseState<PlayState>
         //temporary player health reduction. make something a little more sophisticated than this. Also need to encorporate the hearts defence part. 
         //I think I'll make this an event and then the playerhand or whatever can react to it by reducing hearts or taking damage, depending on how many hearts are left.
         //GameManager.Instance.ReducePlayerHealth(1);
+        Enemy.Attack(); // calls enemy attack that chooses heart defenders at random to attack
     }
 
     public override void ExitState()

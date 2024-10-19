@@ -14,9 +14,11 @@ public class GameManager : MonoBehaviour
     public int TurnsRequiredToWin { get; private set; } = 4; //how many turns the player must survive to pass the level. 
     public PlayerHealth PlayerHealth { get; private set; } //player's health class. 
     public CurrencyManager CurrencyManager { get; private set; }
-    #endregion
-    #region Events
-    public static event Action<int> OnTurnUpdated; 
+    public Enemy Enemy { get; private set; }
+    private UI_HeartDefender _ui_heartDefender;
+#endregion
+#region Events
+public static event Action<int> OnTurnUpdated; 
     #endregion
     #region SetupMethods
     public void OnEnable()
@@ -27,10 +29,12 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        _ui_heartDefender = FindObjectOfType<UI_HeartDefender>();
         PlayerHealth = new PlayerHealth(_startingHealth);
         TurnsSurvived = 0;
         OnTurnUpdated?.Invoke(TurnsSurvived);
         CurrencyManager = new CurrencyManager(_startingMoney);
+        Enemy = new Enemy(_ui_heartDefender);
     }
     #endregion
 
