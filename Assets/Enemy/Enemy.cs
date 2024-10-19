@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Enemy
 {
@@ -10,6 +12,8 @@ public class Enemy
     private static int _maxNumAttacks = 3;
 
     private static UI_HeartDefender _heartDefenderRef;
+
+    public static event Action<int> OnDamageCalculated;
 
     public Enemy(UI_HeartDefender heartDefenderRef)
     {
@@ -26,7 +30,7 @@ public class Enemy
         {
             HeartDefender defenderToAttack = GetRandomDefender();
             int dmg = CalculateDamage();
-
+            OnDamageCalculated?.Invoke(dmg);
             defenderToAttack.TakeDamage(dmg);
         }
     }
@@ -39,7 +43,7 @@ public class Enemy
 
         int numberOfDefenders = currentDefenderList.Count;
 
-        int randomNum = Random.Range(0, numberOfDefenders);
+        int randomNum = UnityEngine.Random.Range(0, numberOfDefenders);
 
         ranDefender = currentDefenderList[randomNum];
 
@@ -50,7 +54,7 @@ public class Enemy
     private static int CalculateNumOfAttacks()
     {
         int randomNumAttacks = 0;
-        randomNumAttacks = Random.Range(_minNumAttacks, _maxNumAttacks);
+        randomNumAttacks = UnityEngine.Random.Range(_minNumAttacks, _maxNumAttacks);
 
         return randomNumAttacks;
     }
@@ -60,7 +64,7 @@ public class Enemy
     {
         int randomDamage = 0;
 
-        randomDamage = Random.Range(_minDamage, _maxDamage);
+        randomDamage = UnityEngine.Random.Range(_minDamage, _maxDamage);
 
         return randomDamage;
     }
