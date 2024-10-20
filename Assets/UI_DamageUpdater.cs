@@ -41,13 +41,34 @@ public class UI_DamageUpdater : MonoBehaviour
         {
             HeartDefender defenderToAttack = Enemy.GetRandomDefender();
             int dmg = Enemy.CalculateDamage();
-            //Enemy.OnDamageCalculated?.Invoke(dmg);
-            UpdateDamageUI(dmg);
+            //UpdateDamageUI(dmg);
+            StartCoroutine(AnimateDamageText(dmg));
             defenderToAttack.TakeDamage(dmg);
-            yield return new WaitForSeconds(_attackDelay);
+            yield return new WaitForSeconds(2f);
         }
 
         ResetDamageText();
+    }
+
+    private IEnumerator AnimateDamageText(int damage)
+    {
+        int currentDisplayValue = 0;
+        int finalDamageValue = damage;
+        float duration = .5f; // Time to complete the counting
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            currentDisplayValue = Mathf.FloorToInt(Mathf.Lerp(0, finalDamageValue, elapsedTime / duration));
+            _damageTMP.text = currentDisplayValue.ToString();
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(.5f);
+
+        // Ensure it shows the exact final damage value at the end
+        _damageTMP.text = finalDamageValue.ToString();
     }
 
     private void ResetDamageText()
