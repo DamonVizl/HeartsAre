@@ -66,14 +66,14 @@ public class UI_HeartDefender : MonoBehaviour
         CurrencyManager.RemoveMoney(addDefenderCost);
         GameObject currentPlaceHolder = cardContainer.GetChild(cardContainer.childCount - 1).gameObject;
 
-        SwapWithDefender(currentPlaceHolder);
+        SwapAndAddDefender(currentPlaceHolder);
 
         AddNewPlaceHolder();
     }
 
 
     // swap the buy UI element with the heart defender
-    private void SwapWithDefender(GameObject placeholder)
+    private void SwapAndAddDefender(GameObject placeholder)
     {
         GameObject newDefenderObj = Instantiate(heartDefenderPrefab, placeholder.transform.position, Quaternion.identity);
         newDefenderObj.transform.SetParent(cardContainer, false);

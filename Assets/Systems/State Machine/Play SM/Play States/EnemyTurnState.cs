@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyTurnState : BaseState<PlayState>
 {
     PlayStateMachine _stateMachine; //hold a reference to the statemachine 
+
+    protected int _numberOfAttacks;
+    protected int _attackCount = 0;
     public EnemyTurnState(PlayStateMachine sm, PlayState key) : base(key)
     {
         _stateMachine = sm;
@@ -29,24 +32,52 @@ public class EnemyTurnState : BaseState<PlayState>
 
     public override PlayState GetNextState()
     {
+
+        int remainingAttacks = GetNumberOfAttacks();
+
         // if the player has no health yet, return lose state. 
-        if(!GameManager.Instance.PlayerHealth.IsAlive())
+        if (!GameManager.Instance.PlayerHealth.IsAlive())
         {
-            return PlayState.Lose; 
+            return PlayState.Lose;
         }
 
         //if the number of turns has exceeded the amount required to win, return win state. 
-        else if (GameManager.Instance.TurnsSurvived>= GameManager.Instance.TurnsRequiredToWin)
+        else if (GameManager.Instance.TurnsSurvived >= GameManager.Instance.TurnsRequiredToWin)
         {
-            return PlayState.Win; 
+            return PlayState.Win;
         }
 
-        //else if the player has any health left, return to the player turn again 
-        return PlayState.PlayerTurn;
+        else if (_attackCount >= GetNumberOfAttacks())
+        {
+            //else if the player has any health left and there are no more remaining attacks, return to the player turn
+            return PlayState.PlayerTurn;
+        }
+        else
+        {
+            ReduceAttackCounter();
+            return PlayState.EnemyTurn;
+        }
+
     }
 
     public override void UpdateState()
     {
         //await the player confirming they are done, then move to the play state. 
+    }
+
+    public void SetNumberOfAttacks(int numOfAttacks)
+    {
+        _numberOfAttacks = numOfAttacks;
+        _attackCount = numOfAttacks;
+    }
+
+    public int GetNumberOfAttacks()
+    {
+        return _numberOfAttacks;
+    }
+
+    public void ReduceAttackCounter()
+    {
+        _attackCount--;
     }
 }

@@ -39,15 +39,15 @@ public class UI_DamageUpdater : MonoBehaviour
     {
         for (int i = 0; i < numberOfAttacks; i++)
         {
-            HeartDefender defenderToAttack = Enemy.GetRandomDefender();
+
             int dmg = Enemy.CalculateDamage();
-            //UpdateDamageUI(dmg);
+
             StartCoroutine(AnimateDamageText(dmg));
-            defenderToAttack.TakeDamage(dmg);
+
             yield return new WaitForSeconds(2f);
         }
 
-        ResetDamageText();
+
     }
 
     private IEnumerator AnimateDamageText(int damage)
