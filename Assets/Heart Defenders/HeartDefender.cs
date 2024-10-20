@@ -23,6 +23,8 @@ public class HeartDefender : MonoBehaviour
 
     public Button button;
 
+    public ParticleSystem deathParticle;
+
 
     private void Start()
     {
@@ -65,6 +67,7 @@ public class HeartDefender : MonoBehaviour
     // if heart takes enough damage that surpasses it's rank's damage threshold, decrease its rank
     public void TakeDamage(int damage)
     {
+        deathParticle.Play();
         // track damage amt that surpasses defender's rank
         int overDamage = 0;
         // if damage amount is higher than the defender's, decrease the rank of the heart by the difference between the amount of damage and the heart's rank

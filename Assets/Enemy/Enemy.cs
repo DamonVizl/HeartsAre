@@ -26,21 +26,6 @@ public class Enemy
         Debug.Log("UI_DamageUpdater is attacking with the number of attacks set in the GM instance");
     }
 
-    // get the current list of defenders and return a random defender
-    public static HeartDefender GetRandomDefender()
-    {
-        HeartDefender ranDefender = null;
-        List<HeartDefender> currentDefenderList = _heartDefenderRef.getHeartDefenderList();
-
-        int numberOfDefenders = currentDefenderList.Count;
-
-        int randomNum = UnityEngine.Random.Range(0, numberOfDefenders);
-
-        ranDefender = currentDefenderList[randomNum];
-
-        return ranDefender;
-    }
-
     // calculates a random number of attacks for this turn
     public static int CalculateNumOfAttacks()
     {
