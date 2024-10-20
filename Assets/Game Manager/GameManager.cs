@@ -62,13 +62,6 @@ public class GameManager : MonoBehaviour
         OnDefenderSelected?.Invoke(heartDefender);
     }
 
-    public int GetNumberOfAttacks()
-    {
-        int numberOfAttacks = 0; 
-        
-        numberOfAttacks = Enemy.CalculateNumOfAttacks();
-        return numberOfAttacks;
-    }
 
     public void Attack()
     {
@@ -90,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void SetAttackCount()
     {
-        _attackCount = GetNumberOfAttacks();
+        _attackCount = Enemy.CalculateNumOfAttacks();
     }
 
 }
