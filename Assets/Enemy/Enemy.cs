@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 public class Enemy
 {
     private static int _minDamage = 1;
@@ -12,12 +10,14 @@ public class Enemy
     private static int _maxNumAttacks = 3;
 
     private static UI_HeartDefender _heartDefenderRef;
+    private static UI_DamageUpdater _ui_DamageUpdater;
 
     public static event Action<int> OnDamageCalculated;
 
-    public Enemy(UI_HeartDefender heartDefenderRef)
+    public Enemy(UI_HeartDefender heartDefenderRef, UI_DamageUpdater damageUpdater)
     {
         _heartDefenderRef = heartDefenderRef;
+        _ui_DamageUpdater = damageUpdater;
     }
 
     public static void Attack()
@@ -25,18 +25,12 @@ public class Enemy
         // get a random number of attacks to use this turn
         int numberOfAttacks = CalculateNumOfAttacks();
 
-        // loop through each attack and target a different defender with random damage with each iteration of the loop
-        for (int i = 0; i < numberOfAttacks; i++)
-        {
-            HeartDefender defenderToAttack = GetRandomDefender();
-            int dmg = CalculateDamage();
-            OnDamageCalculated?.Invoke(dmg);
-            defenderToAttack.TakeDamage(dmg);
-        }
+        _ui_DamageUpdater.StartAttack(numberOfAttacks);
+
     }
 
     // get the current list of defenders and return a random defender
-    private static HeartDefender GetRandomDefender()
+    public static HeartDefender GetRandomDefender()
     {
         HeartDefender ranDefender = null;
         List<HeartDefender> currentDefenderList = _heartDefenderRef.getHeartDefenderList();
@@ -51,7 +45,7 @@ public class Enemy
     }
 
     // calculates a random number of attacks for this turn
-    private static int CalculateNumOfAttacks()
+    public static int CalculateNumOfAttacks()
     {
         int randomNumAttacks = 0;
         randomNumAttacks = UnityEngine.Random.Range(_minNumAttacks, _maxNumAttacks);
@@ -60,7 +54,7 @@ public class Enemy
     }
 
     // calculate a random amount of damage for an attack
-    private static int CalculateDamage()
+    public static int CalculateDamage()
     {
         int randomDamage = 0;
 

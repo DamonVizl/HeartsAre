@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public CurrencyManager CurrencyManager { get; private set; }
     public Enemy Enemy { get; private set; }
     private UI_HeartDefender _ui_heartDefender;
+    private UI_DamageUpdater _ui_DamageUpdater;
 #endregion
 #region Events
 public static event Action<int> OnTurnUpdated; 
@@ -30,11 +31,12 @@ public static event Action<int> OnTurnUpdated;
     private void Start()
     {
         _ui_heartDefender = FindObjectOfType<UI_HeartDefender>();
+        _ui_DamageUpdater = FindObjectOfType<UI_DamageUpdater>();
         PlayerHealth = new PlayerHealth(_startingHealth);
         TurnsSurvived = 0;
         OnTurnUpdated?.Invoke(TurnsSurvived);
         CurrencyManager = new CurrencyManager(_startingMoney);
-        Enemy = new Enemy(_ui_heartDefender);
+        Enemy = new Enemy(_ui_heartDefender, _ui_DamageUpdater);
     }
     #endregion
 
