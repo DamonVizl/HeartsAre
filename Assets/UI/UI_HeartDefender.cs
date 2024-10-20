@@ -24,6 +24,18 @@ public class UI_HeartDefender : MonoBehaviour
         // assign the listener to the starting addHeartDefender UI element
         addDefenderButton.onClick.AddListener(BuyDefender);
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
+        CheckForStartingDefenders(); // check if there are any heart defenders in play at start of game and add to heartDefenders list
+    }
+
+    // checks if there are any heart defenders in play and adds them to the heartDefenders list - should be used at Start()
+    void CheckForStartingDefenders()
+    {
+        HeartDefender[] startingDefenders = FindObjectsOfType<HeartDefender>();
+
+        for (int i = 0; i < startingDefenders.Length; i++)
+        {
+            heartDefenders.Add(startingDefenders[i]);
+        }
     }
 
 
