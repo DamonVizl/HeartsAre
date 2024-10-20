@@ -17,9 +17,12 @@ public class GameManager : MonoBehaviour
     public Enemy Enemy { get; private set; }
     private UI_HeartDefender _ui_heartDefender;
     private UI_DamageUpdater _ui_DamageUpdater;
+
+    private int _attackCount;
 #endregion
 #region Events
-public static event Action<int> OnTurnUpdated; 
+    public static event Action<int> OnTurnUpdated;
+    public static event Action<HeartDefender> OnDefenderSelected;
     #endregion
     #region SetupMethods
     public void OnEnable()
@@ -52,6 +55,42 @@ public static event Action<int> OnTurnUpdated;
     public void ReducePlayerHealth(int amount)
     {
         PlayerHealth.RemoveHealth(amount);
+    }
+
+    public static void PlayerSelectsDefender(HeartDefender heartDefender)
+    {
+        OnDefenderSelected?.Invoke(heartDefender);
+    }
+
+    public int GetNumberOfAttacks()
+    {
+        int numberOfAttacks = 0; 
+        
+        numberOfAttacks = Enemy.CalculateNumOfAttacks();
+        return numberOfAttacks;
+    }
+
+    public void Attack()
+    {
+        SetAttackCount();
+        Debug.Log("GM is calling Enemy class to attack");
+        Enemy.Attack(_attackCount);
+    }
+
+    public void ReduceAttackCount()
+    {
+        _attackCount--;
+    }
+
+    public int GetNumberOfAttacksLeft()
+    {
+        return _attackCount;
+    }
+
+
+    public void SetAttackCount()
+    {
+        _attackCount = GetNumberOfAttacks();
     }
 
 }

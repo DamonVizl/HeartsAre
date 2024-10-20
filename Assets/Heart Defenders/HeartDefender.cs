@@ -21,6 +21,8 @@ public class HeartDefender : MonoBehaviour
 
     RectTransform parentRectTransform; // UI parent reference for camera shake
 
+    public Button button;
+
 
     private void Start()
     {
@@ -31,6 +33,13 @@ public class HeartDefender : MonoBehaviour
         playStateMachine = FindObjectOfType<PlayStateMachine>();
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
 
+        button.onClick.AddListener(OnSelected);
+
+    }
+
+    private void OnSelected()
+    {
+        GameManager.PlayerSelectsDefender(this);
     }
 
     // updates the badge counter

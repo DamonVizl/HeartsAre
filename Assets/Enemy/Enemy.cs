@@ -20,13 +20,10 @@ public class Enemy
         _ui_DamageUpdater = damageUpdater;
     }
 
-    public static void Attack()
+    public static void Attack(int value)
     {
-        // get a random number of attacks to use this turn
-        int numberOfAttacks = CalculateNumOfAttacks();
-
-        _ui_DamageUpdater.StartAttack(numberOfAttacks);
-
+        _ui_DamageUpdater.StartAttack(value);
+        Debug.Log("UI_DamageUpdater is attacking with the number of attacks set in the GM instance");
     }
 
     // get the current list of defenders and return a random defender
