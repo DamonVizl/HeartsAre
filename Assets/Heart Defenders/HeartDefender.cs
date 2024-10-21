@@ -13,6 +13,8 @@ public class HeartDefender : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     private PlayerHealth playerHealth;
 
+    private const int maxLevel = 10;
+
     public Image upgradeArrowIcon;
     private float iconDisabledSaturation = .1f;
 
@@ -134,10 +136,10 @@ public class HeartDefender : MonoBehaviour
         upgradeArrowIcon.color = iconColor;
     }
 
-    // checks if player has enough money to upgrade this heart defender
+    // checks if player has enough money to upgrade this heart defender and is below max level (10)
     public bool IsAbleToUpgrade()
     {
-        if (CurrencyManager.GetCurrentMoney() >= GetNextUpgradeCost())
+        if (CurrencyManager.GetCurrentMoney() >= GetNextUpgradeCost() && heartRank < maxLevel)
         {
             return true;
         }

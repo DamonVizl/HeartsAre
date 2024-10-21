@@ -19,7 +19,7 @@ public class UI_HeartDefender : MonoBehaviour
 
     public Button addDefenderButton;
 
-    [SerializeField] private int maxDefenders;
+    [SerializeField] private const int maxDefenders = 5;
     RectTransform parentRectTransform; // UI parent reference for camera shake
    
 
