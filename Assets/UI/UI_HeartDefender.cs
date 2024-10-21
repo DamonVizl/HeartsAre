@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class UI_HeartDefender : MonoBehaviour
 {
     public GameObject heartDefenderPrefab;
-    public GameObject addHeartDefenderPrefab;
+    public GameObject defenderOptions_UI_Container;
+    public GameObject noDefenderOption_UI;
+    public GameObject addDefenderObj_UI;
 
     private List<HeartDefender> heartDefenders = new List<HeartDefender>();
 
@@ -18,6 +20,7 @@ public class UI_HeartDefender : MonoBehaviour
 
     [SerializeField] private int maxDefenders;
     RectTransform parentRectTransform; // UI parent reference for camera shake
+   
 
     void Start()
     {
@@ -25,6 +28,7 @@ public class UI_HeartDefender : MonoBehaviour
         addDefenderButton.onClick.AddListener(BuyDefender);
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
         CheckForStartingDefenders(); // check if there are any heart defenders in play at start of game and add to heartDefenders list
+        DisableNoDefenderOption();
     }
 
     // checks if there are any heart defenders in play and adds them to the heartDefenders list - should be used at Start()
@@ -66,40 +70,23 @@ public class UI_HeartDefender : MonoBehaviour
         CurrencyManager.RemoveMoney(addDefenderCost);
         GameObject currentPlaceHolder = cardContainer.GetChild(cardContainer.childCount - 1).gameObject;
 
-        SwapAndAddDefender(currentPlaceHolder);
-
-        AddNewPlaceHolder();
+        AddNewDefender(currentPlaceHolder);
     }
 
 
     // swap the buy UI element with the heart defender
-    private void SwapAndAddDefender(GameObject placeholder)
+    private void AddNewDefender(GameObject placeholder)
     {
-        GameObject newDefenderObj = Instantiate(heartDefenderPrefab, placeholder.transform.position, Quaternion.identity);
-        newDefenderObj.transform.SetParent(cardContainer, false);
+        GameObject newDefenderObj = Instantiate(heartDefenderPrefab, cardContainer);
+        // update index in hierarchy so add defender option is moved to the right
+        int currentIndex = transform.GetSiblingIndex();
+        newDefenderObj.transform.SetSiblingIndex(currentIndex);
 
         HeartDefender heartDefender = newDefenderObj.GetComponent<HeartDefender>();
 
         heartDefenders.Add(heartDefender);
-
-        Destroy(placeholder);
     }
 
-    // add a new UI buy element in place of the old one, moved down to the end of the row
-    private void AddNewPlaceHolder()
-    {
-        GameObject newPlaceholder = Instantiate(addHeartDefenderPrefab, cardContainer);
-        AssignListener(newPlaceholder);
-
-    }
-
-    // assigns the click functionality for the buy UI element
-    private void AssignListener(GameObject placeholder)
-    {
-        addDefenderButton = placeholder.GetComponent<Button>();
-
-        addDefenderButton.onClick.AddListener(BuyDefender);
-    }
 
     private void ShakeCamera()
     {
@@ -115,6 +102,40 @@ public class UI_HeartDefender : MonoBehaviour
     {
         return heartDefenders;
     }
+
+    public void DisableNoDefenderOption()
+    {
+        noDefenderOption_UI.SetActive(false);
+    }
+
+    public void EnableOptionsForEnemyAttack()
+    {
+        DisableAddNewDefenderButton();
+        EnableNoDefenderOption();
+    }
+
+    public void EnableNoDefenderOption()
+    {
+        noDefenderOption_UI.SetActive(true);
+    }
+
+    public void EnableOptionsForPlayerTurn()
+    {
+        DisableNoDefenderOption();
+        EnableAddNewDefenderButton();
+    }
+
+    public void DisableAddNewDefenderButton()
+    {
+        addDefenderObj_UI.SetActive(false);
+    }
+
+    public void EnableAddNewDefenderButton()
+    {
+        addDefenderObj_UI.SetActive(true);
+
+    }
+
 
 
 

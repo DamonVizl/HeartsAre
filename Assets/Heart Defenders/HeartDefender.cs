@@ -68,6 +68,7 @@ public class HeartDefender : MonoBehaviour
     public void TakeDamage(int damage)
     {
         deathParticle.Play();
+        ShakeCamera();
         // track damage amt that surpasses defender's rank
         int overDamage = 0;
         // if damage amount is higher than the defender's, decrease the rank of the heart by the difference between the amount of damage and the heart's rank

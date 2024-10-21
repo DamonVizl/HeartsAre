@@ -86,4 +86,9 @@ public class GameManager : MonoBehaviour
         _attackCount = Enemy.CalculateNumOfAttacks();
     }
 
+    public UI_HeartDefender GetUI_HeartDefender()
+    {
+        return _ui_heartDefender;
+    }
+
 }

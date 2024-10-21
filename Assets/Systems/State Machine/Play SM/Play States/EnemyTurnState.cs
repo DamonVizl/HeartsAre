@@ -13,13 +13,12 @@ public class EnemyTurnState : BaseState<PlayState>
     public EnemyTurnState(PlayStateMachine sm, PlayState key) : base(key)
     {
         _stateMachine = sm;
-        Debug.Log("it's in the constructor");
 
     }
 
     public override void EnterState()
     {
-
+        GameManager.Instance.GetUI_HeartDefender().EnableOptionsForPlayerTurn();
         Debug.Log("Entering Enemy Turn state. This is where the enemy will do damage to the players cards. The player can't do anything for now.");
         //show some UI to say that it's the enemy's turn
 

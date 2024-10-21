@@ -22,6 +22,7 @@ public class Enemy
 
     public static void Attack(int value)
     {
+        _heartDefenderRef.EnableOptionsForEnemyAttack();
         _ui_DamageUpdater.StartAttack(value);
         Debug.Log("UI_DamageUpdater is attacking with the number of attacks set in the GM instance");
     }
