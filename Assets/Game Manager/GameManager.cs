@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     #region Fields
     public static GameManager Instance;
-    private int _startingHealth = 5;
-    private int _startingMoney = 20;
+    private int _startingHealth = 25;
+    private int _startingMoney = 100;
     public int TurnsSurvived { get; private set; } = 0; //the number of turns the player has survived, if it exceeds a threshold the player wins the round
     public int TurnsRequiredToWin { get; private set; } = 4; //how many turns the player must survive to pass the level. 
     public PlayerHealth PlayerHealth { get; private set; } //player's health class. 
@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
     private UI_DamageUpdater _ui_DamageUpdater;
 
     private int _attackCount;
-#endregion
-#region Events
+    #endregion
+    #region Events
     public static event Action<int> OnTurnUpdated;
     public static event Action<HeartDefender> OnDefenderSelected;
     #endregion
