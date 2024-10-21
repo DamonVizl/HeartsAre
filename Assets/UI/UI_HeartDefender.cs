@@ -9,6 +9,7 @@ public class UI_HeartDefender : MonoBehaviour
     public GameObject defenderOptions_UI_Container;
     public GameObject noDefenderOption_UI;
     public GameObject addDefenderObj_UI;
+    public GameObject selectDefenderText;
 
     private List<HeartDefender> heartDefenders = new List<HeartDefender>();
 
@@ -29,6 +30,7 @@ public class UI_HeartDefender : MonoBehaviour
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
         CheckForStartingDefenders(); // check if there are any heart defenders in play at start of game and add to heartDefenders list
         DisableNoDefenderOption();
+        selectDefenderText.SetActive(false);
     }
 
     // checks if there are any heart defenders in play and adds them to the heartDefenders list - should be used at Start()
@@ -112,6 +114,7 @@ public class UI_HeartDefender : MonoBehaviour
     {
         DisableAddNewDefenderButton();
         EnableNoDefenderOption();
+        EnableSelectDefenderText();
     }
 
     public void EnableNoDefenderOption()
@@ -123,6 +126,7 @@ public class UI_HeartDefender : MonoBehaviour
     {
         DisableNoDefenderOption();
         EnableAddNewDefenderButton();
+        DisableSelectDefenderText();
     }
 
     public void DisableAddNewDefenderButton()
@@ -135,6 +139,18 @@ public class UI_HeartDefender : MonoBehaviour
         addDefenderObj_UI.SetActive(true);
 
     }
+
+    public void EnableSelectDefenderText()
+    {
+        selectDefenderText.SetActive(true);
+    }
+
+    public void DisableSelectDefenderText()
+    {
+        selectDefenderText.SetActive(false);
+    }
+
+
 
 
 
