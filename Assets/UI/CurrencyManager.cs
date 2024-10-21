@@ -15,6 +15,11 @@ public class CurrencyManager
         OnCurrencyChanged?.Invoke(_currentMoney);
     }
 
+    public static void AutoGenerateCurrency()
+    {
+        AddMoney(50);
+    }
+
     public static void AddMoney(int value)
     {
         _currentMoney += value;

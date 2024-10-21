@@ -18,6 +18,7 @@ public class EnemyTurnState : BaseState<PlayState>
 
     public override void EnterState()
     {
+        GameManager.Instance.GetUI_DamageUpdater().SetEnemyTurnState(this);
         GameManager.Instance.GetUI_HeartDefender().EnableOptionsForPlayerTurn();
         Debug.Log("Entering Enemy Turn state. This is where the enemy will do damage to the players cards. The player can't do anything for now.");
         //show some UI to say that it's the enemy's turn
@@ -49,22 +50,20 @@ public class EnemyTurnState : BaseState<PlayState>
             return PlayState.Win;
         }
 
-        else if (GameManager.Instance.GetNumberOfAttacksLeft() <= 0)
-        {
-            //else if the player has any health left and there are no more remaining attacks, return to the player turn
-            return PlayState.PlayerTurn;
-        }
-        else
-        {
-            GameManager.Instance.ReduceAttackCount();
-            return PlayState.EnemyTurn;
-        }
+ 
+        return PlayState.EnemyTurn;
 
     }
 
     public override void UpdateState()
     {
         //await the player confirming they are done, then move to the play state. 
+    }
+
+    public void EndTurn()
+    {
+        _stateMachine.TransitionToState(PlayState.PlayerTurn);
+
     }
 
 }

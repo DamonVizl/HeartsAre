@@ -69,6 +69,16 @@ public class UI_DamageUpdater : MonoBehaviour
 
             yield return new WaitForSeconds(2f);
         }
+
+        // After all attacks, end the enemy turn
+        if (_enemyTurnState != null)
+        {
+            _enemyTurnState.EndTurn();  // Call EndTurn after attacks
+        }
+        else
+        {
+            Debug.LogWarning("EnemyTurnState reference is null, cannot end turn.");
+        }
     }
 
     private IEnumerator WaitForPlayerToSelectDefenderOrPlayer()

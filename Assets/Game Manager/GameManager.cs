@@ -97,4 +97,9 @@ public class GameManager : MonoBehaviour
         return _ui_heartDefender;
     }
 
+    public UI_DamageUpdater GetUI_DamageUpdater()
+    {
+        return _ui_DamageUpdater;
+    }
+
 }
