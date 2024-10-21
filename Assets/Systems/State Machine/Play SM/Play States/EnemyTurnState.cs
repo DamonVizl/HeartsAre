@@ -60,7 +60,7 @@ public class EnemyTurnState : BaseState<PlayState>
         //await the player confirming they are done, then move to the play state. 
     }
 
-    public void EndTurn()
+    public override void EndTurn()
     {
         _stateMachine.TransitionToState(PlayState.PlayerTurn);
 

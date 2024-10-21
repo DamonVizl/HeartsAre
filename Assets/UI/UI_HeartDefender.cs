@@ -86,7 +86,17 @@ public class UI_HeartDefender : MonoBehaviour
 
         HeartDefender heartDefender = newDefenderObj.GetComponent<HeartDefender>();
 
-        heartDefenders.Add(heartDefender);
+        AddToDefenderList(heartDefender);
+    }
+
+    public void AddToDefenderList(HeartDefender defender)
+    {
+        heartDefenders.Add(defender);
+    }
+
+    public void RemoveFromDefenderList(HeartDefender defender)
+    {
+        heartDefenders.Remove(defender);
     }
 
 

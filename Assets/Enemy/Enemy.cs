@@ -20,6 +20,7 @@ public class Enemy
         _ui_DamageUpdater = damageUpdater;
     }
 
+    // calls the attack method in UI_DamageUpdater so coroutines can be used for player reaction between attacks
     public static void Attack(int value)
     {
         _heartDefenderRef.EnableOptionsForEnemyAttack();

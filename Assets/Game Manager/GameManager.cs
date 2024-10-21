@@ -58,17 +58,19 @@ public class GameManager : MonoBehaviour
         PlayerHealth.RemoveHealth(amount);
     }
 
+    // option for player to select a defender to receive an attack
     public static void PlayerSelectsDefender(HeartDefender heartDefender)
     {
         OnDefenderSelected?.Invoke(heartDefender);
     }
 
+    // option for player to take damage directly in response to an attack
     public static void PlayerSelectsNoDefender(UseNoDefenderOption noSelectionButton)
     {
         OnNoDefenderSelected?.Invoke(noSelectionButton);
     }
 
-
+    // set the number of attacks for this turn and then start attack
     public void Attack()
     {
         SetAttackCount();
@@ -76,17 +78,7 @@ public class GameManager : MonoBehaviour
         Enemy.Attack(_attackCount);
     }
 
-    public void ReduceAttackCount()
-    {
-        _attackCount--;
-    }
-
-    public int GetNumberOfAttacksLeft()
-    {
-        return _attackCount;
-    }
-
-
+    // sets the number of attacks for the enemy turn
     public void SetAttackCount()
     {
         _attackCount = Enemy.CalculateNumOfAttacks();

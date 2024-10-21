@@ -28,5 +28,11 @@ public class WinState : BaseState<PlayState>
 
     public override void UpdateState()
     { 
+
+    }
+
+    public override void EndTurn()
+    {
+
     }
 }

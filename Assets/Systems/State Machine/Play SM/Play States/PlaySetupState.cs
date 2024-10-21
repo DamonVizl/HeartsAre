@@ -29,5 +29,10 @@ public class PlaySetupState : BaseState<PlayState>
     {
         //await the player confirming they are done, then move to the play state. 
     }
+
+    public override void EndTurn()
+    {
+
+    }
 }
 

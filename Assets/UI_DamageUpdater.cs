@@ -44,10 +44,12 @@ public class UI_DamageUpdater : MonoBehaviour
         StartCoroutine(AttackRoutine(numberOfAttacks));
     }
 
+    // attack the player a number of times and allow the player to choose a defender between attacks
     private IEnumerator AttackRoutine(int numberOfAttacks)
     {
         for (int i = 0; i < numberOfAttacks; i++)
         {
+            // player chooses a defender before continuing the attack loop
             Debug.Log("Waiting for player to pick a defender or take the damage");
             yield return StartCoroutine(WaitForPlayerToSelectDefenderOrPlayer());
 
@@ -68,7 +70,10 @@ public class UI_DamageUpdater : MonoBehaviour
             }
 
             yield return new WaitForSeconds(1f);
+            ResetDamageText();
         }
+
+        ResetDamageText(); // reset the damage indicator to 0
 
         // After all attacks, end the enemy turn
         if (_enemyTurnState != null)
@@ -81,6 +86,7 @@ public class UI_DamageUpdater : MonoBehaviour
         }
     }
 
+    // allows player to choose their defender for each attack in the AttackRoutine() loop
     private IEnumerator WaitForPlayerToSelectDefenderOrPlayer()
     {
         bool selectionMade = false;
@@ -120,8 +126,11 @@ public class UI_DamageUpdater : MonoBehaviour
         {
             Debug.Log("Player has picked a defender to absorb the damage");
         }
+
+        ResetDamageText();
     }
 
+    // animates damage total in a rollup number
     private IEnumerator AnimateDamageText(int damage)
     {
         int currentDisplayValue = 0;
@@ -137,12 +146,13 @@ public class UI_DamageUpdater : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
 
         // Ensure it shows the exact final damage value at the end
         _damageTMP.text = finalDamageValue.ToString();
     }
 
+    // resets the damage text to 0
     private void ResetDamageText()
     {
         UpdateDamageUI(0);

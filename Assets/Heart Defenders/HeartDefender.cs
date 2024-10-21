@@ -26,6 +26,8 @@ public class HeartDefender : MonoBehaviour
 
     public ParticleSystem deathParticle;
 
+    private UI_HeartDefender _uiHeartDefender;
+
 
     private void Start()
     {
@@ -37,6 +39,8 @@ public class HeartDefender : MonoBehaviour
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
 
         button.onClick.AddListener(OnSelected);
+
+        _uiHeartDefender = FindObjectOfType<UI_HeartDefender>();
 
     }
 
@@ -114,6 +118,7 @@ public class HeartDefender : MonoBehaviour
 
     void DestroyHeart(int damage)
     {
+        _uiHeartDefender.RemoveFromDefenderList(this);
         // apply overkill
         OverKillDamage(damage);
         // destroy this heart

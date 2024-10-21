@@ -12,18 +12,27 @@ public class LoseState : BaseState<PlayState>
     }
 
     public override void EnterState()
-{
-    Debug.Log("Player Lost, return to menu and set next state as Setup for when we are using the PlaySM again");
-}
+    {
+        Debug.Log("Player Lost, return to menu and set next state as Setup for when we are using the PlaySM again");
+    }
 
-public override void ExitState()
-{
-}
+    public override void ExitState()
+    {
+    }
 
-public override PlayState GetNextState()
-{
-    return PlayState.Setup;
-}
+    public override PlayState GetNextState()
+    {
+        return PlayState.Setup;
+    }
 
-public override void UpdateState(){}
+    public override void UpdateState()
+    {
+    
+    }
+
+    public override void EndTurn()
+    {
+        
+    }
+
 }
