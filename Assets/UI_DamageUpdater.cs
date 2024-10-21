@@ -15,6 +15,7 @@ public class UI_DamageUpdater : MonoBehaviour
     private HeartDefender selectedDefender; // defender player chooses to defend with
 
     private EnemyTurnState _enemyTurnState;
+    private bool playerTakesDamage;
 
     private void OnEnable()
     {
@@ -47,16 +48,68 @@ public class UI_DamageUpdater : MonoBehaviour
     {
         for (int i = 0; i < numberOfAttacks; i++)
         {
-            Debug.Log("Waiting for player to pick a defender");
-            yield return StartCoroutine(WaitForPlayerToSelectDefender());
-            int dmg = Enemy.CalculateDamage();
+            Debug.Log("Waiting for player to pick a defender or take the damage");
+            yield return StartCoroutine(WaitForPlayerToSelectDefenderOrPlayer());
 
+            int dmg = Enemy.CalculateDamage();
             StartCoroutine(AnimateDamageText(dmg));
-            selectedDefender.TakeDamage(dmg);
+
+            if (playerTakesDamage)
+            {
+                // Apply damage directly to the player
+                GameManager.Instance.ReducePlayerHealth(dmg); // Assuming you have a Player script handling player health
+                Debug.Log("Player takes the damage");
+            }
+            else
+            {
+                // Apply damage to the selected defender
+                selectedDefender.TakeDamage(dmg);
+                Debug.Log("Defender takes the damage");
+            }
+
             yield return new WaitForSeconds(2f);
         }
+    }
 
+    private IEnumerator WaitForPlayerToSelectDefenderOrPlayer()
+    {
+        bool selectionMade = false;
+        playerTakesDamage = false;
 
+        void OnDefenderSelected(HeartDefender defender)
+        {
+            selectedDefender = defender;
+            selectionMade = true;
+        }
+
+        void OnNoDefenderSelected(UseNoDefenderOption noDefenderOption)
+        {
+            playerTakesDamage = true;
+            selectionMade = true;
+        }
+
+        // Subscribe to events for defender selection and player taking damage
+        GameManager.OnDefenderSelected += OnDefenderSelected;
+        GameManager.OnNoDefenderSelected += OnNoDefenderSelected;
+
+        // Wait until either the defender is selected or the player chooses to take damage
+        while (!selectionMade)
+        {
+            yield return null;
+        }
+
+        // Unsubscribe from the events
+        GameManager.OnDefenderSelected -= OnDefenderSelected;
+        GameManager.OnNoDefenderSelected -= OnNoDefenderSelected;
+
+        if (playerTakesDamage)
+        {
+            Debug.Log("Player has chosen to take the damage");
+        }
+        else
+        {
+            Debug.Log("Player has picked a defender to absorb the damage");
+        }
     }
 
     private IEnumerator AnimateDamageText(int damage)
@@ -85,24 +138,4 @@ public class UI_DamageUpdater : MonoBehaviour
         UpdateDamageUI(0);
     }
 
-    private IEnumerator WaitForPlayerToSelectDefender()
-    {
-        bool defenderSelected = false;
-
-        void OnDefenderSelected(HeartDefender defender)
-        {
-            selectedDefender = defender;
-            defenderSelected = true;
-        }
-
-        GameManager.OnDefenderSelected += OnDefenderSelected;
-
-        while (!defenderSelected)
-        {
-            yield return null;
-        }
-
-        GameManager.OnDefenderSelected -= OnDefenderSelected;
-        Debug.Log("player has picked a defender to absorb the damage");
-    }
 }

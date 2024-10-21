@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     #region Events
     public static event Action<int> OnTurnUpdated;
     public static event Action<HeartDefender> OnDefenderSelected;
+    public static event Action<UseNoDefenderOption> OnNoDefenderSelected;
     #endregion
     #region SetupMethods
     public void OnEnable()
@@ -60,6 +61,11 @@ public class GameManager : MonoBehaviour
     public static void PlayerSelectsDefender(HeartDefender heartDefender)
     {
         OnDefenderSelected?.Invoke(heartDefender);
+    }
+
+    public static void PlayerSelectsNoDefender(UseNoDefenderOption noSelectionButton)
+    {
+        OnNoDefenderSelected?.Invoke(noSelectionButton);
     }
 
 
