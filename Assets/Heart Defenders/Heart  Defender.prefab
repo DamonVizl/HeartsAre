@@ -92,10 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a30cbeb968c8e42b1d47720db172b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartRank: 2
-  heartDmgRate: 0
+  heartRank: 1
   rankCounter: {fileID: 7935888062753091620}
-  levelUpRateIncrease: 1.25
+  levelUpRateIncrease: 1.5
   gameManager: {fileID: 0}
   upgradeArrowIcon: {fileID: 1094671589504198560}
   playStateMachine: {fileID: 0}

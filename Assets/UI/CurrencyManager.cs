@@ -17,7 +17,8 @@ public class CurrencyManager
 
     public static void AutoGenerateCurrency()
     {
-        AddMoney(50);
+        int randomAmount = UnityEngine.Random.Range(0, 100);
+        AddMoney(randomAmount);
     }
 
     public static void AddMoney(int value)

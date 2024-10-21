@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class HeartDefender : MonoBehaviour
 {
     [SerializeField] private int heartRank;
-    [SerializeField] private int heartDmgRate;
     public TextMeshProUGUI rankCounter;
     [SerializeField] private float levelUpRateIncrease;
     [SerializeField] private GameManager gameManager;

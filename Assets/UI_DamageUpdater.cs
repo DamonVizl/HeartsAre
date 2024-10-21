@@ -67,7 +67,7 @@ public class UI_DamageUpdater : MonoBehaviour
                 Debug.Log("Defender takes the damage");
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
 
         // After all attacks, end the enemy turn
