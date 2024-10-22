@@ -56,9 +56,9 @@ public class Enemy
         _damageMultiplier += _damageIncreasePerTurn;
     }
 
-    public void IncreaseNumberOfTurns()
+    public void IncreaseNumberOfAttacks()
     {
-        _numAttacksMultiplier += _numAttacksMultiplier;
+        _numAttacksMultiplier += _numAttacksIncreasePerTurn;
     }
 
 

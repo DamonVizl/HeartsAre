@@ -141,6 +141,21 @@ public class HeartDefender : MonoBehaviour
         upgradeArrowIcon.color = iconColor;
     }
 
+
+    // calculates this heart defender's next upgrade cost
+    private int GetNextUpgradeCost()
+    {
+        int levelUpCost = 0;
+        levelUpCost = Mathf.RoundToInt(heartRank * levelUpRateIncrease);
+
+        return levelUpCost;
+    }
+
+    private void Update()
+    {
+        CheckIfCanUpgrade();
+    }
+
     // checks if player has enough money to upgrade this heart defender and is below max level (10)
     public bool IsAbleToUpgrade()
     {
@@ -168,20 +183,6 @@ public class HeartDefender : MonoBehaviour
                 }
             }
         }
-    }
-
-    // calculates this heart defender's next upgrade cost
-    private int GetNextUpgradeCost()
-    {
-        int levelUpCost = 0;
-        levelUpCost = Mathf.RoundToInt(heartRank * levelUpRateIncrease);
-
-        return levelUpCost;
-    }
-
-    private void Update()
-    {
-        CheckIfCanUpgrade();
     }
 
     private void ShakeCamera()

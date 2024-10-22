@@ -12,7 +12,7 @@ public class PlayerTurnState : BaseState<PlayState>
 
     public override void EnterState()
     {
-        CurrencyManager.AutoGenerateCurrency();
+        CurrencyManager.AutoGenerateCurrency(); // auto generates currency, mainly for testing now. remove if player should not have auto-currency
         GameManager.Instance.GetUI_HeartDefender().EnableOptionsForPlayerTurn();
         Debug.Log("Entering Player Turn state. This is where the player will draw cards, play rummy hands and set themselves up for the enemy's turn");
         //update UI to show that it's the players turn
