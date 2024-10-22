@@ -64,7 +64,7 @@ public class HeartDefender : MonoBehaviour
         }
         else
         {
-            Debug.Log("You do not have enough money to upgrade this heart");
+            Debug.Log("You do not have enough money to upgrade this heart or it's at max level");
             ShakeCamera();
         }
     }

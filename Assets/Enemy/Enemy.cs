@@ -12,6 +12,11 @@ public class Enemy
     private static UI_HeartDefender _heartDefenderRef;
     private static UI_DamageUpdater _ui_DamageUpdater;
 
+    private static float _damageMultiplier = 1f;
+    private static float _damageIncreasePerTurn = .1f;
+    private static float _numAttacksMultiplier = 1f;
+    private static float _numAttacksIncreasePerTurn = .1f;
+
     public static event Action<int> OnDamageCalculated;
 
     public Enemy(UI_HeartDefender heartDefenderRef, UI_DamageUpdater damageUpdater)
@@ -31,20 +36,29 @@ public class Enemy
     // calculates a random number of attacks for this turn
     public static int CalculateNumOfAttacks()
     {
-        int randomNumAttacks = 0;
-        randomNumAttacks = UnityEngine.Random.Range(_minNumAttacks, _maxNumAttacks);
+        int randomNumAttacks = UnityEngine.Random.Range(_minNumAttacks, _maxNumAttacks);
+        int scaledNumOfAttacks = Mathf.RoundToInt(randomNumAttacks * _numAttacksMultiplier);
 
-        return randomNumAttacks;
+        return scaledNumOfAttacks;
     }
 
     // calculate a random amount of damage for an attack
     public static int CalculateDamage()
     {
-        int randomDamage = 0;
+        int randomDamage = UnityEngine.Random.Range(_minDamage, _maxDamage);
+        int scaledDamage = Mathf.RoundToInt(randomDamage * _damageMultiplier); // scale the damage to the current turn
+        return scaledDamage;
+    }
 
-        randomDamage = UnityEngine.Random.Range(_minDamage, _maxDamage);
+    // call this at the end of each enemy turn to increase the damage for the next round
+    public void IncreaseDamage()
+    {
+        _damageMultiplier += _damageIncreasePerTurn;
+    }
 
-        return randomDamage;
+    public void IncreaseNumberOfTurns()
+    {
+        _numAttacksMultiplier += _numAttacksMultiplier;
     }
 
 
