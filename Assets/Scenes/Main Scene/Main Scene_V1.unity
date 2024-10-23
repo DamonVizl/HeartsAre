@@ -5450,7 +5450,6 @@ MonoBehaviour:
   cardContainer: {fileID: 2027400872}
   addDefenderCost: 25
   addDefenderButton: {fileID: 1467862331}
-  maxDefenders: 5
 --- !u!114 &2027400874
 MonoBehaviour:
   m_ObjectHideFlags: 0

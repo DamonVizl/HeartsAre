@@ -44,6 +44,12 @@ public class HeartDefender : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        CheckIfCanUpgrade();
+    }
+
+
     private void OnSelected()
     {
         GameManager.PlayerSelectsDefender(this);
@@ -151,10 +157,6 @@ public class HeartDefender : MonoBehaviour
         return levelUpCost;
     }
 
-    private void Update()
-    {
-        CheckIfCanUpgrade();
-    }
 
     // checks if player has enough money to upgrade this heart defender and is below max level (10)
     public bool IsAbleToUpgrade()
@@ -183,6 +185,11 @@ public class HeartDefender : MonoBehaviour
                 }
             }
         }
+    }
+    // use this to upgrade to super defender
+    private void ChangeToSuperDefender()
+    {
+
     }
 
     private void ShakeCamera()
