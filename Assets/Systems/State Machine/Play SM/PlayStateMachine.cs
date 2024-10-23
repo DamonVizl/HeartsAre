@@ -7,14 +7,9 @@ public class PlayStateMachine : BaseStateMachine<PlayState>
 {
     [SerializeField] Text _stateLabelText;
 
-    private UI_DamageUpdater _damageUpdater;
-
     //on awake add all the possible states and instantiate them.
     private void Awake()
     {
-
-        _damageUpdater = FindObjectOfType<UI_DamageUpdater>();
-        Debug.Log("found the damage updater" + _damageUpdater);
         States.Add(PlayState.Setup, new PlaySetupState(this, PlayState.Setup));
         States.Add(PlayState.PlayerTurn, new PlayerTurnState(this, PlayState.PlayerTurn));
         States.Add(PlayState.EnemyTurn, new EnemyTurnState(this, PlayState.EnemyTurn));
@@ -36,13 +31,6 @@ public class PlayStateMachine : BaseStateMachine<PlayState>
         base.TransitionToState(stateKey);
         _stateLabelText.text = stateKey.ToString();
     }
-
-    public UI_DamageUpdater GetDamageUpdater()
-    {
-        return _damageUpdater;
-    }
-
-
 
 }
 public enum PlayState
