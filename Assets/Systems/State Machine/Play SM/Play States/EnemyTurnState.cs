@@ -20,6 +20,7 @@ public class EnemyTurnState : BaseState<PlayState>
     {
         GameManager.Instance.GetUI_DamageUpdater().SetEnemyTurnState(this);
         GameManager.Instance.GetUI_HeartDefender().EnableOptionsForEnemyAttack();
+        Enemy.ShowEnemy();
         Debug.Log("Entering Enemy Turn state. This is where the enemy will do damage to the players cards. The player can't do anything for now.");
         //show some UI to say that it's the enemy's turn
 
@@ -32,6 +33,7 @@ public class EnemyTurnState : BaseState<PlayState>
 
     public override void ExitState()
     {
+        Enemy.HideEnemy();
         // increase the damage and number of attacks at the end of enemy turn
         GameManager.Instance.Enemy.IncreaseDamage();
         GameManager.Instance.Enemy.IncreaseNumberOfAttacks();
