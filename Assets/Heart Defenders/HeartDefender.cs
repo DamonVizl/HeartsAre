@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class HeartDefender : MonoBehaviour
+public class HeartDefender : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int heartRank;
     public TextMeshProUGUI rankCounter;
@@ -22,11 +23,11 @@ public class HeartDefender : MonoBehaviour
 
     RectTransform parentRectTransform; // UI parent reference for camera shake
 
-    public Button button;
-
     public ParticleSystem deathParticle;
 
     private UI_HeartDefender _uiHeartDefender;
+
+    bool _defenderSelect = false;
 
 
     private void Start()
@@ -38,8 +39,6 @@ public class HeartDefender : MonoBehaviour
         playStateMachine = FindObjectOfType<PlayStateMachine>();
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
 
-        button.onClick.AddListener(OnSelected);
-
         _uiHeartDefender = FindObjectOfType<UI_HeartDefender>();
 
     }
@@ -47,6 +46,11 @@ public class HeartDefender : MonoBehaviour
     private void Update()
     {
         CheckIfCanUpgrade();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnSelected();
     }
 
 
