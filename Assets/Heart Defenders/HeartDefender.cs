@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private const int maxLevel = 10;
 
+    [SerializeField] private float _tweenValue = 1f;
+
     public Image upgradeArrowIcon;
     private float iconDisabledSaturation = .1f;
 
@@ -27,7 +30,10 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private UI_HeartDefender _uiHeartDefender;
 
-    bool _defenderSelect = false;
+    bool _defenderSelected = false;
+    Tween _tween;
+
+    private Vector3 _originalPosition;
 
 
     private void Start()
@@ -41,6 +47,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
         _uiHeartDefender = FindObjectOfType<UI_HeartDefender>();
 
+        _originalPosition = transform.position;
+
     }
 
     private void Update()
@@ -50,14 +58,41 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        OnSelected();
+        if (playStateMachine.GetCurrentState() == PlayState.EnemyTurn)
+        {
+            if (!_defenderSelected)
+            {
+                SelectDefender();
+            }
+            else
+            {
+                UnSelectDefender();
+            }
+        }
     }
 
-
-    private void OnSelected()
+    private void SelectDefender()
     {
-        //GameManager.PlayerSelectsDefender(this);
+        if (_tween.IsActive()) return;
+
         _uiHeartDefender.AddDefenderForAttack(this);
+        _tween = transform.DOMoveY(transform.position.y + _tweenValue, 0.2f);
+        _defenderSelected = true;
+    }
+
+    private void UnSelectDefender()
+    {
+
+        if (_tween.IsActive()) return;
+        _uiHeartDefender.RemoveDefenderForAttack(this);
+        _tween = transform.DOMoveY(_originalPosition.y, 0.2f);
+        _defenderSelected = false;
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = new Vector2(transform.position.x, _originalPosition.y);
+        _defenderSelected = false;
     }
 
     // updates the badge counter
@@ -83,7 +118,10 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // if heart takes enough damage that surpasses it's rank's damage threshold, decrease its rank
     public void TakeDamage(int damage)
     {
-        deathParticle.Play();
+        if (deathParticle != null)
+        {
+            deathParticle.Play();
+        }
         ShakeCamera();
         // track damage amt that surpasses defender's rank
         int overDamage = 0;
@@ -130,6 +168,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     void DestroyHeart(int damage)
     {
         _uiHeartDefender.RemoveFromDefenderList(this);
+        _uiHeartDefender.RemoveDefenderForAttack(this);
         // apply overkill
         OverKillDamage(damage);
         // destroy this heart

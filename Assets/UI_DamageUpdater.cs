@@ -63,25 +63,36 @@ public class UI_DamageUpdater : MonoBehaviour
 
         while (attacksRemaining > 0)
         {
-            if (defendersForThisAttack.Count == 0)
+            if (defendersForThisAttack == null || defendersForThisAttack.Count == 0)
             {
-                Debug.Log("No defenders left to attack!");
-                yield break; // Stop the coroutine if no defenders are left
+                // No defenders available, so attack the player directly
+                int dmg = Enemy.CalculateDamage();
+                GameManager.Instance.ReducePlayerHealth(dmg);
+                Debug.Log("No defenders available, attacking player for " + dmg + " damage.");
+            }
+            else
+            {
+                // Pick a random defender
+                int randomIndex = UnityEngine.Random.Range(0, defendersForThisAttack.Count);
+                HeartDefender randomDefender = defendersForThisAttack[randomIndex];
+
+                // Perform attack on the random defender
+                randomDefender.TakeDamage(Enemy.CalculateDamage());
             }
 
-            // Pick a random defender
-            int randomIndex = UnityEngine.Random.Range(0, defendersForThisAttack.Count);
-            HeartDefender randomDefender = defendersForThisAttack[randomIndex];
-
-            // Perform attack on the random defender
-            randomDefender.TakeDamage(Enemy.CalculateDamage());
             // Wait for a delay before the next attack
             yield return new WaitForSeconds(_attackDelay);
 
             attacksRemaining--;
         }
 
-        if(_enemyTurnState != null)
+        foreach (var defender in defendersForThisAttack)
+        {
+            defender.ResetPosition();
+        }
+
+        // After all attacks, end the enemy turn
+        if (_enemyTurnState != null)
         {
             _enemyTurnState.EndTurn();  // Call EndTurn after attacks
         }
@@ -90,8 +101,6 @@ public class UI_DamageUpdater : MonoBehaviour
             Debug.LogWarning("EnemyTurnState reference is null, cannot end turn.");
         }
     }
-
- 
 
     // animates damage total in a rollup number
     private IEnumerator AnimateDamageText(int damage)

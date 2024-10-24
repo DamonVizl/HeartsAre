@@ -81,6 +81,11 @@ public class Enemy
         _ui_enemy.HideEnemy();
     }
 
+    public static UI_HeartDefender GetUI_HeartDefender()
+    {
+        return _heartDefenderRef;
+    }
+
 
 
 }

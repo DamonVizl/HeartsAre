@@ -27,8 +27,6 @@ public class UI_HeartDefender : MonoBehaviour
     public static event Action<UseNoDefenderOption> OnConfirmSelection;
 
 
-
-
     void Start()
     {
         // assign the listener to the starting addHeartDefender UI element
@@ -174,6 +172,11 @@ public class UI_HeartDefender : MonoBehaviour
     public void AddDefenderForAttack(HeartDefender defender)
     {
         defendersForThisAttack.Add(defender);
+    }
+
+    public void RemoveDefenderForAttack(HeartDefender defender)
+    {
+        defendersForThisAttack.Remove(defender);
     }
 
     public void ClearDefenseList()
