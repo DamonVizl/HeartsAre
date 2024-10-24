@@ -39,8 +39,6 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
     {
         if (!_cardSelected) SelectCard();
         else UnSelectCard(); 
-        
-
     }
     private void SelectCard()
     {

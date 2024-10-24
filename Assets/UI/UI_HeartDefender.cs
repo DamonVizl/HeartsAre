@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 
 public class UI_HeartDefender : MonoBehaviour
@@ -12,6 +13,7 @@ public class UI_HeartDefender : MonoBehaviour
     public GameObject selectDefenderText;
 
     private List<HeartDefender> heartDefenders = new List<HeartDefender>();
+    private List<HeartDefender> defendersForThisAttack = new List<HeartDefender>();
 
     public Transform cardContainer;
 
@@ -21,7 +23,11 @@ public class UI_HeartDefender : MonoBehaviour
 
     [SerializeField] private const int maxDefenders = 5;
     RectTransform parentRectTransform; // UI parent reference for camera shake
-   
+
+    public static event Action<UseNoDefenderOption> OnConfirmSelection;
+
+
+
 
     void Start()
     {
@@ -31,6 +37,11 @@ public class UI_HeartDefender : MonoBehaviour
         CheckForStartingDefenders(); // check if there are any heart defenders in play at start of game and add to heartDefenders list
         DisableNoDefenderOption();
         selectDefenderText.SetActive(false);
+    }
+
+    public void PlayerConfirmsSelection(UseNoDefenderOption confirmSelectionButton)
+    {
+        Enemy.Attack();
     }
 
     // checks if there are any heart defenders in play and adds them to the heartDefenders list - should be used at Start()
@@ -159,6 +170,23 @@ public class UI_HeartDefender : MonoBehaviour
     {
         selectDefenderText.SetActive(false);
     }
+
+    public void AddDefenderForAttack(HeartDefender defender)
+    {
+        defendersForThisAttack.Add(defender);
+    }
+
+    public void ClearDefenseList()
+    {
+        defendersForThisAttack.Clear();
+    }
+
+    public List<HeartDefender> getDefendersForThisAttack()
+    {
+        return defendersForThisAttack;
+    }
+
+   
 
 
 

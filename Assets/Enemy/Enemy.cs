@@ -28,10 +28,18 @@ public class Enemy
     }
 
     // calls the attack method in UI_DamageUpdater so coroutines can be used for player reaction between attacks
-    public static void Attack(int value)
+    public static void Attack()
+    {
+        int value = CalculateNumOfAttacks();
+        List<HeartDefender> defendersForThisAttack = _heartDefenderRef.getDefendersForThisAttack();
+        StartAttack(value, defendersForThisAttack);
+        //_heartDefenderRef.OnConfirmSelection += ConfirmSelection(value);
+    }
+
+    public static void StartAttack(int value, List<HeartDefender> defenders)
     {
         _heartDefenderRef.EnableOptionsForEnemyAttack();
-        _ui_damageUpdater.StartAttack(value);
+        _ui_damageUpdater.StartAttack(value, defenders);
         Debug.Log("UI_DamageUpdater is attacking with the number of attacks set in the GM instance");
     }
 

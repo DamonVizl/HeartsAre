@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
     {
         SetAttackCount();
         Debug.Log("GM is calling Enemy class to attack");
-        Enemy.Attack(_attackCount);
+        Enemy.Attack();
     }
 
     // sets the number of attacks for the enemy turn

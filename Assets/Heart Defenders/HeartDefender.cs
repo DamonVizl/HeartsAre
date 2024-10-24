@@ -56,7 +56,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private void OnSelected()
     {
-        GameManager.PlayerSelectsDefender(this);
+        //GameManager.PlayerSelectsDefender(this);
+        _uiHeartDefender.AddDefenderForAttack(this);
     }
 
     // updates the badge counter

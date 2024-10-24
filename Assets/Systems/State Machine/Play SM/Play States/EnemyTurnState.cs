@@ -20,6 +20,7 @@ public class EnemyTurnState : BaseState<PlayState>
     {
         GameManager.Instance.GetUI_DamageUpdater().SetEnemyTurnState(this);
         GameManager.Instance.GetUI_HeartDefender().EnableOptionsForEnemyAttack();
+        GameManager.Instance.GetUI_HeartDefender().ClearDefenseList();
         Enemy.ShowEnemy();
         Debug.Log("Entering Enemy Turn state. This is where the enemy will do damage to the players cards. The player can't do anything for now.");
         //show some UI to say that it's the enemy's turn
