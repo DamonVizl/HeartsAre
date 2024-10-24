@@ -5,12 +5,12 @@ using UnityEngine;
 public class JackDefenderAbility : ISuperDefenderAbility
 {
     public void Activate()
-    { 
-    
+    {
+        Debug.Log("This should activate the Jack Super Defender ability.");
     }
 
     public void Deactivate()
     { 
-    
+        
     }
 }

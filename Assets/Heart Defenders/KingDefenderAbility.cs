@@ -6,7 +6,7 @@ public class KingDefenderAbility : ISuperDefenderAbility
 {
     public void Activate()
     {
-
+        Debug.Log("King super defender is in play");
     }
 
     public void Deactivate()
