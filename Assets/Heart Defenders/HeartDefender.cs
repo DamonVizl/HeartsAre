@@ -205,7 +205,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // checks if player has enough money to upgrade this heart defender and is below max level (10)
     public bool IsAbleToUpgrade()
     {
-        if (CurrencyManager.GetCurrentMoney() >= GetNextUpgradeCost() && heartRank < maxLevel)
+        if (CurrencyManager.GetCurrentMoney() >= GetNextUpgradeCost() && heartRank < maxLevel && playStateMachine.GetCurrentState() == PlayState.PlayerTurn)
         {
             return true;
         }

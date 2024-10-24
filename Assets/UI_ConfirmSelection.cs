@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class UseNoDefenderOption : MonoBehaviour
+public class UI_ConfirmSelection : MonoBehaviour
 {
     public Button button;
 

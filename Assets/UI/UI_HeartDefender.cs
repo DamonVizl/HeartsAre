@@ -12,6 +12,8 @@ public class UI_HeartDefender : MonoBehaviour
     public GameObject addDefenderObj_UI;
     public GameObject selectDefenderText;
 
+    public GameObject endTurnButton;
+
     private List<HeartDefender> heartDefenders = new List<HeartDefender>();
     private List<HeartDefender> defendersForThisAttack = new List<HeartDefender>();
 
@@ -21,10 +23,11 @@ public class UI_HeartDefender : MonoBehaviour
 
     public Button addDefenderButton;
 
+
     [SerializeField] private const int maxDefenders = 5;
     RectTransform parentRectTransform; // UI parent reference for camera shake
 
-    public static event Action<UseNoDefenderOption> OnConfirmSelection;
+    public static event Action<UI_ConfirmSelection> OnConfirmSelection;
 
 
     void Start()
@@ -37,7 +40,7 @@ public class UI_HeartDefender : MonoBehaviour
         selectDefenderText.SetActive(false);
     }
 
-    public void PlayerConfirmsSelection(UseNoDefenderOption confirmSelectionButton)
+    public void PlayerConfirmsSelection(UI_ConfirmSelection confirmSelectionButton)
     {
         Enemy.Attack();
     }
@@ -131,12 +134,13 @@ public class UI_HeartDefender : MonoBehaviour
 
     public void EnableOptionsForEnemyAttack()
     {
-        DisableAddNewDefenderButton();
-        EnableNoDefenderOption();
+        DisableAddNewDefender_Button();
+        EnableConfirmSelection_Button();
         EnableSelectDefenderText();
+        DisableEndTurn_Button();
     }
 
-    public void EnableNoDefenderOption()
+    public void EnableConfirmSelection_Button()
     {
         noDefenderOption_UI.SetActive(true);
     }
@@ -146,9 +150,10 @@ public class UI_HeartDefender : MonoBehaviour
         DisableNoDefenderOption();
         EnableAddNewDefenderButton();
         DisableSelectDefenderText();
+        EnableEndTurn_Button();
     }
 
-    public void DisableAddNewDefenderButton()
+    public void DisableAddNewDefender_Button()
     {
         addDefenderObj_UI.SetActive(false);
     }
@@ -157,6 +162,16 @@ public class UI_HeartDefender : MonoBehaviour
     {
         addDefenderObj_UI.SetActive(true);
 
+    }
+
+    public void EnableEndTurn_Button()
+    {
+        endTurnButton.SetActive(true);
+    }
+
+    public void DisableEndTurn_Button()
+    {
+        endTurnButton.SetActive(false);
     }
 
     public void EnableSelectDefenderText()

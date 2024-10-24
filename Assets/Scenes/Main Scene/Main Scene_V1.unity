@@ -4695,7 +4695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CONFIRM SELECTION
+  m_text: Done Selecting Defenders
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5152,7 +5152,7 @@ GameObject:
   - component: {fileID: 1888839275}
   - component: {fileID: 1888839276}
   m_Layer: 5
-  m_Name: Use No Defender
+  m_Name: Confirm Selection_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5269,11 +5269,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1888839271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba4dcc314b3932d45b7687874bd47909, type: 3}
+  m_Script: {fileID: 11500000, guid: 48bfb4291793d754e9f250e8bbc8f425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1888839275}
-  _ui_HeartDefender: {fileID: 0}
+  _ui_HeartDefender: {fileID: 2027400873}
 --- !u!1 &1919795097
 GameObject:
   m_ObjectHideFlags: 0
@@ -5643,6 +5643,7 @@ MonoBehaviour:
   noDefenderOption_UI: {fileID: 1888839271}
   addDefenderObj_UI: {fileID: 1467862329}
   selectDefenderText: {fileID: 375536577}
+  endTurnButton: {fileID: 765719534}
   cardContainer: {fileID: 2027400872}
   addDefenderCost: 25
   addDefenderButton: {fileID: 1467862331}

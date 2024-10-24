@@ -18,13 +18,11 @@ public class GameManager : MonoBehaviour
     private UI_HeartDefender _ui_heartDefender;
     private UI_DamageUpdater _ui_DamageUpdater;
     private UI_Enemy _ui_enemy;
-
-    private int _attackCount;
     #endregion
+
+
     #region Events
     public static event Action<int> OnTurnUpdated;
-    public static event Action<HeartDefender> OnDefenderSelected;
-    public static event Action<UseNoDefenderOption> OnNoDefenderSelected;
     #endregion
     #region SetupMethods
     public void OnEnable()
@@ -58,32 +56,6 @@ public class GameManager : MonoBehaviour
     public void ReducePlayerHealth(int amount)
     {
         PlayerHealth.RemoveHealth(amount);
-    }
-
-    // option for player to select a defender to receive an attack
-    public static void PlayerSelectsDefender(HeartDefender heartDefender)
-    {
-        OnDefenderSelected?.Invoke(heartDefender);
-    }
-
-    // option for player to take damage directly in response to an attack
-    public static void PlayerSelectsNoDefender(UseNoDefenderOption noSelectionButton)
-    {
-        OnNoDefenderSelected?.Invoke(noSelectionButton);
-    }
-
-    // set the number of attacks for this turn and then start attack
-    public void Attack()
-    {
-        SetAttackCount();
-        Debug.Log("GM is calling Enemy class to attack");
-        Enemy.Attack();
-    }
-
-    // sets the number of attacks for the enemy turn
-    public void SetAttackCount()
-    {
-        _attackCount = Enemy.CalculateNumOfAttacks();
     }
 
     public UI_HeartDefender GetUI_HeartDefender()

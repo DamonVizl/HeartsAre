@@ -69,6 +69,7 @@ public class UI_DamageUpdater : MonoBehaviour
                 int dmg = Enemy.CalculateDamage();
                 GameManager.Instance.ReducePlayerHealth(dmg);
                 Debug.Log("No defenders available, attacking player for " + dmg + " damage.");
+                AnimateDamageText(dmg);
             }
             else
             {
@@ -78,6 +79,7 @@ public class UI_DamageUpdater : MonoBehaviour
 
                 // Perform attack on the random defender
                 randomDefender.TakeDamage(Enemy.CalculateDamage());
+                AnimateDamageText(Enemy.CalculateDamage());
             }
 
             // Wait for a delay before the next attack
