@@ -35,9 +35,12 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private Vector3 _originalPosition;
 
+    private HorizontalLayoutGroup layoutGroup;
+
 
     private void Start()
     {
+        layoutGroup = GetComponentInParent<HorizontalLayoutGroup>();
         gameManager = FindObjectOfType<GameManager>();
         playerHealth = GameManager.Instance.PlayerHealth;
         UpdateRankCounter_UI();
@@ -75,22 +78,50 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         if (_tween.IsActive()) return;
 
+        // disable horizontal layout so tweens can operate
+        DisableLayoutGroup();
+
         _uiHeartDefender.AddDefenderForAttack(this);
         _tween = transform.DOMoveY(transform.position.y + _tweenValue, 0.2f);
+      
+
         _defenderSelected = true;
     }
 
+    // deactivates horizontal layout group for defenders so tweening can operate properly
+    void DisableLayoutGroup()
+    {
+        if (layoutGroup != null)
+        {
+            layoutGroup.enabled = false;
+        }
+
+    }
+
+    // activates horizontal layout group for defenders
+    void EnableLayoutGroup()
+    {
+        if (layoutGroup != null)
+        {
+            layoutGroup.enabled = true;
+        }
+    }
+
+
     private void UnSelectDefender()
     {
-
         if (_tween.IsActive()) return;
+
         _uiHeartDefender.RemoveDefenderForAttack(this);
-        _tween = transform.DOMoveY(_originalPosition.y, 0.2f);
+        _tween = transform.DOMoveY(transform.position.y - _tweenValue, 0.2f);
+
         _defenderSelected = false;
     }
 
+    // reset defender position and turn re-enable layout group
     public void ResetPosition()
     {
+        EnableLayoutGroup();
         transform.position = new Vector2(transform.position.x, _originalPosition.y);
         _defenderSelected = false;
     }
