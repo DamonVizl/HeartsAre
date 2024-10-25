@@ -9,7 +9,7 @@ public class Enemy
     private static int _minNumAttacks = 1;
     private static int _maxNumAttacks = 3;
 
-    private static UI_HeartDefender _heartDefenderRef;
+    private static HeartDefenderManager _heartDefenderManager;
     private static UI_DamageUpdater _ui_damageUpdater;
     private static UI_Enemy _ui_enemy;
 
@@ -20,9 +20,9 @@ public class Enemy
 
     public static event Action<int> OnDamageCalculated;
 
-    public Enemy(UI_HeartDefender heartDefenderRef, UI_DamageUpdater damageUpdater, UI_Enemy ui_enemy)
+    public Enemy(HeartDefenderManager heartDefenderRef, UI_DamageUpdater damageUpdater, UI_Enemy ui_enemy)
     {
-        _heartDefenderRef = heartDefenderRef;
+        _heartDefenderManager = heartDefenderRef;
         _ui_damageUpdater = damageUpdater;
         _ui_enemy = ui_enemy;
     }
@@ -31,14 +31,14 @@ public class Enemy
     public static void Attack()
     {
         int value = CalculateNumOfAttacks();
-        List<HeartDefender> defendersForThisAttack = _heartDefenderRef.getDefendersForThisAttack();
+        List<HeartDefender> defendersForThisAttack = _heartDefenderManager.getDefendersForThisAttack();
         StartAttack(value, defendersForThisAttack);
         //_heartDefenderRef.OnConfirmSelection += ConfirmSelection(value);
     }
 
     public static void StartAttack(int value, List<HeartDefender> defenders)
     {
-        _heartDefenderRef.EnableOptionsForEnemyAttack();
+        _heartDefenderManager.EnableOptionsForEnemyAttack();
         _ui_damageUpdater.StartAttack(value, defenders);
         Debug.Log("UI_DamageUpdater is attacking with the number of attacks set in the GM instance");
     }
@@ -71,9 +71,9 @@ public class Enemy
         _numAttacksMultiplier += _numAttacksIncreasePerTurn;
     }
 
-    public static UI_HeartDefender GetUI_HeartDefender()
+    public static HeartDefenderManager GetHeartDefenderManager()
     {
-        return _heartDefenderRef;
+        return _heartDefenderManager;
     }
 
 

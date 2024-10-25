@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-public class UI_HeartDefender : MonoBehaviour
+public class HeartDefenderManager : MonoBehaviour
 {
     public GameObject heartDefenderPrefab;
     public GameObject defenderOptions_UI_Container;

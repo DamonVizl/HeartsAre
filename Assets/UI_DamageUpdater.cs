@@ -17,11 +17,11 @@ public class UI_DamageUpdater : MonoBehaviour
     private EnemyTurnState _enemyTurnState;
     private bool playerTakesDamage;
 
-    private UI_HeartDefender _ui_heartDefender;
+    private HeartDefenderManager _heartDefenderManager;
 
     private void Start()
     {
-        _ui_heartDefender = FindObjectOfType<UI_HeartDefender>();
+        _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
     }
 
     private void OnEnable()

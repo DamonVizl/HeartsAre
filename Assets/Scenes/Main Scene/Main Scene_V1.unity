@@ -8147,7 +8147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1888839275}
-  _ui_HeartDefender: {fileID: 2027400873}
+  _heartDefenderManager: {fileID: 0}
 --- !u!1 &1918950068
 GameObject:
   m_ObjectHideFlags: 0

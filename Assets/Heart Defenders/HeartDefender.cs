@@ -28,7 +28,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     public ParticleSystem deathParticle;
 
-    private UI_HeartDefender _uiHeartDefender;
+    private HeartDefenderManager heartDefenderManager;
 
     bool _defenderSelected = false;
     Tween _tween;
@@ -48,7 +48,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         playStateMachine = FindObjectOfType<PlayStateMachine>();
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
 
-        _uiHeartDefender = FindObjectOfType<UI_HeartDefender>();
+        heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
 
         _originalPosition = transform.position;
 
@@ -81,7 +81,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         // disable horizontal layout so tweens can operate
         DisableLayoutGroup();
 
-        _uiHeartDefender.AddDefenderForAttack(this);
+        heartDefenderManager.AddDefenderForAttack(this);
         _tween = transform.DOMoveY(transform.position.y + _tweenValue, 0.2f);
       
 
@@ -112,7 +112,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         if (_tween.IsActive()) return;
 
-        _uiHeartDefender.RemoveDefenderForAttack(this);
+        heartDefenderManager.RemoveDefenderForAttack(this);
         _tween = transform.DOMoveY(transform.position.y - _tweenValue, 0.2f);
 
         _defenderSelected = false;
@@ -198,8 +198,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     void DestroyHeart(int damage)
     {
-        _uiHeartDefender.RemoveFromDefenderList(this);
-        _uiHeartDefender.RemoveDefenderForAttack(this);
+        heartDefenderManager.RemoveFromDefenderList(this);
+        heartDefenderManager.RemoveDefenderForAttack(this);
         // apply overkill
         OverKillDamage(damage);
         // destroy this heart

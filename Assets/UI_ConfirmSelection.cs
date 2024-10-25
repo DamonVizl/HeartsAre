@@ -8,20 +8,20 @@ public class UI_ConfirmSelection : MonoBehaviour
 {
     public Button button;
 
-    public UI_HeartDefender _ui_HeartDefender;
+    public HeartDefenderManager _heartDefenderManager;
 
     private void Start()
     {
-        _ui_HeartDefender = FindObjectOfType<UI_HeartDefender>();
+        _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
         button.onClick.AddListener(OnSelected);
     }
 
     private void OnSelected()
     {
         //GameManager.PlayerSelectsNoDefender(this);
-        if (_ui_HeartDefender != null)
+        if (_heartDefenderManager != null)
         {
-            _ui_HeartDefender.PlayerConfirmsSelection(this);
+            _heartDefenderManager.PlayerConfirmsSelection(this);
         }
     }
 }

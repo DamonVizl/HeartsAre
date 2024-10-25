@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public PlayerHealth PlayerHealth { get; private set; } //player's health class. 
     public CurrencyManager CurrencyManager { get; private set; }
     public Enemy Enemy { get; private set; }
-    private UI_HeartDefender _ui_heartDefender;
+    private HeartDefenderManager _heartDefenderManager;
     private UI_DamageUpdater _ui_DamageUpdater;
     private UI_Enemy _ui_enemy;
     #endregion
@@ -33,14 +33,14 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        _ui_heartDefender = FindObjectOfType<UI_HeartDefender>();
+        _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
         _ui_DamageUpdater = FindObjectOfType<UI_DamageUpdater>();
         _ui_enemy = FindObjectOfType<UI_Enemy>();
         PlayerHealth = new PlayerHealth(_startingHealth);
         TurnsSurvived = 0;
         OnTurnUpdated?.Invoke(TurnsSurvived);
         CurrencyManager = new CurrencyManager(_startingMoney);
-        Enemy = new Enemy(_ui_heartDefender, _ui_DamageUpdater, _ui_enemy);
+        Enemy = new Enemy(_heartDefenderManager, _ui_DamageUpdater, _ui_enemy);
     }
     #endregion
 
@@ -58,9 +58,9 @@ public class GameManager : MonoBehaviour
         PlayerHealth.RemoveHealth(amount);
     }
 
-    public UI_HeartDefender GetUI_HeartDefender()
+    public HeartDefenderManager GetHeartDefenderManager()
     {
-        return _ui_heartDefender;
+        return _heartDefenderManager;
     }
 
     public UI_DamageUpdater GetUI_DamageUpdater()
