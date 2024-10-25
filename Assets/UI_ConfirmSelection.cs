@@ -2,26 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_ConfirmSelection : MonoBehaviour
+public class UI_ConfirmSelection : MonoBehaviour, IPointerClickHandler
 {
-    public Button button;
-
     public HeartDefenderManager _heartDefenderManager;
 
     private void Start()
     {
         _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
-        button.onClick.AddListener(OnSelected);
     }
 
     private void OnSelected()
     {
-        //GameManager.PlayerSelectsNoDefender(this);
         if (_heartDefenderManager != null)
         {
             _heartDefenderManager.PlayerConfirmsSelection(this);
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnSelected();
     }
 }

@@ -1,0 +1,2146 @@
+fileFormatVersion: 2
+guid: 968b2033d09447943b6274022a2379d3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MedievalUserInterface_0
+      rect:
+        serializedVersion: 2
+        x: 2793
+        y: 1874
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c947151a287c565468acea85565fa8a2
+      internalID: 2074946485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_1
+      rect:
+        serializedVersion: 2
+        x: 2845
+        y: 1876
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 252d869f625a9654fb85fde3a5d90215
+      internalID: -1079596771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_2
+      rect:
+        serializedVersion: 2
+        x: 2873
+        y: 1874
+        width: 45
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ec55d5a47400f542922b3d4a4d9319f
+      internalID: -2081179700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_3
+      rect:
+        serializedVersion: 2
+        x: 2922
+        y: 1876
+        width: 33
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6059b129824afa4f94e55e3af059222
+      internalID: -1117499927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_4
+      rect:
+        serializedVersion: 2
+        x: 2959
+        y: 1880
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f167eb348cf8ed0468a77c9b96d823b9
+      internalID: -1175661140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_5
+      rect:
+        serializedVersion: 2
+        x: 2995
+        y: 1876
+        width: 35
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 081f1d133b3ae5547b4c3b326e5ea302
+      internalID: -664649018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_6
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 1738
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7640f7de3efceb04b83640c268dfbf3d
+      internalID: -1245815215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_7
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 1738
+        width: 96
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0573557ff3ab4541833c2a84f9dfb0e
+      internalID: -1851567430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_8
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 1738
+        width: 97
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1d3775f676eee4fb60eb93c6c6e518
+      internalID: -1550135633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_9
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 1738
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b026dc03d5c96a41ac96e54999eafcb
+      internalID: -577990774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_10
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1738
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed7f551569426f54b895712eb3cca295
+      internalID: 888508900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_11
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 1738
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88d6e2909ed6c2c4b8a24f30c0fd009b
+      internalID: -2046737086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1736
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c61cc98b6fb53ce4caaa9e2ad550f190
+      internalID: -295632501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_13
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 1736
+        width: 97
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d07bb577c369e840b9df9ac1af2728b
+      internalID: 546561057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_14
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 1736
+        width: 97
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4e35237841e5b499aa2955badd45c6
+      internalID: -1188369341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_15
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 1736
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69850c5e0727f814dbc40147856c9d0a
+      internalID: 142242423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_16
+      rect:
+        serializedVersion: 2
+        x: 1421
+        y: 1818
+        width: 93
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 392ba5d2381d23245ad90dd5db32633d
+      internalID: -435929744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_17
+      rect:
+        serializedVersion: 2
+        x: 1565
+        y: 1734
+        width: 61
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3efa1e55538113942802cb03e58e686e
+      internalID: -1607106506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_18
+      rect:
+        serializedVersion: 2
+        x: 1658
+        y: 1736
+        width: 60
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9c810682daaf4a47a95b3443e9f8e1c
+      internalID: -1056883583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_19
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 1736
+        width: 61
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1ba57e2f5bf6fd4ebff8637935ed183
+      internalID: 1132383558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_20
+      rect:
+        serializedVersion: 2
+        x: 1843
+        y: 1736
+        width: 62
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 888da93b716689e41b5f328fb0ccefef
+      internalID: 2084698833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_21
+      rect:
+        serializedVersion: 2
+        x: 1931
+        y: 1738
+        width: 67
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d0515751042fb418d47fb4a0b40d94
+      internalID: -1435451975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_22
+      rect:
+        serializedVersion: 2
+        x: 2021
+        y: 1738
+        width: 67
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f8b7ed9c7f970e488de3fe9bb3b1c39
+      internalID: 23125056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_23
+      rect:
+        serializedVersion: 2
+        x: 2148
+        y: 1693
+        width: 119
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dda0f9499824204192c4fbcfab3938a
+      internalID: -1441194704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_24
+      rect:
+        serializedVersion: 2
+        x: 2785
+        y: 1820
+        width: 662
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e4ef37ba03ad334b8ce5e247a9a57da
+      internalID: -668890054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_25
+      rect:
+        serializedVersion: 2
+        x: 3471
+        y: 1822
+        width: 656
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 274a3755cfab4cf43995aaba7dd458e6
+      internalID: 1903110174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_26
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 1753
+        width: 108
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba1c7e7f8baa0c042a82dbc51e9c6f33
+      internalID: 1063130004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_27
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 1738
+        width: 49
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 500989cbe9aa0b345926569b568098cd
+      internalID: 260202859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_28
+      rect:
+        serializedVersion: 2
+        x: 2785
+        y: 1777
+        width: 662
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b879848ef324ee443a3180fa098635c4
+      internalID: -1278603481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_29
+      rect:
+        serializedVersion: 2
+        x: 3471
+        y: 1779
+        width: 656
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39f4c5b9822dbb84abdaefcf850caee1
+      internalID: -484445555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_30
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 1631
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9832e1f65b1a52a4188b003c6a2a2a94
+      internalID: -250017429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_31
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 1631
+        width: 106
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35c63591528e7cd47b52143eacfa39f7
+      internalID: 839062131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_32
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 1631
+        width: 107
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13fac0217319de24da51372313453d82
+      internalID: 1031390098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_33
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 1631
+        width: 107
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4637917d3cfb4f74599cebd0e90dec0b
+      internalID: 540912760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_34
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 1631
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e5835f4f578bc84d96ca04e1f7bc9c1
+      internalID: -719453726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_35
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 1629
+        width: 106
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5377835a04eeb44a54af1ecb0da7f6
+      internalID: -1341804879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_36
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 1629
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c6ef91d01f522345b9d30574344842d
+      internalID: 1211977328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_37
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 1629
+        width: 107
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6826a08ce9bb0f4a8f7aeebec14ec50
+      internalID: -10720031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_38
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 1629
+        width: 108
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc1de52578683ee47998324090ccbd57
+      internalID: -1587373948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_39
+      rect:
+        serializedVersion: 2
+        x: 1305
+        y: 1629
+        width: 108
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ee712b3afa36384cb2743991e24619a
+      internalID: 772577866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_40
+      rect:
+        serializedVersion: 2
+        x: 2787
+        y: 1725
+        width: 92
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e526cd512ca3c4ca786be6d3ac1db9
+      internalID: 433490875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_41
+      rect:
+        serializedVersion: 2
+        x: 2886
+        y: 1728
+        width: 88
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674c69ccd0da9544880fe62693c46e95
+      internalID: 1172575850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_42
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 1725
+        width: 20
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2bcfa7bea1df8c4eb7366645b16ade0
+      internalID: 1611576945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_43
+      rect:
+        serializedVersion: 2
+        x: 3006
+        y: 1728
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c319e6c702147474d8c366a66d2af261
+      internalID: 414738347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_44
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 1611
+        width: 96
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad39dda9ab57bc42839ad41010746da
+      internalID: -65359845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_45
+      rect:
+        serializedVersion: 2
+        x: 1692
+        y: 1620
+        width: 119
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6da323c63e6b68a41a857d6487ab0fa0
+      internalID: 981384608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_46
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 1620
+        width: 108
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa1b45f6ec8ec9347ba2924571810f80
+      internalID: -962915343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_47
+      rect:
+        serializedVersion: 2
+        x: 1965
+        y: 1622
+        width: 110
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cc1fa06272224e4697818272c93ec7c
+      internalID: 1384389611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_48
+      rect:
+        serializedVersion: 2
+        x: 2787
+        y: 1687
+        width: 92
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45be3ee7c2e1ba3449cc73fd6920af8a
+      internalID: -2038808646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_49
+      rect:
+        serializedVersion: 2
+        x: 2886
+        y: 1689
+        width: 88
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba0a12f8f380e8b43bec198129a86709
+      internalID: -1181965803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_50
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 1687
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dfb12102dbba9541bbda833eba29396
+      internalID: -1996740576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_51
+      rect:
+        serializedVersion: 2
+        x: 3004
+        y: 1689
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 697e1ef29c493f6419293904c4fae019
+      internalID: -236090498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_52
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 1508
+        width: 114
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b78490a770d20f4298d710f7e328471
+      internalID: 2073193271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_53
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 1508
+        width: 114
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2c0f3fe4025176419f3d8b07ff8217b
+      internalID: 250210645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_54
+      rect:
+        serializedVersion: 2
+        x: 2785
+        y: 1620
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a7a835512f05346a501cda16f935a2
+      internalID: 735317259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_55
+      rect:
+        serializedVersion: 2
+        x: 2845
+        y: 1618
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9abb216d57b62e340a870355412dcf78
+      internalID: 1310285652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_56
+      rect:
+        serializedVersion: 2
+        x: 2907
+        y: 1618
+        width: 52
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c7e98aae6f9cd14197bfd3f39c098d8
+      internalID: -530228190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_57
+      rect:
+        serializedVersion: 2
+        x: 2965
+        y: 1616
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32ad2f431245fbc46831b7c6f0d51174
+      internalID: 1772000391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_58
+      rect:
+        serializedVersion: 2
+        x: 3028
+        y: 1616
+        width: 54
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 602b4e74e2476dd488001e6b649b864a
+      internalID: -1528914674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_59
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 1581
+        width: 86
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674edc62f3499994b838965348854b8f
+      internalID: -1016191606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_60
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 1581
+        width: 86
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e1659ce871a0b4dbcb3a91d282469a
+      internalID: 53253767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_61
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 1579
+        width: 86
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 200208f13c43964418abb1afcb13e227
+      internalID: 2045600392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_62
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 1579
+        width: 86
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b6fd685ab27b394eb144250d7f4e67b
+      internalID: -528881408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_63
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 1506
+        width: 114
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6279bec8b2b23d74ab7bba977bf5362e
+      internalID: -1658194744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_64
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1506
+        width: 114
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 600c6b055e15dc045b4eb91e1d99bada
+      internalID: -1822370301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_65
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 1523
+        width: 101
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff7d2f9ea323bbc4b95b6c4f6c079ecb
+      internalID: -1087771376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_66
+      rect:
+        serializedVersion: 2
+        x: 1836
+        y: 1525
+        width: 108
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28437847a29a7c943a55d7810d6a8dd9
+      internalID: -495994009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_67
+      rect:
+        serializedVersion: 2
+        x: 2768
+        y: 1340
+        width: 705
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5815105b1baf7a4a80009b978951ea1
+      internalID: 210309367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_68
+      rect:
+        serializedVersion: 2
+        x: 3535
+        y: 1340
+        width: 708
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a7a019c49ec0a44aa7dee5671df7be
+      internalID: -1411809057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_69
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 1512
+        width: 86
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74381c69be89f2348a407f711ffc84ee
+      internalID: 1246887753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_70
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 1512
+        width: 86
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 969e38cb6f8bca2469725ce3414660b6
+      internalID: 786116105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_71
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 1512
+        width: 86
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d217f01f3e4b7b84a9d961e1d831387a
+      internalID: 1013974229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_72
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 1512
+        width: 86
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea65500377b16d41b28df68488f8ba9
+      internalID: -682604581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_73
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 1041
+        width: 190
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71a34c23306196845b9385ed56ba8d0d
+      internalID: 386032636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_74
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 671
+        width: 486
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f99194eb2313834eb97335acd31acb9
+      internalID: 622209376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_75
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 669
+        width: 488
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b608334e7eeef14dbface765a1c7756
+      internalID: 2080060675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_76
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 54
+        width: 479
+        height: 1155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03d5b50de91f9de4a80f3565e9b74190
+      internalID: 810990450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_77
+      rect:
+        serializedVersion: 2
+        x: 2026
+        y: 58
+        width: 479
+        height: 1155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94788fc55dbb3d4408301c01a1c6b521
+      internalID: 136122490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_78
+      rect:
+        serializedVersion: 2
+        x: 2770
+        y: 1183
+        width: 112
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313fb74392bab7e429ae6c96867d3176
+      internalID: -1539772628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_79
+      rect:
+        serializedVersion: 2
+        x: 2920
+        y: 1181
+        width: 112
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa3173026f1399340aeecbd9b6ba6962
+      internalID: -332851946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_80
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 955
+        width: 190
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c757766c65f38314f9472c837f489efe
+      internalID: -535209186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_81
+      rect:
+        serializedVersion: 2
+        x: 2677
+        y: 56
+        width: 1574
+        height: 1097
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d400e0ff486513419ba0fb72977a7c2
+      internalID: -136736365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_82
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 755
+        width: 190
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e40661e41abc12641b826e4cc2954c1a
+      internalID: -1345845826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_83
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 665
+        width: 192
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b316957a8c0ca4641b3b23057777ea52
+      internalID: 1093491269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_84
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 460
+        width: 469
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c666830d61479c843aec4227f536a4f3
+      internalID: -878256878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_85
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 458
+        width: 406
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 582135a0a88bc7542aea9773e4bb1411
+      internalID: 933140039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_86
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 271
+        width: 378
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc303b98a344fb04cb37d93e8abcde2c
+      internalID: -365621209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_87
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 271
+        width: 378
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c11414d70e3ce744a0badc2f05fcbe1
+      internalID: 1605421400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_88
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 60
+        width: 370
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 941b12f32f4697f4581c986221a1bffc
+      internalID: 1770005396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedievalUserInterface_89
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 60
+        width: 368
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff365e897e0efb941a1a8a0b5febbf26
+      internalID: -27471468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      MedievalUserInterface_0: 2074946485
+      MedievalUserInterface_1: -1079596771
+      MedievalUserInterface_10: 888508900
+      MedievalUserInterface_11: -2046737086
+      MedievalUserInterface_12: -295632501
+      MedievalUserInterface_13: 546561057
+      MedievalUserInterface_14: -1188369341
+      MedievalUserInterface_15: 142242423
+      MedievalUserInterface_16: -435929744
+      MedievalUserInterface_17: -1607106506
+      MedievalUserInterface_18: -1056883583
+      MedievalUserInterface_19: 1132383558
+      MedievalUserInterface_2: -2081179700
+      MedievalUserInterface_20: 2084698833
+      MedievalUserInterface_21: -1435451975
+      MedievalUserInterface_22: 23125056
+      MedievalUserInterface_23: -1441194704
+      MedievalUserInterface_24: -668890054
+      MedievalUserInterface_25: 1903110174
+      MedievalUserInterface_26: 1063130004
+      MedievalUserInterface_27: 260202859
+      MedievalUserInterface_28: -1278603481
+      MedievalUserInterface_29: -484445555
+      MedievalUserInterface_3: -1117499927
+      MedievalUserInterface_30: -250017429
+      MedievalUserInterface_31: 839062131
+      MedievalUserInterface_32: 1031390098
+      MedievalUserInterface_33: 540912760
+      MedievalUserInterface_34: -719453726
+      MedievalUserInterface_35: -1341804879
+      MedievalUserInterface_36: 1211977328
+      MedievalUserInterface_37: -10720031
+      MedievalUserInterface_38: -1587373948
+      MedievalUserInterface_39: 772577866
+      MedievalUserInterface_4: -1175661140
+      MedievalUserInterface_40: 433490875
+      MedievalUserInterface_41: 1172575850
+      MedievalUserInterface_42: 1611576945
+      MedievalUserInterface_43: 414738347
+      MedievalUserInterface_44: -65359845
+      MedievalUserInterface_45: 981384608
+      MedievalUserInterface_46: -962915343
+      MedievalUserInterface_47: 1384389611
+      MedievalUserInterface_48: -2038808646
+      MedievalUserInterface_49: -1181965803
+      MedievalUserInterface_5: -664649018
+      MedievalUserInterface_50: -1996740576
+      MedievalUserInterface_51: -236090498
+      MedievalUserInterface_52: 2073193271
+      MedievalUserInterface_53: 250210645
+      MedievalUserInterface_54: 735317259
+      MedievalUserInterface_55: 1310285652
+      MedievalUserInterface_56: -530228190
+      MedievalUserInterface_57: 1772000391
+      MedievalUserInterface_58: -1528914674
+      MedievalUserInterface_59: -1016191606
+      MedievalUserInterface_6: -1245815215
+      MedievalUserInterface_60: 53253767
+      MedievalUserInterface_61: 2045600392
+      MedievalUserInterface_62: -528881408
+      MedievalUserInterface_63: -1658194744
+      MedievalUserInterface_64: -1822370301
+      MedievalUserInterface_65: -1087771376
+      MedievalUserInterface_66: -495994009
+      MedievalUserInterface_67: 210309367
+      MedievalUserInterface_68: -1411809057
+      MedievalUserInterface_69: 1246887753
+      MedievalUserInterface_7: -1851567430
+      MedievalUserInterface_70: 786116105
+      MedievalUserInterface_71: 1013974229
+      MedievalUserInterface_72: -682604581
+      MedievalUserInterface_73: 386032636
+      MedievalUserInterface_74: 622209376
+      MedievalUserInterface_75: 2080060675
+      MedievalUserInterface_76: 810990450
+      MedievalUserInterface_77: 136122490
+      MedievalUserInterface_78: -1539772628
+      MedievalUserInterface_79: -332851946
+      MedievalUserInterface_8: -1550135633
+      MedievalUserInterface_80: -535209186
+      MedievalUserInterface_81: -136736365
+      MedievalUserInterface_82: -1345845826
+      MedievalUserInterface_83: 1093491269
+      MedievalUserInterface_84: -878256878
+      MedievalUserInterface_85: 933140039
+      MedievalUserInterface_86: -365621209
+      MedievalUserInterface_87: 1605421400
+      MedievalUserInterface_88: 1770005396
+      MedievalUserInterface_89: -27471468
+      MedievalUserInterface_9: -577990774
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
