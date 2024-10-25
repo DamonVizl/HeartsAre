@@ -17,11 +17,16 @@ public class UI_CardSlot : MonoBehaviour
         _UICard = GetComponentInChildren<UI_Card>();
         _cardCanvasGroup = _UICard.GetComponent<CanvasGroup>();
     }
-    public bool HasCardInSlot()
+    public bool HasCardInSlot(Card card)
     {
-        if (_cardInSlot == null) return false;
-        return true; 
+        if (_cardInSlot == card) return true;
+        return false; 
     }
+    public UI_Card GetCardInSlot()
+    {
+        return _UICard; 
+    }
+
     public void SetCardInSlot(Card card)
     {
         _cardInSlot = card;
@@ -39,6 +44,5 @@ public class UI_CardSlot : MonoBehaviour
         _cardCanvasGroup.alpha = 0;
         _cardCanvasGroup.blocksRaycasts = false;
         _cardCanvasGroup.interactable = false;
-
     }
 }

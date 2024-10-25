@@ -1,22 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHand : CardCollection
 {
     public int startingHandSize = 5;
-    public static event Action<int, Card> OnCardAddedToHand;
+    public static event Action<int, Card> OnCardAddedToHand, OnCardRemovedFromHand;
 
-    public event Action<int> OnTrickScore;
+    public static event Action<int> OnTrickScore;
 
-    //a trick is a collection of cards used to score
-    private Trick _trickAttempt;
+    TrickScorer _trickScorer; 
+
+/*    //a trick is a collection of cards used to score
+    private Trick _trickAttempt;*/ //removed this in favour of selectedCards, that way we can do more with the selected cards (discard them, burn them to make super defenders, etc)
+
+    //a list of currently selected cards
+    List<Card> _selectedCards = new List<Card>();
 
     protected override void Start()
     {
         MaxCollectionSize = 7;
-        _trickAttempt = new Trick();
+        _trickScorer = new TrickScorer();
         base.Start();
     }
     private void OnEnable()
@@ -51,20 +57,58 @@ public class PlayerHand : CardCollection
         }
         return false;
     }
+    /// <summary>
+    /// remove the card from the hand, if it's selected (which it should be, remove it from there too)
+    /// </summary>
+    /// <param name="card"></param>
+    public void RemoveCard(Card card)
+    {
+        for (int i = 0; i < _cards.Length; i++)
+        {
+            if (_cards[i] == card)
+            {
+                //CardDeselected(card);  ///remove it from the selected list
+                OnCardRemovedFromHand?.Invoke(i, card);
+                _cards[i] = null;
+            }
+        }        
+    }
     public void CardSelected(Card card)
     {
-        _trickAttempt.AddCardToTrick(card);
+        _selectedCards.Add(card);
+        //_trickAttempt.AddCardToTrick(card);
     }
     public void CardDeselected(Card card)
     {
-        _trickAttempt.RemoveCardFromTrick(card);
+        _selectedCards.Remove(card);
+        //_trickAttempt.RemoveCardFromTrick(card);
     }
+    /// <summary>
+    /// submites the _selectedCards to the trickscorer, if there is a score it submits an event that the currency manager can listen to
+    /// </summary>
     public void SubmitTrick()
     {
-        Debug.Log("Submitting trick for scoring");
-        int score = _trickAttempt.SubmitTrick();
+        int score = _trickScorer.CalculateHand(_selectedCards);
         if (score == 0) return;
-        else OnTrickScore?.Invoke(score);
+        else
+        {
+            List<Card> cardsToRemove = new List<Card>();
+            //remove the cards
+            foreach (Card card in _selectedCards)
+            {
+                cardsToRemove.Add(card);
+            }
+            foreach(Card card in cardsToRemove)
+            {
+                RemoveCard(card);   
+            }
+            OnTrickScore?.Invoke(score);
+        }
 
+
+    }
+    public List<Card> GetCurrentlySelectedCards()
+    {
+        return _selectedCards; 
     }
 }

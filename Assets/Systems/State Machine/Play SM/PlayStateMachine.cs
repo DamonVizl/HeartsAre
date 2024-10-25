@@ -35,7 +35,7 @@ public class PlayStateMachine : BaseStateMachine<PlayState>
 }
 public enum PlayState
 {
-    Setup,
+    Setup, 
     PlayerTurn,
     EnemyTurn,
     Lose,

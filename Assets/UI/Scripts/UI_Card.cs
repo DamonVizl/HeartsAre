@@ -32,7 +32,9 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
     public void RemoveCard(Card card)
     {
         card.OnColourChanged -= UpdateCardGraphics;
-        CleanCard();
+        UnSelectCard(); 
+        //CleanCard();
+        FlipCard();
         _cardReference = null;
     }
     public void OnPointerClick(PointerEventData eventData)
@@ -47,7 +49,7 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
         //Do card selected stuff on the card
         _cardReference.SelectCard();
         //move card up
-        _tween = transform.DOMoveY(transform.position.y + 20f, 0.2f);
+        _tween = transform.DOLocalMoveY(transform.position.y + 20f, 0.2f);
         _cardSelected = true; 
     }
     private void UnSelectCard()
@@ -56,7 +58,7 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
         if (_tween.IsActive()) return;
         //deselect the card, move it down and set _cardSelected to false
         _cardReference.DeselectCard(); 
-        _tween = transform.DOMoveY(transform.position.y - 20f, 0.2f);
+        _tween = transform.DOLocalMoveY(transform.position.y , 0.2f);
         _cardSelected = false;
     }
 

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,13 +14,14 @@ public class CurrencyManager
     {
         _currentMoney = startingValue;
         OnCurrencyChanged?.Invoke(_currentMoney);
+        PlayerHand.OnTrickScore += AddMoney; //when a trick is scored, it's value is added to the currency manager
     }
 
-    public static void AutoGenerateCurrency()
+/*    public static void AutoGenerateCurrency()
     {
         int randomAmount = UnityEngine.Random.Range(0, 100);
         AddMoney(randomAmount);
-    }
+    }*/
 
     public static void AddMoney(int value)
     {

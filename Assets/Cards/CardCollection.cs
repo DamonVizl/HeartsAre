@@ -54,11 +54,18 @@ public class CardCollection : MonoBehaviour
             _cards[i] = null; //remove the card
             break;
         }
-        Debug.Log("card is " + card.Value);
-
-
         return card;
 
+    }
+    /// <summary>
+    /// draws each card from this cardCollection (probably only used by discard pile
+    /// </summary>
+    /// <returns></returns>
+    public virtual List<Card> TakeAllCards()
+    {
+        List<Card> cards = new List<Card>();
+        cards.Add(DrawCard());
+        return cards; 
     }
     //base AddCard method, adds the card to the list. extend this in the children classes to update UI in a bespoke way etc
     public virtual bool AddCard(Card card)
@@ -76,7 +83,6 @@ public class CardCollection : MonoBehaviour
                     return true;
                 }
             }
-
         }
         return false;
     }

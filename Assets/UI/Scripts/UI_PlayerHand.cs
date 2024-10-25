@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class UI_PlayerHand : MonoBehaviour
@@ -10,10 +11,12 @@ public class UI_PlayerHand : MonoBehaviour
     {
         _cardSlots = GetComponentsInChildren<UI_CardSlot>(); //fill the array with the children slots
         PlayerHand.OnCardAddedToHand += UpdateCardAtSlot;
+        PlayerHand.OnCardRemovedFromHand += RemoveCardAtSlot;
     }
     private void OnDisable()
     {
         PlayerHand.OnCardAddedToHand -= UpdateCardAtSlot;
+        PlayerHand.OnCardRemovedFromHand -= RemoveCardAtSlot;
 
     }
 
@@ -24,6 +27,11 @@ public class UI_PlayerHand : MonoBehaviour
             _cardSlots[index].SetCardInSlot(card);
         }
     }
-
-
+    private void RemoveCardAtSlot(int index, Card card)
+    {
+        if(index < _cardSlots.Length)
+        {
+            _cardSlots[index].RemoveCardFromSlot(); 
+        }
+    }
 }

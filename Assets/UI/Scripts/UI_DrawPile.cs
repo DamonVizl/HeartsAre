@@ -8,12 +8,11 @@ using System;
 /// <summary>
 /// sits on the UI Deck, pushes clicked events
 /// </summary>
-public class UI_DrawDeck : MonoBehaviour, IPointerDownHandler
+public class UI_DrawPile : MonoBehaviour, IPointerDownHandler
 {
     public static event Action OnDrawDeckClicked; 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Clicked");
         OnDrawDeckClicked?.Invoke();
     }
     //TODO: make a fancy shuffle animation
