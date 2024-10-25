@@ -6,11 +6,13 @@ public class UI_Enemy : MonoBehaviour
 {
     Animator _anim;
     private HeartDefender _targetDefender;
+    private GlobalEffectsManager _globalEffectsManager;
 
     private void OnEnable()
     {
         UI_DamageUpdater.OnAttackExecuted += AnimateAttack;
-        _anim = GetComponent<Animator>();  
+        _anim = GetComponent<Animator>();
+        _globalEffectsManager = FindObjectOfType<GlobalEffectsManager>();
     }
     private void OnDisable()
     {
@@ -28,6 +30,14 @@ public class UI_Enemy : MonoBehaviour
         if (_targetDefender != null)
         {
             _targetDefender.PlayParticleEffect();
+        }
+        else
+        {
+            if (_globalEffectsManager != null)
+            {
+                Debug.Log("where's the particle");
+                _globalEffectsManager.PlayPlayerDamageParticleEffect();
+            }
         }
     }
 
