@@ -39,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 81.6459, y: 125.1714}
+  m_SizeDelta: {x: 119.33, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1431532237865530619
 CanvasRenderer:
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eecb67c564a80b247ba8d9aba0b9c5c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20c6f9adacca3614fbefbce66f4b19b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -95,6 +95,7 @@ MonoBehaviour:
   rankCounter: {fileID: 7935888062753091620}
   levelUpRateIncrease: 1.5
   gameManager: {fileID: 0}
+  _tweenValue: 1
   upgradeArrowIcon: {fileID: 1094671589504198560}
   playStateMachine: {fileID: 0}
   deathParticle: {fileID: 336853362505233834}
@@ -133,7 +134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.799999, y: -40.5}
+  m_AnchoredPosition: {x: -37.5, y: -30.099998}
   m_SizeDelta: {x: 21.0624, y: 22.3128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7279331639315749855
@@ -5156,8 +5157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80.5, y: 15.3}
-  m_SizeDelta: {x: 180.9256, y: 37.694}
+  m_AnchoredPosition: {x: -2.5, y: 29.7}
+  m_SizeDelta: {x: 9.96, y: 28.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7092458920720641411
 CanvasRenderer:
