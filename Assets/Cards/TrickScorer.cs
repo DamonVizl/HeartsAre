@@ -23,11 +23,21 @@ public class TrickScorer
         if (cards.Count <= 1) return score; //can't make a trick from 1 card
         if (IsRoyalFlush(cards))
         {
-            return CalculateScore(GetHighestCardValue(cards), HandValues.RoyalFlush); 
+            switch(cards.Count)
+            {
+                case 5: return CalculateScore(GetHighestCardValue(cards), HandValues.FiveStraightRoyalFlush);
+                case 6: return CalculateScore(GetHighestCardValue(cards), HandValues.SixStraightRoyalFlush);
+                case 7: return CalculateScore(GetHighestCardValue(cards), HandValues.SevenStraightRoyalFlush);
+            }
         }
         if (IsStraightFlush(cards))
         {
-            return CalculateScore(GetHighestCardValue(cards), HandValues.StraightFlush);
+            switch (cards.Count)
+            {
+                case 5: return CalculateScore(GetHighestCardValue(cards), HandValues.FiveStraightFlush);
+                case 6: return CalculateScore(GetHighestCardValue(cards), HandValues.SixStraightFlush);
+                case 7: return CalculateScore(GetHighestCardValue(cards), HandValues.SevenStraightFlush);
+            }
         }
         if (IsTwoTrips(cards))
         {
@@ -39,7 +49,12 @@ public class TrickScorer
         }
         if (IsStraight(cards))
         {
-            return CalculateScore(GetHighestCardValue(cards), HandValues.Straight);
+            switch (cards.Count)
+            {
+                case 5: return CalculateScore(GetHighestCardValue(cards), HandValues.FiveStraight);
+                case 6: return CalculateScore(GetHighestCardValue(cards), HandValues.SixStraight);
+                case 7: return CalculateScore(GetHighestCardValue(cards), HandValues.SevenStraight);
+            }
         }
         if (IsTrips(cards))
         {
@@ -75,7 +90,6 @@ public class TrickScorer
         // A Flush is when all cards are of the same suit.
         return cards.All(c => c.Suit == cards[0].Suit); //returns true if every card is of the same suit
     }
-
     private bool IsStraight(List<Card> cards)
     {
         // A Straight is when all cards have consecutive values, regardless of their suits.
@@ -141,9 +155,15 @@ public enum HandValues
     TwoPair = 2,
     ThreePair = 3,
     Trips = 4,
-    Straight = 5,
+    FiveStraight = 5,
     Quads = 6,
-    TwoTrips = 7,
-    StraightFlush = 8,
-    RoyalFlush = 9,
+    SixStraight = 7,
+    TwoTrips = 8,
+    SevenStraight = 9,
+    FiveStraightFlush =10,
+    FiveStraightRoyalFlush = 11,
+    SixStraightFlush = 12,
+    SevenStraightFlush = 13,
+    SixStraightRoyalFlush = 14,
+    SevenStraightRoyalFlush = 15,
 }
