@@ -25,9 +25,9 @@ public class UI_ScorePopup : MonoBehaviour
         _TMPText.text = message + " + " + score + " points";
         transform.position = _originalPosition;
         _TMPText.enabled = true;
-        transform.DOScale(0.8f, 0.5f);
-        _TMPText.CrossFadeAlpha(0.2f, 0.5f, false);
-        transform.DOLocalMoveY(transform.position.y + Random.Range(20f, 40f), 0.5f).OnComplete(() =>
+        transform.DOScale(0.8f, 1f);
+        _TMPText.CrossFadeAlpha(0.2f, 1f, false);
+        transform.DOLocalMoveY(transform.position.y + Random.Range(20f, 40f), 1f).OnComplete(() =>
         {
             //disable the text when done. 
             _TMPText.enabled = false;

@@ -71,16 +71,6 @@ public class Enemy
         _numAttacksMultiplier += _numAttacksIncreasePerTurn;
     }
 
-    public static void ShowEnemy()
-    {
-        _ui_enemy.ShowEnemy();
-    }
-
-    public static void HideEnemy()
-    {
-        _ui_enemy.HideEnemy();
-    }
-
     public static UI_HeartDefender GetUI_HeartDefender()
     {
         return _heartDefenderRef;

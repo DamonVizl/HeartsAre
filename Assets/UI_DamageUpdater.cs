@@ -8,10 +8,10 @@ using UnityEngine;
 
 public class UI_DamageUpdater : MonoBehaviour
 {
-
+    public static event Action OnAttackExecuted; 
     TextMeshProUGUI _damageTMP;
 
-    public float _attackDelay = .5f;
+    public float _attackDelay = 1.4f;
     private HeartDefender selectedDefender; // defender player chooses to defend with
 
     private EnemyTurnState _enemyTurnState;
@@ -81,7 +81,7 @@ public class UI_DamageUpdater : MonoBehaviour
                 randomDefender.TakeDamage(Enemy.CalculateDamage());
                 AnimateDamageText(Enemy.CalculateDamage());
             }
-
+            OnAttackExecuted?.Invoke(); 
             // Wait for a delay before the next attack
             yield return new WaitForSeconds(_attackDelay);
 

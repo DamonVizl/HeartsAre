@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class UI_Enemy : MonoBehaviour
 {
-
-    public GameObject enemyObj;
-    public void ShowEnemy()
+    Animator _anim; 
+    private void OnEnable()
     {
-        enemyObj.SetActive(true);
+        UI_DamageUpdater.OnAttackExecuted += AnimateAttack;
+        _anim = GetComponent<Animator>();  
+    }
+    private void OnDisable()
+    {
+        UI_DamageUpdater.OnAttackExecuted -= AnimateAttack;
     }
 
-    public void HideEnemy()
+    private void AnimateAttack()
     {
-        enemyObj.SetActive(false);
+        _anim.SetTrigger("Attack");
     }
 }
