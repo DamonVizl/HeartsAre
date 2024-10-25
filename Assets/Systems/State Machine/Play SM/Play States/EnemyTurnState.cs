@@ -31,6 +31,7 @@ public class EnemyTurnState : BaseState<PlayState>
 
     public override void ExitState()
     {
+        GameManager.Instance.GetUI_DamageUpdater().HideDamageUI();
         // increase the damage and number of attacks at the end of enemy turn
         GameManager.Instance.Enemy.IncreaseDamage();
         GameManager.Instance.Enemy.IncreaseNumberOfAttacks();

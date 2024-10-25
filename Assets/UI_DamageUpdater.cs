@@ -11,17 +11,20 @@ public class UI_DamageUpdater : MonoBehaviour
     public static event Action OnAttackExecuted; 
     TextMeshProUGUI _damageTMP;
 
-    public float _attackDelay = 1.4f;
+    public float _attackDelay;
+    public float _animateSpeed;
     private HeartDefender selectedDefender; // defender player chooses to defend with
 
     private EnemyTurnState _enemyTurnState;
     private bool playerTakesDamage;
 
     private HeartDefenderManager _heartDefenderManager;
+    public TextMeshProUGUI _damageLabelTMP;
 
     private void Start()
     {
         _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
+        HideDamageUI();
     }
 
     private void OnEnable()
@@ -34,6 +37,18 @@ public class UI_DamageUpdater : MonoBehaviour
     private void OnDisable()
     {
         Enemy.OnDamageCalculated -= UpdateDamageUI;
+    }
+
+    public void HideDamageUI()
+    {
+        _damageLabelTMP.gameObject.SetActive(false);
+        _damageTMP.gameObject.SetActive(false);
+    }
+
+    void ShowDamageUI()
+    {
+        _damageLabelTMP.gameObject.SetActive(true);
+        _damageTMP.gameObject.SetActive(true);
     }
 
 
@@ -49,11 +64,8 @@ public class UI_DamageUpdater : MonoBehaviour
 
     public void StartAttack(int numberOfAttacks, List<HeartDefender> defendersForThisAttack)
     {
-        //StartCoroutine(AttackRoutine(numberOfAttacks));
-
+        ShowDamageUI();
         StartCoroutine(AttackRoutine(numberOfAttacks, defendersForThisAttack));
-
-
     }
 
     // attack the player a number of times and allow the player to choose a defender between attacks
@@ -69,7 +81,8 @@ public class UI_DamageUpdater : MonoBehaviour
                 int dmg = Enemy.CalculateDamage();
                 GameManager.Instance.ReducePlayerHealth(dmg);
                 Debug.Log("No defenders available, attacking player for " + dmg + " damage.");
-                AnimateDamageText(dmg);
+                StartCoroutine(AnimateDamageText(dmg));
+                ResetDamageText();
             }
             else
             {
@@ -79,7 +92,8 @@ public class UI_DamageUpdater : MonoBehaviour
 
                 // Perform attack on the random defender
                 randomDefender.TakeDamage(Enemy.CalculateDamage());
-                AnimateDamageText(Enemy.CalculateDamage());
+                StartCoroutine(AnimateDamageText(Enemy.CalculateDamage()));
+                ResetDamageText();
             }
             OnAttackExecuted?.Invoke(); 
             // Wait for a delay before the next attack
@@ -92,6 +106,8 @@ public class UI_DamageUpdater : MonoBehaviour
         {
             defender.ResetPosition();
         }
+
+        ResetDamageText();
 
         // After all attacks, end the enemy turn
         if (_enemyTurnState != null)
@@ -109,7 +125,7 @@ public class UI_DamageUpdater : MonoBehaviour
     {
         int currentDisplayValue = 0;
         int finalDamageValue = damage;
-        float duration = .5f; // Time to complete the counting
+        float duration = _animateSpeed; // Time to complete the counting
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
@@ -120,7 +136,7 @@ public class UI_DamageUpdater : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.1f);
 
         // Ensure it shows the exact final damage value at the end
         _damageTMP.text = finalDamageValue.ToString();

@@ -11,20 +11,15 @@ public class HeartDefenderManager : MonoBehaviour
     private List<HeartDefender> heartDefenders = new List<HeartDefender>();
     private List<HeartDefender> defendersForThisAttack = new List<HeartDefender>();
 
-
     public int addDefenderCost;
 
     public Button addDefenderButton;
-
     public Transform cardContainer;
 
     public UI_HeartDefenderInteractions _ui_HeartDefenderInteractions;
 
     [SerializeField] private const int maxDefenders = 5;
     RectTransform parentRectTransform; // UI parent reference for camera shake
-
-    public static event Action<UI_ConfirmSelection> OnConfirmSelection;
-
 
     void Start()
     {
