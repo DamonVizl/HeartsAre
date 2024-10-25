@@ -7,23 +7,18 @@ using UnityEngine.UI;
 public class HeartDefenderManager : MonoBehaviour
 {
     public GameObject heartDefenderPrefab;
-    public GameObject defenderOptions_UI_Container;
-    public GameObject noDefenderOption_UI;
-    public GameObject addDefenderObj_UI;
-    public GameObject selectDefenderText;
-
-    public GameObject endTurnButton;
 
     private List<HeartDefender> heartDefenders = new List<HeartDefender>();
     private List<HeartDefender> defendersForThisAttack = new List<HeartDefender>();
 
-    public Transform cardContainer;
 
     public int addDefenderCost;
 
     public Button addDefenderButton;
 
+    public Transform cardContainer;
 
+    public UI_HeartDefenderInteractions _ui_HeartDefenderInteractions;
 
     [SerializeField] private const int maxDefenders = 5;
     RectTransform parentRectTransform; // UI parent reference for camera shake
@@ -33,12 +28,11 @@ public class HeartDefenderManager : MonoBehaviour
 
     void Start()
     {
+        _ui_HeartDefenderInteractions.GetComponent<UI_HeartDefenderInteractions>();
         // assign the listener to the starting addHeartDefender UI element
         addDefenderButton.onClick.AddListener(BuyDefender);
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
-        CheckForStartingDefenders(); // check if there are any heart defenders in play at start of game and add to heartDefenders list
-        DisableNoDefenderOption();
-        selectDefenderText.SetActive(false);
+        CheckForStartingDefenders(); // check if there are any heart defenders in play at start of game and add to heartDefenders  
     }
 
     public void PlayerConfirmsSelection(UI_ConfirmSelection confirmSelectionButton)
@@ -128,62 +122,6 @@ public class HeartDefenderManager : MonoBehaviour
         return heartDefenders;
     }
 
-    public void DisableNoDefenderOption()
-    {
-        noDefenderOption_UI.SetActive(false);
-    }
-
-    public void EnableOptionsForEnemyAttack()
-    {
-        DisableAddNewDefender_Button();
-        EnableConfirmSelection_Button();
-        EnableSelectDefenderText();
-        DisableEndTurn_Button();
-    }
-
-    public void EnableConfirmSelection_Button()
-    {
-        noDefenderOption_UI.SetActive(true);
-    }
-
-    public void EnableOptionsForPlayerTurn()
-    {
-        DisableNoDefenderOption();
-        EnableAddNewDefenderButton();
-        DisableSelectDefenderText();
-        EnableEndTurn_Button();
-    }
-
-    public void DisableAddNewDefender_Button()
-    {
-        addDefenderObj_UI.SetActive(false);
-    }
-
-    public void EnableAddNewDefenderButton()
-    {
-        addDefenderObj_UI.SetActive(true);
-
-    }
-
-    public void EnableEndTurn_Button()
-    {
-        endTurnButton.SetActive(true);
-    }
-
-    public void DisableEndTurn_Button()
-    {
-        endTurnButton.SetActive(false);
-    }
-
-    public void EnableSelectDefenderText()
-    {
-        selectDefenderText.SetActive(true);
-    }
-
-    public void DisableSelectDefenderText()
-    {
-        selectDefenderText.SetActive(false);
-    }
 
     public void AddDefenderForAttack(HeartDefender defender)
     {

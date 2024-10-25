@@ -38,7 +38,7 @@ public class Enemy
 
     public static void StartAttack(int value, List<HeartDefender> defenders)
     {
-        _heartDefenderManager.EnableOptionsForEnemyAttack();
+        _heartDefenderManager._ui_HeartDefenderInteractions.EnableOptionsForEnemyAttack();
         _ui_damageUpdater.StartAttack(value, defenders);
         Debug.Log("UI_DamageUpdater is attacking with the number of attacks set in the GM instance");
     }
