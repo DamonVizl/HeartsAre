@@ -8,12 +8,11 @@ using UnityEngine;
 
 public class UI_DamageUpdater : MonoBehaviour
 {
-    public static event Action OnAttackExecuted; 
+    public static event Action<HeartDefender> OnAttackExecuted; 
     TextMeshProUGUI _damageTMP;
 
     public float _attackDelay;
     public float _animateSpeed;
-    private HeartDefender selectedDefender; // defender player chooses to defend with
 
     private EnemyTurnState _enemyTurnState;
     private bool playerTakesDamage;
@@ -75,6 +74,7 @@ public class UI_DamageUpdater : MonoBehaviour
 
         while (attacksRemaining > 0)
         {
+            HeartDefender randomDefender = null;
             if (defendersForThisAttack == null || defendersForThisAttack.Count == 0)
             {
                 // No defenders available, so attack the player directly
@@ -88,14 +88,14 @@ public class UI_DamageUpdater : MonoBehaviour
             {
                 // Pick a random defender
                 int randomIndex = UnityEngine.Random.Range(0, defendersForThisAttack.Count);
-                HeartDefender randomDefender = defendersForThisAttack[randomIndex];
+                randomDefender = defendersForThisAttack[randomIndex];
 
                 // Perform attack on the random defender
                 randomDefender.TakeDamage(Enemy.CalculateDamage());
                 StartCoroutine(AnimateDamageText(Enemy.CalculateDamage()));
                 ResetDamageText();
             }
-            OnAttackExecuted?.Invoke(); 
+            OnAttackExecuted?.Invoke(randomDefender);
             // Wait for a delay before the next attack
             yield return new WaitForSeconds(_attackDelay);
 

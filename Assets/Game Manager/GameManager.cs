@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public CurrencyManager CurrencyManager { get; private set; }
     public Enemy Enemy { get; private set; }
     private HeartDefenderManager _heartDefenderManager;
+    private UI_HeartDefenderInteractions _ui_HeartDefenderActions;
     private UI_DamageUpdater _ui_DamageUpdater;
     private UI_Enemy _ui_enemy;
     #endregion
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
         _ui_DamageUpdater = FindObjectOfType<UI_DamageUpdater>();
         _ui_enemy = FindObjectOfType<UI_Enemy>();
+        _ui_HeartDefenderActions = FindObjectOfType<UI_HeartDefenderInteractions>();
         PlayerHealth = new PlayerHealth(_startingHealth);
         TurnsSurvived = 0;
         OnTurnUpdated?.Invoke(TurnsSurvived);

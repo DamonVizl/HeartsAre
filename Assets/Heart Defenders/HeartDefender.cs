@@ -149,10 +149,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // if heart takes enough damage that surpasses it's rank's damage threshold, decrease its rank
     public void TakeDamage(int damage)
     {
-        if (deathParticle != null)
-        {
-            deathParticle.Play();
-        }
         ShakeCamera();
         // track damage amt that surpasses defender's rank
         int overDamage = 0;
@@ -261,6 +257,15 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+
+    public void PlayParticleEffect()
+    {
+        if (deathParticle != null)
+        {
+            deathParticle.Play();
+        }
+    }
+
     // use this to upgrade to super defender
     private void ChangeToSuperDefender()
     {

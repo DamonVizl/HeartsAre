@@ -138,7 +138,12 @@ public class HeartDefenderManager : MonoBehaviour
         return defendersForThisAttack;
     }
 
-   
+    public void EnableOptionsForEnemyAttack()
+    {
+        _ui_HeartDefenderInteractions.EnableOptionsForEnemyAttack();
+    }
+
+
 
 
 
