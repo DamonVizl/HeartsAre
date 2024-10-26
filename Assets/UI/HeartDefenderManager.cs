@@ -82,12 +82,10 @@ public class HeartDefenderManager : MonoBehaviour
     private void AddNewDefender(GameObject placeholder)
     {
         GameObject newDefenderObj = Instantiate(heartDefenderPrefab, cardContainer);
-        // update index in hierarchy so add defender option is moved to the right
-        int currentIndex = transform.GetSiblingIndex();
-        newDefenderObj.transform.SetSiblingIndex(currentIndex);
+        // Set the sibling index to place the new defender at the end of the row, but before the add button
+        newDefenderObj.transform.SetSiblingIndex(cardContainer.childCount - 2);
 
         HeartDefender heartDefender = newDefenderObj.GetComponent<HeartDefender>();
-
         AddToDefenderList(heartDefender);
     }
 
