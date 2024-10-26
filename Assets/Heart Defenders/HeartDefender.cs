@@ -148,13 +148,16 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     void UpgradeCard(int cost)
     {
-        if (heartRank == 10)
+        if (!isSuperDefender)
         {
-            ChangeToSuperDefender();
-        }
-        else
-        {
-            UpgradeRank(cost);
+            if (heartRank == 10)
+            {
+                ChangeToSuperDefender();
+            }
+            else
+            {
+                UpgradeRank(cost);
+            }
         }
     }
 
@@ -171,7 +174,9 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         isSuperDefender = true; // set this flag to true so player can no longer use to block attacks
         SuperDefender superDefender = gameObject.AddComponent<SuperDefender>();
+        heartDefenderManager.RemoveFromDefenderList(this);
         superDefender.Initialize(superDefender.GetRandomSuperDefenderType());
+        heartDefenderManager.AddSuperDefender(superDefender);
     }
 
 
@@ -232,8 +237,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         // destroy this heart
         Destroy(this.gameObject);
     }
-
-
 
     // calculates this heart defender's next upgrade cost
     private int GetNextUpgradeCost()
