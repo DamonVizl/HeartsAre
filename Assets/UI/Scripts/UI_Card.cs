@@ -16,7 +16,8 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
     [SerializeField] Image _centreImage;
 
     //Reference to the tween 
-    Tween _tween; 
+    Tween _moveTween;
+    Tween _rotateTween; 
 
     Card _cardReference;
     bool _cardSelected = false; //true when the card has been clicked on, false if not. used for creating tricks
@@ -46,20 +47,20 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
     private void SelectCard()
     {
         //if there is a tween in motion, do nothing and return
-        if (_tween.IsActive()) return ; 
+        if (_moveTween.IsActive()) return ; 
         //Do card selected stuff on the card
         _cardReference.SelectCard();
         //move card up
-        _tween = transform.DOLocalMoveY(transform.position.y + 20f, 0.2f);
+        _moveTween = transform.DOLocalMoveY( 20f, 0.2f);
         _cardSelected = true; 
     }
     private void UnSelectCard()
     {
         //if the card is currently tweening, return without doing anything
-        if (_tween.IsActive()) return;
+        if (_moveTween.IsActive()) return;
         //deselect the card, move it down and set _cardSelected to false
         _cardReference.DeselectCard(); 
-        _tween = transform.DOLocalMoveY(transform.position.y , 0.2f);
+        _moveTween = transform.DOLocalMoveY(0 , 0.2f);
         _cardSelected = false;
     }
     public Tween MoveCardTo(Transform transform)
@@ -68,8 +69,14 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
     }
     public void FlipCard()
     {
+        if (_rotateTween != null)
+        {
+            _rotateTween.Kill(); 
+            
+        }
+         
         //first half of flip
-        transform.DORotate(new Vector3(0, 90, 0), 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
+        _rotateTween = transform.DORotate(new Vector3(0, 90, 0), 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
         {
 
             _backOfCard.enabled = _cardFlipped; 
