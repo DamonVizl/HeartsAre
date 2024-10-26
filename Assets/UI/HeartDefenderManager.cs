@@ -21,6 +21,9 @@ public class HeartDefenderManager : MonoBehaviour
     [SerializeField] private const int maxDefenders = 5;
     RectTransform parentRectTransform; // UI parent reference for camera shake
 
+    public List<SuperDefender> ActiveSuperDefenders { get; private set; } = new List<SuperDefender>();
+
+
     void Start()
     {
         _ui_HeartDefenderInteractions.GetComponent<UI_HeartDefenderInteractions>();
@@ -141,17 +144,13 @@ public class HeartDefenderManager : MonoBehaviour
         _ui_HeartDefenderInteractions.EnableOptionsForEnemyAttack();
     }
 
+    public void AddSuperDefender(SuperDefender defender)
+    {
+        ActiveSuperDefenders.Add(defender);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    public void RemoveSuperDefender(SuperDefender defender)
+    {
+        ActiveSuperDefenders.Remove(defender);
+    }
 }

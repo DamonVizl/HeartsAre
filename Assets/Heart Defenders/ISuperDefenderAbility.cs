@@ -6,4 +6,5 @@ public interface ISuperDefenderAbility
 {
     void Activate();
     void Deactivate();
+    void ApplyPassiveEffect();
 }

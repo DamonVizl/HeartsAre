@@ -37,6 +37,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private HorizontalLayoutGroup layoutGroup;
 
+    public bool isSuperDefender;
+
 
     private void Start()
     {
@@ -76,6 +78,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private void SelectDefender()
     {
+        if (isSuperDefender == true) return;
+
         if (_tween.IsActive()) return;
 
         // disable horizontal layout so tweens can operate
@@ -126,24 +130,59 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         _defenderSelected = false;
     }
 
-    // updates the badge counter
-    public void UpdateRankCounter_UI()
-    {
-        rankCounter.text = heartRank.ToString();
-    }
+
 
     // if player tries to purchase a rank upgrade and has enough currency, upgrade the card's rank
     public void PurchaseRankUpgrade()
     {
         if (IsAbleToUpgrade())
         {
-            UpgradeRank(GetNextUpgradeCost());
+            UpgradeCard(GetNextUpgradeCost());
         }
         else
         {
             Debug.Log("You do not have enough money to upgrade this heart or it's at max level");
             ShakeCamera();
         }
+    }
+
+    void UpgradeCard(int cost)
+    {
+        if (heartRank == 10)
+        {
+            ChangeToSuperDefender();
+        }
+        else
+        {
+            UpgradeRank(cost);
+        }
+    }
+
+    void UpgradeRank(int cost)
+    {
+        CurrencyManager.RemoveMoney(cost);
+        heartRank++;
+        // add SubtractDifferenceToPlayer()
+        UpdateRankCounter_UI();
+    }
+
+    // use this to upgrade to super defender
+    private void ChangeToSuperDefender()
+    {
+        isSuperDefender = true; // set this flag to true so player can no longer use to block attacks
+        SuperDefender superDefender = gameObject.AddComponent<SuperDefender>();
+        superDefender.Initialize(superDefender.GetRandomSuperDefenderType());
+    }
+
+
+    // checks if player has enough money to upgrade this heart defender and is below max level (10)
+    public bool IsAbleToUpgrade()
+    {
+        if (CurrencyManager.GetCurrentMoney() >= GetNextUpgradeCost() && playStateMachine.GetCurrentState() == PlayState.PlayerTurn)
+        {
+            return true;
+        }
+        return false;
     }
 
     // if heart takes enough damage that surpasses it's rank's damage threshold, decrease its rank
@@ -178,14 +217,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    void UpgradeRank(int cost)
-    {
-        CurrencyManager.RemoveMoney(cost);
-        heartRank++;
-        // add SubtractDifferenceToPlayer()
-        UpdateRankCounter_UI();
-    }
-
     void OverKillDamage(int damage)
     {
         // if this heart dies, player will receive overkill damage
@@ -202,21 +233,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         Destroy(this.gameObject);
     }
 
-    // shows upgrade arrow in transparent, inactive state
-    public void DisableIcon()
-    {
-        Color iconColor = upgradeArrowIcon.color;
-        iconColor.a = iconDisabledSaturation;
-        upgradeArrowIcon.color = iconColor;  
-    }
-
-    // show upgrade arrow in active state with full saturation
-    void EnableIcon()
-    {
-        Color iconColor = upgradeArrowIcon.color;
-        iconColor.a = 1f;
-        upgradeArrowIcon.color = iconColor;
-    }
 
 
     // calculates this heart defender's next upgrade cost
@@ -226,17 +242,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         levelUpCost = Mathf.RoundToInt(heartRank * levelUpRateIncrease);
 
         return levelUpCost;
-    }
-
-
-    // checks if player has enough money to upgrade this heart defender and is below max level (10)
-    public bool IsAbleToUpgrade()
-    {
-        if (CurrencyManager.GetCurrentMoney() >= GetNextUpgradeCost() && heartRank < maxLevel && playStateMachine.GetCurrentState() == PlayState.PlayerTurn)
-        {
-            return true;
-        }
-        return false;
     }
 
     // checks if heart defender is upgradable at runtime
@@ -258,20 +263,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void PlayParticleEffect()
-    {
-        if (deathParticle != null)
-        {
-            deathParticle.Play();
-        }
-    }
-
-    // use this to upgrade to super defender
-    private void ChangeToSuperDefender()
-    {
-
-    }
-
     private void ShakeCamera()
     {
         CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
@@ -279,6 +270,37 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         if (cameraShake != null && parentRectTransform != null)
         {
             cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
+        }
+    }
+
+
+    // shows upgrade arrow in transparent, inactive state
+    public void DisableIcon()
+    {
+        Color iconColor = upgradeArrowIcon.color;
+        iconColor.a = iconDisabledSaturation;
+        upgradeArrowIcon.color = iconColor;
+    }
+
+    // show upgrade arrow in active state with full saturation
+    void EnableIcon()
+    {
+        Color iconColor = upgradeArrowIcon.color;
+        iconColor.a = 1f;
+        upgradeArrowIcon.color = iconColor;
+    }
+
+    // updates the badge counter
+    public void UpdateRankCounter_UI()
+    {
+        rankCounter.text = heartRank.ToString();
+    }
+
+    public void PlayParticleEffect()
+    {
+        if (deathParticle != null)
+        {
+            deathParticle.Play();
         }
     }
 

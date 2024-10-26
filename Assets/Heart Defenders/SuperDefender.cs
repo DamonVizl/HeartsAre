@@ -37,5 +37,17 @@ public class SuperDefender : MonoBehaviour
         }
     }
 
+    public void ApplyPassiveEffect()
+    {
+        superDefenderAbility?.ApplyPassiveEffect();
+    }
+
+    public SuperDefenderType GetRandomSuperDefenderType()
+    {
+        SuperDefenderType[] types = { SuperDefenderType.Jack, SuperDefenderType.Queen, SuperDefenderType.King };
+        int randomIndex = UnityEngine.Random.Range(0, types.Length);
+        return types[1];
+    }
+
 
 }

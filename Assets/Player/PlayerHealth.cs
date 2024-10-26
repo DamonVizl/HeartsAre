@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerHealth
 {
     private int _currentHealth;
-    private int _maxPlayerHealth = 10; //cannot exceed this number
+    private int _maxPlayerHealth = 60; //cannot exceed this number
     public static event Action<int> OnHealthChange;
     public PlayerHealth(int startingValue)
     {

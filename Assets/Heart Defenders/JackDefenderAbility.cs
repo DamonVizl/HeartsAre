@@ -13,4 +13,9 @@ public class JackDefenderAbility : ISuperDefenderAbility
     { 
         
     }
+
+    public void ApplyPassiveEffect()
+    { 
+    
+    }
 }

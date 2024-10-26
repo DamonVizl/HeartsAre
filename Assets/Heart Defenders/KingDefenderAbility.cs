@@ -13,4 +13,9 @@ public class KingDefenderAbility : ISuperDefenderAbility
     {
 
     }
+
+    public void ApplyPassiveEffect()
+    {
+
+    }
 }
