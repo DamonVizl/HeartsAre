@@ -39,6 +39,9 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     public bool isSuperDefender;
 
+    public Sprite _superDefenderUpgradeIconSprite;
+    public Sprite _upgradeArrowSprite;
+
 
     private void Start()
     {
@@ -264,6 +267,12 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
                 }
             }
         }
+
+        if (heartRank == 10)
+        { 
+            
+        }
+
     }
 
     private void ShakeCamera()
@@ -304,6 +313,23 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         if (deathParticle != null)
         {
             deathParticle.Play();
+        }
+    }
+
+    public void RemoveUpgradeIcon()
+    {
+        upgradeArrowIcon.gameObject.SetActive(false);
+    }
+
+    public void ChangeUpgradeIcon(int rank)
+    {
+        if (rank == 10)
+        {
+            upgradeArrowIcon.sprite = _superDefenderUpgradeIconSprite;
+        }
+        else
+        {
+            upgradeArrowIcon.sprite = _upgradeArrowSprite;
         }
     }
 
