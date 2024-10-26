@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
+
 
 /// <summary>
 /// A UI component that allows the card to be dragged and dropped. This is not the card itself, this is where the card sits on the table
@@ -27,22 +29,30 @@ public class UI_CardSlot : MonoBehaviour
         return _UICard; 
     }
 
-    public void SetCardInSlot(Card card)
+    public void SetCardInSlot(Card card, Transform fromTransform)
     {
+        _UICard.transform.position = fromTransform.position;
         _cardInSlot = card;
-        _UICard.AttachCard(card);
+        _UICard.AttachCard(card );
         _cardCanvasGroup.alpha = 1;
         _cardCanvasGroup.blocksRaycasts = true;
         _cardCanvasGroup.interactable = true;
+        _UICard.MoveCardTo(this.transform);
         _UICard.FlipCard();
 
     }
-    public void RemoveCardFromSlot()
+    public void RemoveCardFromSlot(Transform toTransform)
     {
-        _UICard.RemoveCard(_cardInSlot  );
-        _cardInSlot = null;
-        _cardCanvasGroup.alpha = 0;
-        _cardCanvasGroup.blocksRaycasts = false;
-        _cardCanvasGroup.interactable = false;
+        Tween tween = _UICard.MoveCardTo(toTransform);
+        _UICard.RemoveCard(_cardInSlot);
+        tween.OnComplete(() =>
+        {
+            _cardInSlot = null;
+            _cardCanvasGroup.alpha = 0;
+            _cardCanvasGroup.blocksRaycasts = false;
+            _cardCanvasGroup.interactable = false;
+        }); 
+
+     
     }
 }

@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI; 
@@ -61,7 +62,10 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
         _tween = transform.DOLocalMoveY(transform.position.y , 0.2f);
         _cardSelected = false;
     }
-
+    public Tween MoveCardTo(Transform transform)
+    {
+        return this.transform.DOMove(transform.position, 1.0f);
+    }
     public void FlipCard()
     {
         //first half of flip
