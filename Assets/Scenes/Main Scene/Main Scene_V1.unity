@@ -14589,6 +14589,7 @@ MonoBehaviour:
   addDefenderObj_UI: {fileID: 1467862329}
   selectDefenderText: {fileID: 375536577}
   endTurnButton: {fileID: 765719534}
+  layoutGroup: {fileID: 0}
 --- !u!114 &2027400876
 MonoBehaviour:
   m_ObjectHideFlags: 0
