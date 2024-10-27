@@ -9,6 +9,11 @@ public class SuperDefenderManager : MonoBehaviour
     private List<SuperDefender> _queenDefenders = new List<SuperDefender>();
     private List<SuperDefender> _kingDefenders = new List<SuperDefender>();
 
+    public Sprite _jackSuperDefenderSprite;
+    public Sprite _queenSuperDefenderSprite;
+    public Sprite _kingSuperDefenderSprite;
+
+
     public List<SuperDefender> ActiveSuperDefenders { get; private set; } = new List<SuperDefender>();
 
     public void AddSuperDefender(SuperDefender defender)

@@ -22,11 +22,6 @@ public class HeartDefenderManager : MonoBehaviour
     RectTransform parentRectTransform; // UI parent reference for camera shake
 
 
-    public Sprite _jackSuperDefenderSprite;
-    public Sprite _queenSuperDefenderSprite;
-    public Sprite _kingSuperDefenderSprite;
-
-
     void Start()
     {
         _ui_HeartDefenderInteractions.GetComponent<UI_HeartDefenderInteractions>();

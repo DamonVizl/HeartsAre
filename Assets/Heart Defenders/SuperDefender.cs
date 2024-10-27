@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SuperDefender : MonoBehaviour
 {
@@ -15,10 +16,11 @@ public class SuperDefender : MonoBehaviour
     private ISuperDefenderAbility superDefenderAbility;
     private SuperDefenderManager _superDefenderManager;
 
-    public void Initialize(SuperDefenderType type)
+    public void Initialize(SuperDefenderType type, Image _defenderImageRef)
     {
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
         this.superDefenderType = type;
+        ChangeDefenderSprite(_defenderImageRef);
         AssignAbility(type);
         superDefenderAbility?.Activate();
     }
@@ -49,6 +51,25 @@ public class SuperDefender : MonoBehaviour
         SuperDefenderType[] types = { SuperDefenderType.Jack, SuperDefenderType.Queen, SuperDefenderType.King };
         int randomIndex = UnityEngine.Random.Range(0, types.Length);
         return types[1];
+    }
+
+    public void ChangeDefenderSprite(Image _defenderImageRef)
+    {
+        if (_superDefenderManager == null) return;
+
+        // Set the sprite based on the defender type
+        switch (superDefenderType)
+        {
+            case SuperDefenderType.Jack:
+                _defenderImageRef.sprite = _superDefenderManager._jackSuperDefenderSprite;
+                break;
+            case SuperDefenderType.Queen:
+                _defenderImageRef.sprite = _superDefenderManager._queenSuperDefenderSprite;
+                break;
+            case SuperDefenderType.King:
+                _defenderImageRef.sprite = _superDefenderManager._kingSuperDefenderSprite;
+                break;
+        }
     }
 
 

@@ -43,6 +43,10 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     public Sprite _upgradeArrowSprite;
 
     private SuperDefenderManager _superDefenderManager;
+    [SerializeField] private Image _defenderSprite;
+
+    [SerializeField] private GameObject _upgradeIcon_Obj;
+    [SerializeField] private GameObject _rankCounter_Obj;
 
 
     private void Start()
@@ -184,8 +188,12 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         isSuperDefender = true; // set this flag to true so player can no longer use to block attacks
         SuperDefender superDefender = gameObject.AddComponent<SuperDefender>();
         heartDefenderManager.RemoveFromDefenderList(this);
-        superDefender.Initialize(superDefender.GetRandomSuperDefenderType());
+        superDefender.Initialize(superDefender.GetRandomSuperDefenderType(), _defenderSprite);
         _superDefenderManager.AddSuperDefender(superDefender);
+
+        Destroy(_upgradeIcon_Obj);
+        Destroy(_rankCounter_Obj);
+        Destroy(this);
     }
 
 
