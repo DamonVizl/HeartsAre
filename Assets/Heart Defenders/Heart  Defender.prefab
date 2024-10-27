@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1431532237865530619}
   - component: {fileID: 7050270847566669898}
   - component: {fileID: 2501639042924358325}
+  - component: {fileID: 2529139820758004703}
   m_Layer: 5
   m_Name: Heart  Defender
   m_TagString: Untagged
@@ -100,8 +101,22 @@ MonoBehaviour:
   playStateMachine: {fileID: 0}
   deathParticle: {fileID: 336853362505233834}
   isSuperDefender: 0
-  _superDefenderUpgradeIcon: {fileID: 21300000, guid: 8ffaee0eb78e926478fe4d0a7bd5eed9, type: 3}
+  _superDefenderUpgradeIconSprite: {fileID: 0}
   _upgradeArrowSprite: {fileID: 868371274, guid: 6507ea00aee252e4b808209509158882, type: 3}
+--- !u!114 &2529139820758004703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790789692090551906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1119f154a793eeb4e83dd3f93a58a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _headerText: Heart Defender
+  _bodyText: Takes Damage before your gate does. Press the plus to upgrade health
 --- !u!1 &1478167349209710841
 GameObject:
   m_ObjectHideFlags: 0

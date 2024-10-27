@@ -8,13 +8,13 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class TrickScorer
 {
-    public static Action<String, int> OnTrickScored;
+    public static Action<String> OnTrickScored;
     private int CalculateScore(Value value, HandValues handValue)
     {
         int score = (int)handValue; 
         score *= (int)value;
         Debug.Log("Scored a " + value.ToString() + " high " + handValue.ToString() + " " + score); 
-        OnTrickScored?.Invoke("Scored a " + value.ToString() + " high " + handValue.ToString(), score);
+        OnTrickScored?.Invoke("Scored a " + value.ToString() + " high " + handValue.ToString()+". Adding $"+ score);
         return score; 
     }
     public int CalculateHand(List<Card> cards)

@@ -20,9 +20,9 @@ public class UI_ScorePopup : MonoBehaviour
     {
         TrickScorer.OnTrickScored -= HandleTrickScored;
     }
-    private void HandleTrickScored(string message, int score)
+    private void HandleTrickScored(string message)
     {
-        _TMPText.text = message + " + " + score + " points";
+        _TMPText.text = message;
         transform.position = _originalPosition;
         _TMPText.enabled = true;
         transform.DOScale(0.8f, 1f);
