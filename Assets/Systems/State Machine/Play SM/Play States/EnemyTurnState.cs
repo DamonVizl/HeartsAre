@@ -19,8 +19,6 @@ public class EnemyTurnState : BaseState<PlayState>
     public override void EnterState()
     {
         GameManager.Instance.GetUI_DamageUpdater().SetEnemyTurnState(this);
-        
-        Enemy.GetHeartDefenderManager().ClearDefenseList();
         Debug.Log("Entering Enemy Turn state. This is where the enemy will do damage to the players cards. The player can't do anything for now.");
         //show some UI to say that it's the enemy's turn
 
@@ -41,6 +39,8 @@ public class EnemyTurnState : BaseState<PlayState>
         {
             GameManager.Instance.NextTurn();
         }
+
+        Enemy.GetHeartDefenderManager().ClearDefenseList();
     }
 
     public override PlayState GetNextState()

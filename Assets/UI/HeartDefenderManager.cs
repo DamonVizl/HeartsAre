@@ -9,7 +9,7 @@ public class HeartDefenderManager : MonoBehaviour
     public GameObject heartDefenderPrefab;
 
     private List<HeartDefender> heartDefenders = new List<HeartDefender>();
-    private List<HeartDefender> defendersForThisAttack = new List<HeartDefender>();
+    public List<HeartDefender> defendersForThisAttack = new List<HeartDefender>();
 
     public int addDefenderCost;
 

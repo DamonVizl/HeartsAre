@@ -14540,6 +14540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartDefenderPrefab: {fileID: 790789692090551906, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
+  defendersForThisAttack: []
   addDefenderCost: 25
   addDefenderButton: {fileID: 1467862331}
   cardContainer: {fileID: 2027400872}
