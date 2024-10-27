@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using System; 
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private UI_HeartDefenderInteractions _ui_HeartDefenderActions;
     private UI_DamageUpdater _ui_DamageUpdater;
     private UI_Enemy _ui_enemy;
+    private SuperDefenderManager _superDefenderManager;
     #endregion
 
 
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
         _ui_DamageUpdater = FindObjectOfType<UI_DamageUpdater>();
         _ui_enemy = FindObjectOfType<UI_Enemy>();
         _ui_HeartDefenderActions = FindObjectOfType<UI_HeartDefenderInteractions>();
+        _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
         PlayerHealth = new PlayerHealth(_startingHealth);
         TurnsSurvived = 0;
         OnTurnUpdated?.Invoke(TurnsSurvived);
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
     public void NextTurn()
     {
         TurnsSurvived++;
-        OnTurnUpdated?.Invoke(TurnsSurvived); 
+        OnTurnUpdated?.Invoke(TurnsSurvived);
     }
 
     //reduce the player's health by x
@@ -69,6 +71,12 @@ public class GameManager : MonoBehaviour
     {
         return _ui_DamageUpdater;
     }
+
+    public SuperDefenderManager GetSuperDefenderManager()
+    {
+        return _superDefenderManager;
+    }
+    
 
 
 }

@@ -10,12 +10,12 @@ public class JackDefenderAbility : ISuperDefenderAbility
     }
 
     public void Deactivate()
-    { 
-        
+    {
+
     }
 
     public void ApplyPassiveEffect()
-    { 
-    
+    {
+        Debug.Log("jack passive affect applied");
     }
 }

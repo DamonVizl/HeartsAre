@@ -13,9 +13,11 @@ public class SuperDefender : MonoBehaviour
 
     public SuperDefenderType superDefenderType;
     private ISuperDefenderAbility superDefenderAbility;
+    private SuperDefenderManager _superDefenderManager;
 
     public void Initialize(SuperDefenderType type)
     {
+        _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
         this.superDefenderType = type;
         AssignAbility(type);
         superDefenderAbility?.Activate();

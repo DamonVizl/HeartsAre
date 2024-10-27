@@ -9,6 +9,8 @@ public class CurrencyManager
     private static int _currentMoney;
     public static event Action<int> OnCurrencyChanged;
 
+    private static float _currencyMultiplier = 1.5f;
+
     // Start is called before the first frame update
     public CurrencyManager(int startingValue)
     {
@@ -25,6 +27,9 @@ public class CurrencyManager
 
     public static void AddMoney(int value)
     {
+       value = Mathf.RoundToInt(value * CurrencyMultiplier());
+      
+
         _currentMoney += value;
         OnCurrencyChanged?.Invoke(_currentMoney);
     }
@@ -45,6 +50,14 @@ public class CurrencyManager
     public static int GetCurrentMoney()
     {
         return _currentMoney;
+    }
+
+    private static float CurrencyMultiplier()
+    {
+        float _currencyMultiplierTotal = 0f;
+        int numberOfJackSuperDefenders = Mathf.Max(1, GameManager.Instance.GetSuperDefenderManager().GetJackDefenders().Count);
+        _currencyMultiplierTotal = _currencyMultiplier * numberOfJackSuperDefenders;
+        return _currencyMultiplierTotal;
     }
 
 

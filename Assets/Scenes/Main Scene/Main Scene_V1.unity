@@ -14498,6 +14498,7 @@ GameObject:
   - component: {fileID: 2027400874}
   - component: {fileID: 2027400873}
   - component: {fileID: 2027400875}
+  - component: {fileID: 2027400876}
   m_Layer: 5
   m_Name: HeartDefender_UI
   m_TagString: Untagged
@@ -14591,6 +14592,18 @@ MonoBehaviour:
   addDefenderObj_UI: {fileID: 1467862329}
   selectDefenderText: {fileID: 375536577}
   endTurnButton: {fileID: 765719534}
+--- !u!114 &2027400876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027400871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 106b9b050391c334aa93121570c14330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2038319153
 GameObject:
   m_ObjectHideFlags: 0
