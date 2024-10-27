@@ -42,6 +42,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     public Sprite _superDefenderUpgradeIconSprite;
     public Sprite _upgradeArrowSprite;
 
+    private SuperDefenderManager _superDefenderManager;
+
 
     private void Start()
     {
@@ -56,6 +58,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
 
         _originalPosition = transform.position;
+        _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
 
     }
 
@@ -179,7 +182,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         SuperDefender superDefender = gameObject.AddComponent<SuperDefender>();
         heartDefenderManager.RemoveFromDefenderList(this);
         superDefender.Initialize(superDefender.GetRandomSuperDefenderType());
-        heartDefenderManager.AddSuperDefender(superDefender);
+        _superDefenderManager.AddSuperDefender(superDefender);
     }
 
 

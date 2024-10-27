@@ -27,9 +27,6 @@ public class HeartDefenderManager : MonoBehaviour
     public Sprite _kingSuperDefenderSprite;
 
 
-    public List<SuperDefender> ActiveSuperDefenders { get; private set; } = new List<SuperDefender>();
-
-
     void Start()
     {
         _ui_HeartDefenderInteractions.GetComponent<UI_HeartDefenderInteractions>();
@@ -149,15 +146,5 @@ public class HeartDefenderManager : MonoBehaviour
     public void EnableOptionsForEnemyAttack()
     {
         _ui_HeartDefenderInteractions.EnableOptionsForEnemyAttack();
-    }
-
-    public void AddSuperDefender(SuperDefender defender)
-    {
-        ActiveSuperDefenders.Add(defender);
-    }
-
-    public void RemoveSuperDefender(SuperDefender defender)
-    {
-        ActiveSuperDefenders.Remove(defender);
     }
 }

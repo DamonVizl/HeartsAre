@@ -9,6 +9,8 @@ public class SuperDefenderManager : MonoBehaviour
     private List<SuperDefender> _queenDefenders = new List<SuperDefender>();
     private List<SuperDefender> _kingDefenders = new List<SuperDefender>();
 
+    public List<SuperDefender> ActiveSuperDefenders { get; private set; } = new List<SuperDefender>();
+
     public void AddSuperDefender(SuperDefender defender)
     {
         switch (defender.superDefenderType)
@@ -23,6 +25,8 @@ public class SuperDefenderManager : MonoBehaviour
                 _kingDefenders.Add(defender);
                 break;
         }
+
+        ActiveSuperDefenders.Add(defender);
     }
 
     public void RemoveSuperDefender(SuperDefender defender)
@@ -39,6 +43,8 @@ public class SuperDefenderManager : MonoBehaviour
                 _kingDefenders.Remove(defender);
                 break;
         }
+
+        ActiveSuperDefenders.Remove(defender);
     }
 
     // Get lists for each type

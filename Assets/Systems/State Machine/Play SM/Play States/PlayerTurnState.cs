@@ -48,7 +48,7 @@ public class PlayerTurnState : BaseState<PlayState>
 
     private void CheckForSuperDefenderAbilities()
     {
-        var activeSuperDefenders = GameManager.Instance.GetHeartDefenderManager().ActiveSuperDefenders;
+        var activeSuperDefenders = GameManager.Instance.GetSuperDefenderManager().ActiveSuperDefenders;
         if (activeSuperDefenders != null && activeSuperDefenders.Count > 0)
         {
             foreach (var superDefender in activeSuperDefenders)
