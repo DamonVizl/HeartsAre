@@ -50,7 +50,7 @@ public class SuperDefender : MonoBehaviour
     {
         SuperDefenderType[] types = { SuperDefenderType.Jack, SuperDefenderType.Queen, SuperDefenderType.King };
         int randomIndex = UnityEngine.Random.Range(0, types.Length);
-        return types[1];
+        return types[randomIndex];
     }
 
     public void ChangeDefenderSprite(Image _defenderImageRef)
