@@ -203,7 +203,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         // track damage amt that surpasses defender's rank
         int overDamage = 0;
         // if damage amount is higher than the defender's, decrease the rank of the heart by the difference between the amount of damage and the heart's rank
-        if (damage > heartRank)
+        if (damage > TotalHeartRank())
         {
             overDamage = damage - heartRank;
             DecreaseRank(overDamage);
@@ -334,6 +334,15 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         {
             upgradeArrowIcon.sprite = _upgradeArrowSprite;
         }
+    }
+
+    // returns the total heart rank of the defender + any superdefender of type Kings in play
+    private int TotalHeartRank()
+    {
+        int numberOfKingSupefendersInPlay = _superDefenderManager.GetKingDefenders().Count;
+        int totalHeartRank = heartRank += numberOfKingSupefendersInPlay;
+
+        return totalHeartRank;
     }
 
 }
