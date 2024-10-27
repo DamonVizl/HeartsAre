@@ -66,7 +66,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (playStateMachine.GetCurrentState() == PlayState.EnemyTurn)
+        if (playStateMachine.GetCurrentState() == PlayState.HeartDefenders)
         {
             if (!_defenderSelected)
             {

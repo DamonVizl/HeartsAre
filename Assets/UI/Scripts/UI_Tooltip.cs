@@ -17,7 +17,7 @@ public class UI_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         yield return new WaitForSeconds(1f); 
         RectTransform rectTransform = GetComponent<RectTransform>();
-        Vector2 pos = rectTransform.position + new Vector3(rectTransform.rect.width, rectTransform.rect.height, 0); 
+        Vector2 pos = rectTransform.position + new Vector3(rectTransform.rect.width/2, rectTransform.rect.height/2, 0); 
         if(rectTransform != null ) UI_TooltipManager.Instance.ShowTooltip(_headerText, _bodyText, pos);
         //else use mouse pos
         else UI_TooltipManager.Instance.ShowTooltip(_headerText, _bodyText, eventData.position);

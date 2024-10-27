@@ -4,26 +4,20 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 public class UI_ConfirmSelection : MonoBehaviour, IPointerClickHandler
 {
-    public HeartDefenderManager _heartDefenderManager;
+    PlayStateMachine _stateMachine;
 
     private void Start()
     {
-        _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
-    }
-
-    private void OnSelected()
-    {
-        if (_heartDefenderManager != null)
-        {
-            _heartDefenderManager.PlayerConfirmsSelection(this);
-        }
+        _stateMachine = GameObject.FindObjectOfType<PlayStateMachine>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        OnSelected();
+        _stateMachine.TransitionToState(PlayState.EnemyTurn);
+
     }
 }

@@ -7,33 +7,17 @@ using System;
 
 public class MenuManager : MonoBehaviour
 {
-    public static MenuManager Instance;
-
-    private UI_StartMenu _ui_StartMenu;
-    [SerializeField] private GameObject _startMenuObj;
-
-    public static event Action<UI_StartMenu> OnStartGameSelected;
-
+    PlayStateMachine _stateMachine; 
     private void Start()
     {
-        UI_StartMenu _ui_StartMenu = FindObjectOfType<UI_StartMenu>();
-        //_startMenuObj = _ui_StartMenu.gameObject;
-        //ShowStartMenu();
+        _stateMachine = GameObject.FindObjectOfType<PlayStateMachine>();    
     }
 
-    private void OnEnable()
+    //call this method from a button in the menu UI
+    public void StartGameButtonPressed()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(this);
+        _stateMachine.TransitionToState(PlayState.PlayerTurn);
+        this.gameObject.SetActive(false);
     }
 
-    public void ShowStartMenu()
-    {
-        _startMenuObj.SetActive(true);
-    }
-
-    public void HideStartMenu()
-    {
-        _startMenuObj.SetActive(false);
-    }
 }

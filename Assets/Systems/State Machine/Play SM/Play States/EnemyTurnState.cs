@@ -19,12 +19,13 @@ public class EnemyTurnState : BaseState<PlayState>
     public override void EnterState()
     {
         GameManager.Instance.GetUI_DamageUpdater().SetEnemyTurnState(this);
-        Enemy.GetHeartDefenderManager().EnableOptionsForEnemyAttack();
+        
         Enemy.GetHeartDefenderManager().ClearDefenseList();
         Debug.Log("Entering Enemy Turn state. This is where the enemy will do damage to the players cards. The player can't do anything for now.");
         //show some UI to say that it's the enemy's turn
 
         //Do damage
+        Enemy.Attack(); 
         //temporary player health reduction. make something a little more sophisticated than this. Also need to encorporate the hearts defence part. 
         //I think I'll make this an event and then the playerhand or whatever can react to it by reducing hearts or taking damage, depending on how many hearts are left.
     }

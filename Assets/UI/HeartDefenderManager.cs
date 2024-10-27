@@ -39,10 +39,11 @@ public class HeartDefenderManager : MonoBehaviour
         CheckForStartingDefenders(); // check if there are any heart defenders in play at start of game and add to heartDefenders  
     }
 
-    public void PlayerConfirmsSelection(UI_ConfirmSelection confirmSelectionButton)
+    //commented this out, this will be handled through the statemachine management. 
+/*    public void PlayerConfirmsSelection(UI_ConfirmSelection confirmSelectionButton)
     {
         Enemy.Attack();
-    }
+    }*/
 
     // checks if there are any heart defenders in play and adds them to the heartDefenders list - should be used at Start()
     void CheckForStartingDefenders()
