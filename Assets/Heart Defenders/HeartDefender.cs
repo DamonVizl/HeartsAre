@@ -173,6 +173,9 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         heartRank++;
         // add SubtractDifferenceToPlayer()
         UpdateRankCounter_UI();
+
+        // check if the upgrade icon needs to change to the superdefender icon
+        ChangeUpgradeIcon(heartRank);
     }
 
     // use this to upgrade to super defender
@@ -226,6 +229,9 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         {
             DestroyHeart(overKillDmg);
         }
+
+        // check if need to revert upgrade icon back to arrow icon
+        ChangeUpgradeIcon(heartRank);
     }
 
     void OverKillDamage(int damage)
@@ -270,12 +276,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
                 }
             }
         }
-
-        if (heartRank == 10)
-        { 
-            
-        }
-
     }
 
     private void ShakeCamera()
@@ -308,7 +308,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // updates the badge counter
     public void UpdateRankCounter_UI()
     {
-        rankCounter.text = heartRank.ToString();
+        rankCounter.text = TotalHeartRank().ToString();
     }
 
     public void PlayParticleEffect()
@@ -317,11 +317,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         {
             deathParticle.Play();
         }
-    }
-
-    public void RemoveUpgradeIcon()
-    {
-        upgradeArrowIcon.gameObject.SetActive(false);
     }
 
     public void ChangeUpgradeIcon(int rank)
@@ -339,8 +334,12 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // returns the total heart rank of the defender + any superdefender of type Kings in play
     private int TotalHeartRank()
     {
-        int numberOfKingSupefendersInPlay = _superDefenderManager.GetKingDefenders().Count;
-        int totalHeartRank = heartRank += numberOfKingSupefendersInPlay;
+        int totalHeartRank = heartRank;
+        if (_superDefenderManager != null)
+        {
+            int numberOfKingSupefendersInPlay = _superDefenderManager.GetKingDefenders().Count;
+            totalHeartRank = heartRank += numberOfKingSupefendersInPlay;
+        }
 
         return totalHeartRank;
     }

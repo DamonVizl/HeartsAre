@@ -101,7 +101,7 @@ MonoBehaviour:
   playStateMachine: {fileID: 0}
   deathParticle: {fileID: 336853362505233834}
   isSuperDefender: 0
-  _superDefenderUpgradeIconSprite: {fileID: 0}
+  _superDefenderUpgradeIconSprite: {fileID: 21300000, guid: 8ffaee0eb78e926478fe4d0a7bd5eed9, type: 3}
   _upgradeArrowSprite: {fileID: 868371274, guid: 6507ea00aee252e4b808209509158882, type: 3}
 --- !u!114 &2529139820758004703
 MonoBehaviour:
