@@ -35,8 +35,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private Vector3 _originalPosition;
 
-    private HorizontalLayoutGroup layoutGroup;
-
     public bool isSuperDefender;
 
     public Sprite _superDefenderUpgradeIconSprite;
@@ -48,10 +46,11 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject _upgradeIcon_Obj;
     [SerializeField] private GameObject _rankCounter_Obj;
 
+    private UI_HeartDefenderInteractions _ui_heartDefenderInteractions;
+
 
     private void Start()
     {
-        layoutGroup = GetComponentInParent<HorizontalLayoutGroup>();
         gameManager = FindObjectOfType<GameManager>();
         playerHealth = GameManager.Instance.PlayerHealth;
         UpdateRankCounter_UI();
@@ -63,6 +62,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
         _originalPosition = transform.position;
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
+
+        _ui_heartDefenderInteractions = FindObjectOfType<UI_HeartDefenderInteractions>();
 
     }
 
@@ -93,32 +94,13 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         if (_tween.IsActive()) return;
 
         // disable horizontal layout so tweens can operate
-        DisableLayoutGroup();
+        _ui_heartDefenderInteractions.DisableLayoutGroup();
 
         heartDefenderManager.AddDefenderForAttack(this);
         _tween = transform.DOMoveY(transform.position.y + _tweenValue, 0.2f);
       
 
         _defenderSelected = true;
-    }
-
-    // deactivates horizontal layout group for defenders so tweening can operate properly
-    void DisableLayoutGroup()
-    {
-        if (layoutGroup != null)
-        {
-            layoutGroup.enabled = false;
-        }
-
-    }
-
-    // activates horizontal layout group for defenders
-    void EnableLayoutGroup()
-    {
-        if (layoutGroup != null)
-        {
-            layoutGroup.enabled = true;
-        }
     }
 
 
@@ -135,7 +117,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // reset defender position and turn re-enable layout group
     public void ResetPosition()
     {
-        EnableLayoutGroup();
+        _ui_heartDefenderInteractions.EnableLayoutGroup();
         transform.position = new Vector2(transform.position.x, _originalPosition.y);
         _defenderSelected = false;
     }
