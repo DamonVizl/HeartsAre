@@ -35,7 +35,6 @@ public class UI_Enemy : MonoBehaviour
         {
             if (_globalEffectsManager != null)
             {
-                Debug.Log("where's the particle");
                 _globalEffectsManager.PlayPlayerDamageParticleEffect();
             }
         }

@@ -34,6 +34,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     public Sprite _superDefenderUpgradeIconSprite;
     public Sprite _upgradeArrowSprite;
+    public Sprite _cancelUpgradeSprite;
 
     private SuperDefenderManager _superDefenderManager;
     [SerializeField] private Image _defenderSprite;
@@ -111,8 +112,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         _defenderSelected = false;
     }
 
-
-
     // if player tries to purchase a rank upgrade and has enough currency, upgrade the card's rank
     public void PurchaseRankUpgrade()
     {
@@ -129,15 +128,24 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     void UpgradeCard(int cost)
     {
-        if (!isSuperDefender)
+        // if player is already in ChooseSuperDefender state and clicks the X icon on defender, transition back to player state and switch back the icon
+        if (playStateMachine.GetCurrentState() == PlayState.ChooseSuperDefender)
         {
-            if (heartRank == 10)
+            playStateMachine.TransitionToPreviousState();
+            ChangeUpgradeIcon(heartRank);
+        }
+        else
+        {
+            if (!isSuperDefender)
             {
-                CheckForSuperDefender();
-            }
-            else
-            {
-                UpgradeRank(cost);
+                if (heartRank == 10)
+                {
+                    CheckForSuperDefender();
+                }
+                else
+                {
+                    UpgradeRank(cost);
+                }
             }
         }
     }
@@ -158,6 +166,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         playStateMachine.TransitionToState(PlayState.ChooseSuperDefender);
         _superDefenderManager.SetSelectedHeartDefender(this);
         _ui_playerHand.DisablePlayerHandInteractionBtns();
+        ChangeUpgradeIcon(heartRank); // change upgrade icon to the X so player can cancel
     }
 
     // use this to upgrade to super defender
@@ -304,13 +313,20 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     public void ChangeUpgradeIcon(int rank)
     {
-        if (rank == 10)
+        if (playStateMachine.GetCurrentState() != PlayState.ChooseSuperDefender)
         {
-            upgradeArrowIcon.sprite = _superDefenderUpgradeIconSprite;
+            if (rank == 10)
+            {
+                upgradeArrowIcon.sprite = _superDefenderUpgradeIconSprite;
+            }
+            else
+            {
+                upgradeArrowIcon.sprite = _upgradeArrowSprite;
+            }
         }
         else
         {
-            upgradeArrowIcon.sprite = _upgradeArrowSprite;
+            upgradeArrowIcon.sprite = _cancelUpgradeSprite;
         }
     }
 

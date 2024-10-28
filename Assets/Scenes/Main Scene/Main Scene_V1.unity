@@ -732,6 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2048f33a28b61244b84c57c13785809d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _psm: {fileID: 0}
   startingHandSize: 5
 --- !u!4 &107545380
 Transform:
@@ -4745,6 +4746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9129d959d9814764283aa2b423b95344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _psm: {fileID: 0}
 --- !u!4 &890421034
 Transform:
   m_ObjectHideFlags: 0
@@ -4864,6 +4866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67491399bf5b5a45ab7bb3397fea593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _psm: {fileID: 0}
 --- !u!4 &936642539
 Transform:
   m_ObjectHideFlags: 0
@@ -14639,7 +14642,6 @@ MonoBehaviour:
   defenderOptions_UI_Container: {fileID: 954167192}
   noDefenderOption_UI: {fileID: 1888839271}
   addDefenderObj_UI: {fileID: 1467862329}
-  selectDefenderText: {fileID: 0}
   endTurnButton: {fileID: 765719534}
   layoutGroup: {fileID: 0}
 --- !u!114 &2027400876
