@@ -130,7 +130,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         {
             if (heartRank == 10)
             {
-                ChangeToSuperDefender();
+                CheckForSuperDefender();
             }
             else
             {
@@ -150,8 +150,13 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         ChangeUpgradeIcon(heartRank);
     }
 
+    private void CheckForSuperDefender()
+    {
+        playStateMachine.TransitionToState(PlayState.ChooseSuperDefender);
+    }
+
     // use this to upgrade to super defender
-    private void ChangeToSuperDefender()
+    public void ChangeToSuperDefender()
     {
         isSuperDefender = true; // set this flag to true so player can no longer use to block attacks
         SuperDefender superDefender = gameObject.AddComponent<SuperDefender>();
@@ -254,17 +259,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    private void ShakeCamera()
-    {
-        CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
-
-        if (cameraShake != null && parentRectTransform != null)
-        {
-            cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
-        }
-    }
-
-
     // shows upgrade arrow in transparent, inactive state
     public void DisableIcon()
     {
@@ -320,9 +314,21 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         return totalHeartRank;
     }
 
+    // resets the layout of the heart defenders in horizontal layout
     void ResetSiblingIndex()
     {
         transform.SetSiblingIndex(0);
     }
+
+    private void ShakeCamera()
+    {
+        CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
+
+        if (cameraShake != null && parentRectTransform != null)
+        {
+            cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
+        }
+    }
+
 
 }
