@@ -8,8 +8,6 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
     public GameObject defenderOptions_UI_Container;
     public GameObject noDefenderOption_UI;
     public GameObject addDefenderObj_UI;
-    public GameObject selectDefenderText;
-
     public GameObject endTurnButton;
 
     [SerializeField] private HorizontalLayoutGroup layoutGroup;
@@ -19,7 +17,6 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
     void Start()
     {
         DisableNoDefenderOption();
-        selectDefenderText.SetActive(false);
         layoutGroup = GetComponent<HorizontalLayoutGroup>();
     }
 
@@ -31,7 +28,6 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
     public void EnableOptionsForEnemyAttack()
     {
         EnableConfirmSelection_Button();
-        EnableSelectDefenderText();
         DisableEndTurn_Button();
     }
 
@@ -44,7 +40,6 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
     {
         DisableNoDefenderOption();
         EnableAddNewDefenderButton();
-        DisableSelectDefenderText();
         EnableEndTurn_Button();
     }
 
@@ -67,15 +62,5 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
     public void DisableEndTurn_Button()
     {
         endTurnButton.SetActive(false);
-    }
-
-    public void EnableSelectDefenderText()
-    {
-        selectDefenderText.SetActive(true);
-    }
-
-    public void DisableSelectDefenderText()
-    {
-        selectDefenderText.SetActive(false);
     }
 }
