@@ -13,8 +13,11 @@ public class SuperDefenderManager : MonoBehaviour
     public Sprite _queenSuperDefenderSprite;
     public Sprite _kingSuperDefenderSprite;
 
+    private HeartDefender _selectedHeartDefender;
+
 
     public List<SuperDefender> ActiveSuperDefenders { get; private set; } = new List<SuperDefender>();
+
 
     public void AddSuperDefender(SuperDefender defender)
     {
@@ -56,4 +59,19 @@ public class SuperDefenderManager : MonoBehaviour
     public List<SuperDefender> GetJackDefenders() => _jackDefenders;
     public List<SuperDefender> GetQueenDefenders() => _queenDefenders;
     public List<SuperDefender> GetKingDefenders() => _kingDefenders;
+
+    public void SetSelectedHeartDefender(HeartDefender defender)
+    {
+        _selectedHeartDefender = defender;
+    }
+
+    public void ClearSelectedDefender()
+    {
+        _selectedHeartDefender = null;
+    }
+
+    public HeartDefender GetSelectedDefender()
+    {
+        return _selectedHeartDefender;
+    }
 }

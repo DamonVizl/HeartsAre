@@ -75,8 +75,25 @@ public class PlayerHand : CardCollection
     }
     public void CardSelected(Card card)
     {
-        _selectedCards.Add(card);
+        if (_psm.GetCurrentState() == PlayState.ChooseSuperDefender)
+        {
+            _selectedCards.Clear(); // clear the currently selected cards in case another card was already selected
+            if (IsFaceCard(card))
+            {
+                _selectedCards.Add(card);
+                Debug.Log("a face card has been selected to discard for a super defender");
+            }
+        }
+        else
+        {
+            _selectedCards.Add(card);
+        }
+      
         //_trickAttempt.AddCardToTrick(card);
+
+        
+
+      
     }
     public void CardDeselected(Card card)
     {
@@ -111,4 +128,11 @@ public class PlayerHand : CardCollection
     {
         return _selectedCards; 
     }
+
+    public bool IsFaceCard(Card card)
+    {
+        int cardValue = card.GetCardValueAsInt();
+        return cardValue == (int)Value.Jack || cardValue == (int)Value.Queen || cardValue == (int)Value.King;
+    }
+
 }

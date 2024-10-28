@@ -153,6 +153,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private void CheckForSuperDefender()
     {
         playStateMachine.TransitionToState(PlayState.ChooseSuperDefender);
+        _superDefenderManager.SetSelectedHeartDefender(this);
     }
 
     // use this to upgrade to super defender
@@ -163,7 +164,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         heartDefenderManager.RemoveFromDefenderList(this);
         superDefender.Initialize(superDefender.GetRandomSuperDefenderType(), _defenderSprite);
         _superDefenderManager.AddSuperDefender(superDefender);
-
+        _superDefenderManager.ClearSelectedDefender();
         Destroy(_upgradeIcon_Obj);
         Destroy(_rankCounter_Obj);
         Destroy(this);

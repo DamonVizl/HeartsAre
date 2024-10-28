@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] List<Meld> _melds;
     [SerializeField] DiscardPile _discardPile; 
     PlayStateMachine _psm;
+    SuperDefenderManager _superDefenderManager;
 
 
     #region Events
@@ -24,6 +25,7 @@ public class CardManager : MonoBehaviour
         UI_DiscardCardsButton.OnDiscardCardButtonPressed += DiscardCardsFromHand;
 
         _psm = GameObject.FindFirstObjectByType<PlayStateMachine>(); //TODO: hacky, fix later. 
+        _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
     }
     private void OnDisable()
     {
@@ -37,23 +39,38 @@ public class CardManager : MonoBehaviour
     /// </summary>
     private void DiscardCardsFromHand()
     {
-        // check if in discard state to allow player to discard cards
-        if (_psm.GetCurrentState() == PlayState.DiscardCards)
+        List<Card> cardsToRemove = new List<Card>();
+        // if selects the trash bin while in ChooseSuperDefender state
+        if (_psm.GetCurrentState() == PlayState.ChooseSuperDefender)
         {
-            List<Card> cardsToRemove = new List<Card>();
-            foreach (Card card in _hand.GetCurrentlySelectedCards())
+            DiscardCards(cardsToRemove);
+            // get the selected HeartDefender and call the ChangeSuperDefender() method with the selected face card
+            if (_superDefenderManager != null && _superDefenderManager.GetSelectedDefender() != null)
             {
-                _discardPile.AddCard(card);
-                cardsToRemove.Add(card);
-                OnCardDiscardedFromHand?.Invoke(card);
+                _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender();
+                _psm.TransitionToPreviousState();
             }
-            //seperate for loop so im not modifying the list while enumerating through it
-            foreach (Card card in cardsToRemove)
-            {
-                _hand.RemoveCard(card);
-            }
+        }
+        else if (_psm.GetCurrentState() == PlayState.DiscardCards)
+        {
+            DiscardCards(cardsToRemove);
             //transition to the Heart Defenders state to prepare for attack, ending the discard phase
             _psm.TransitionToState(PlayState.HeartDefenders);
+        }
+    }
+
+    void DiscardCards(List<Card> cardsToRemove)
+    {
+        foreach (Card card in _hand.GetCurrentlySelectedCards())
+        {
+            _discardPile.AddCard(card);
+            cardsToRemove.Add(card);
+            OnCardDiscardedFromHand?.Invoke(card);
+        }
+        //seperate for loop so im not modifying the list while enumerating through it
+        foreach (Card card in cardsToRemove)
+        {
+            _hand.RemoveCard(card);
         }
     }
     /// <summary>

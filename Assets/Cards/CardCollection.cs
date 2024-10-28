@@ -11,11 +11,14 @@ public class CardCollection : MonoBehaviour
     #region Fields
     protected Card[] _cards;
     public int MaxCollectionSize { get; protected set; }
+
+    public PlayStateMachine _psm;
     #endregion
 
     #region Init
     protected virtual void Start()
     {
+        _psm = FindObjectOfType<PlayStateMachine>();
         //set the card array to it's max size
         _cards = new Card[MaxCollectionSize];
     }
