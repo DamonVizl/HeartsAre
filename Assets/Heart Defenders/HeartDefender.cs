@@ -42,6 +42,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject _rankCounter_Obj;
 
     private UI_HeartDefenderInteractions _ui_heartDefenderInteractions;
+    private UI_PlayerHand _ui_playerHand;
 
 
     private void Start()
@@ -59,6 +60,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
 
         _ui_heartDefenderInteractions = FindObjectOfType<UI_HeartDefenderInteractions>();
+
+        _ui_playerHand = FindObjectOfType<UI_PlayerHand>();
 
     }
 
@@ -154,6 +157,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         playStateMachine.TransitionToState(PlayState.ChooseSuperDefender);
         _superDefenderManager.SetSelectedHeartDefender(this);
+        _ui_playerHand.DisablePlayerHandInteractionBtns();
     }
 
     // use this to upgrade to super defender
@@ -168,6 +172,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         Destroy(_upgradeIcon_Obj);
         Destroy(_rankCounter_Obj);
         Destroy(this);
+        _ui_playerHand.EnablePlayerHandInteractionBtns();
     }
 
 

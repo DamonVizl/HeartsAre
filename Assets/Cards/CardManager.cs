@@ -46,7 +46,7 @@ public class CardManager : MonoBehaviour
             Card _cardSelectedForSuperDefender = _hand.GetCurrentlySelectedCards()[0]; // get the card selected for the super defender sacrifice
             DiscardCards(cardsToRemove);
             // get the selected HeartDefender and call the ChangeSuperDefender() method with the selected face card
-            if (_superDefenderManager != null && _superDefenderManager.GetSelectedDefender() != null)
+            if (_superDefenderManager != null && _superDefenderManager.GetSelectedDefender() != null && _cardSelectedForSuperDefender != null)
             {
                 _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender(_cardSelectedForSuperDefender);
                 _psm.TransitionToPreviousState();

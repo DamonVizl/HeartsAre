@@ -77,7 +77,9 @@ public class PlayerHand : CardCollection
     {
         if (_psm.GetCurrentState() == PlayState.ChooseSuperDefender)
         {
-            _selectedCards.Clear(); // clear the currently selected cards in case another card was already selected
+            if (_selectedCards.Count > 0)
+                return;
+
             if (IsFaceCard(card))
             {
                 _selectedCards.Add(card);
@@ -88,12 +90,6 @@ public class PlayerHand : CardCollection
         {
             _selectedCards.Add(card);
         }
-      
-        //_trickAttempt.AddCardToTrick(card);
-
-        
-
-      
     }
     public void CardDeselected(Card card)
     {

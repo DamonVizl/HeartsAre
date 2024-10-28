@@ -13,7 +13,6 @@ public class PlayerTurnState : BaseState<PlayState>
     public override void EnterState()
     {
         GameManager.Instance.Get_uiPlayerHand().EnablePlayerHandInteractionBtns();
-        CheckForSuperDefenderAbilities(); // check for any passive defender abilities and apply them
 
         GameManager.Instance.GetHeartDefenderManager()._ui_HeartDefenderInteractions.EnableOptionsForPlayerTurn();
         Debug.Log("Entering Player Turn state. This is where the player will draw cards, play rummy hands and set themselves up for the enemy's turn");
@@ -44,17 +43,5 @@ public class PlayerTurnState : BaseState<PlayState>
     public override void EndTurn()
     {
         _stateMachine.TransitionToState(PlayState.DiscardCards);
-    }
-
-    private void CheckForSuperDefenderAbilities()
-    {
-        var activeSuperDefenders = GameManager.Instance.GetSuperDefenderManager().ActiveSuperDefenders;
-        if (activeSuperDefenders != null && activeSuperDefenders.Count > 0)
-        {
-            foreach (var superDefender in activeSuperDefenders)
-            {
-                superDefender.ApplyPassiveEffect();
-            }
-        }
     }
 }

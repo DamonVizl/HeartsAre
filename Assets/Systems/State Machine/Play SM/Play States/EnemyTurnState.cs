@@ -41,6 +41,7 @@ public class EnemyTurnState : BaseState<PlayState>
         }
 
         Enemy.GetHeartDefenderManager().ClearDefenseList();
+        CheckForSuperDefenderAbilities(); // check for any passive defender abilities and apply them
     }
 
     public override PlayState GetNextState()
@@ -73,6 +74,18 @@ public class EnemyTurnState : BaseState<PlayState>
         if (GameManager.Instance.TurnsSurvived != GameManager.Instance.TurnsRequiredToWin)
         {
             _stateMachine.TransitionToState(PlayState.PlayerTurn);
+        }
+    }
+
+    private void CheckForSuperDefenderAbilities()
+    {
+        var activeSuperDefenders = GameManager.Instance.GetSuperDefenderManager().ActiveSuperDefenders;
+        if (activeSuperDefenders != null && activeSuperDefenders.Count > 0)
+        {
+            foreach (var superDefender in activeSuperDefenders)
+            {
+                superDefender.ApplyPassiveEffect();
+            }
         }
     }
 

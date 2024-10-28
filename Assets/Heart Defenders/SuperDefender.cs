@@ -16,7 +16,7 @@ public class SuperDefender : MonoBehaviour
     private ISuperDefenderAbility superDefenderAbility;
     private SuperDefenderManager _superDefenderManager;
 
-    public void Initialize(SuperDefenderType type, Image _defenderImageRef)
+    void Initialize(SuperDefenderType type, Image _defenderImageRef)
     {
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
         ChangeDefenderSprite(_defenderImageRef);

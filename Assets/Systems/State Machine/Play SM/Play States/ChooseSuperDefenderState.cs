@@ -14,6 +14,7 @@ public class ChooseSuperDefenderState : BaseState<PlayState>
     public override void EnterState()
     {
         UI_MessageManager.Instance.ShowMessage("Sacrifice a Jack, Queen, or King to create your super defender");
+        Debug.Log("Entering ChooseSuperDefender state. Player is choosing a super defender.");
     }
 
     public override void ExitState()
