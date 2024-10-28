@@ -12,7 +12,7 @@ public class PlayerTurnState : BaseState<PlayState>
 
     public override void EnterState()
     {
-
+        GameManager.Instance.Get_uiPlayerHand().EnablePlayerHandInteractionBtns();
         CheckForSuperDefenderAbilities(); // check for any passive defender abilities and apply them
 
         GameManager.Instance.GetHeartDefenderManager()._ui_HeartDefenderInteractions.EnableOptionsForPlayerTurn();

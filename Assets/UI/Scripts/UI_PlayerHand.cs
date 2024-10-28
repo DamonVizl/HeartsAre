@@ -8,6 +8,8 @@ public class UI_PlayerHand : MonoBehaviour
     private UI_CardSlot[] _cardSlots;
     [SerializeField] Transform _drawPileTransform;
     [SerializeField] Transform _discardPileTransform;
+    public GameObject _submitTrickBtn;
+    public GameObject _endTurnBtn;
 
     private void OnEnable()
     {
@@ -36,4 +38,18 @@ public class UI_PlayerHand : MonoBehaviour
             _cardSlots[index].RemoveCardFromSlot(_discardPileTransform); 
         }
     }
+
+    public void DisablePlayerHandInteractionBtns()
+    {
+        _submitTrickBtn.SetActive(false);
+        _endTurnBtn.SetActive(false);
+    }
+
+    public void EnablePlayerHandInteractionBtns()
+    {
+        _submitTrickBtn.SetActive(true);
+        _endTurnBtn.SetActive(true);
+    }
+
+
 }

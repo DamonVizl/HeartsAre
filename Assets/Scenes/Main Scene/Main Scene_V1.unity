@@ -13589,6 +13589,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drawPileTransform: {fileID: 118653158}
   _discardPileTransform: {fileID: 1080083184}
+  _submitTrickBtn: {fileID: 238894758}
+  _endTurnBtn: {fileID: 765719534}
 --- !u!1 &1856589924
 GameObject:
   m_ObjectHideFlags: 0

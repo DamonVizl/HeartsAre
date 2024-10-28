@@ -17,6 +17,7 @@ public class DiscardCardState : BaseState<PlayState>
 
     public override void EnterState()
     {
+        GameManager.Instance.Get_uiPlayerHand().DisablePlayerHandInteractionBtns();
         //show a message to discard cards
         UI_MessageManager.Instance.ShowMessage("Select any cards you don't want, and click the bin"); 
         //enable the discard button

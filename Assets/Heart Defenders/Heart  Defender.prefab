@@ -96,7 +96,6 @@ MonoBehaviour:
   rankCounter: {fileID: 7935888062753091620}
   levelUpRateIncrease: 1.5
   gameManager: {fileID: 0}
-  _tweenValue: 40
   upgradeArrowIcon: {fileID: 1094671589504198560}
   playStateMachine: {fileID: 0}
   deathParticle: {fileID: 336853362505233834}
@@ -5242,7 +5241,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private UI_DamageUpdater _ui_DamageUpdater;
     private UI_Enemy _ui_enemy;
     private SuperDefenderManager _superDefenderManager;
+    private UI_PlayerHand _ui_playerHand;
     #endregion
 
 
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
         _ui_HeartDefenderActions = FindObjectOfType<UI_HeartDefenderInteractions>();
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
         PlayerHealth = new PlayerHealth(_startingHealth);
+        _ui_playerHand = FindObjectOfType<UI_PlayerHand>();
         TurnsSurvived = 0;
         OnTurnUpdated?.Invoke(TurnsSurvived);
         CurrencyManager = new CurrencyManager(_startingMoney);
@@ -75,6 +77,11 @@ public class GameManager : MonoBehaviour
     public SuperDefenderManager GetSuperDefenderManager()
     {
         return _superDefenderManager;
+    }
+
+    public UI_PlayerHand Get_uiPlayerHand()
+    {
+        return _ui_playerHand;
     }
     
 
