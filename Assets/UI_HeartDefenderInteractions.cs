@@ -30,7 +30,7 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
 
     public void EnableOptionsForEnemyAttack()
     {
-        DisableAddNewDefender_Button();
+        //DisableAddNewDefender_Button();
         EnableConfirmSelection_Button();
         EnableSelectDefenderText();
         DisableEndTurn_Button();
