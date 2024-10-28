@@ -74,4 +74,13 @@ public class SuperDefenderManager : MonoBehaviour
     {
         return _selectedHeartDefender;
     }
+
+    public bool SuperDefenderWinStateMet()
+    {
+        bool allThreeInPlay = _jackDefenders.Count > 0 && _queenDefenders.Count > 0 && _kingDefenders.Count > 0;
+        bool threeOfSameInPlay = _jackDefenders.Count == 3 || _queenDefenders.Count == 3 || _kingDefenders.Count == 3;
+
+        return allThreeInPlay || threeOfSameInPlay;
+    }
+
 }

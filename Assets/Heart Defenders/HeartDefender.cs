@@ -173,6 +173,13 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         Destroy(_rankCounter_Obj);
         Destroy(this);
         _ui_playerHand.EnablePlayerHandInteractionBtns();
+
+        // if adding this super defender satisfies the superdefender win state, win the game
+        if (_superDefenderManager.SuperDefenderWinStateMet())
+        {
+            playStateMachine.TransitionToState(PlayState.Win);
+        }
+        
     }
 
 
