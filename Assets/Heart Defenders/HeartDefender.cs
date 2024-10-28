@@ -157,12 +157,12 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     }
 
     // use this to upgrade to super defender
-    public void ChangeToSuperDefender()
+    public void ChangeToSuperDefender(Card card)
     {
         isSuperDefender = true; // set this flag to true so player can no longer use to block attacks
         SuperDefender superDefender = gameObject.AddComponent<SuperDefender>();
         heartDefenderManager.RemoveFromDefenderList(this);
-        superDefender.Initialize(superDefender.GetRandomSuperDefenderType(), _defenderSprite);
+        superDefender.InitializeFromCard(card, _defenderSprite);
         _superDefenderManager.AddSuperDefender(superDefender);
         _superDefenderManager.ClearSelectedDefender();
         Destroy(_upgradeIcon_Obj);

@@ -43,11 +43,12 @@ public class CardManager : MonoBehaviour
         // if selects the trash bin while in ChooseSuperDefender state
         if (_psm.GetCurrentState() == PlayState.ChooseSuperDefender)
         {
+            Card _cardSelectedForSuperDefender = _hand.GetCurrentlySelectedCards()[0]; // get the card selected for the super defender sacrifice
             DiscardCards(cardsToRemove);
             // get the selected HeartDefender and call the ChangeSuperDefender() method with the selected face card
             if (_superDefenderManager != null && _superDefenderManager.GetSelectedDefender() != null)
             {
-                _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender();
+                _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender(_cardSelectedForSuperDefender);
                 _psm.TransitionToPreviousState();
             }
         }
@@ -110,8 +111,6 @@ public class CardManager : MonoBehaviour
         //shuffle cards.
         _drawPile.ShuffleCards(); 
     }
-
-
 
     /// <summary>
     /// select a card from the player hand, can then do different things with it like place it in a meld, move it to a heart Defender position, etc

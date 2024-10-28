@@ -19,10 +19,16 @@ public class SuperDefender : MonoBehaviour
     public void Initialize(SuperDefenderType type, Image _defenderImageRef)
     {
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
-        this.superDefenderType = type;
         ChangeDefenderSprite(_defenderImageRef);
         AssignAbility(type);
         superDefenderAbility?.Activate();
+    }
+
+    public void InitializeFromCard(Card card, Image _defenderImageRef)
+    {
+
+        superDefenderType = MapCardValueToDefenderType(card.GetCardValueAsInt());
+        Initialize(superDefenderType, _defenderImageRef);
     }
 
     private void AssignAbility(SuperDefenderType type)
@@ -41,16 +47,24 @@ public class SuperDefender : MonoBehaviour
         }
     }
 
+    private SuperDefenderType MapCardValueToDefenderType(int cardValue)
+    {
+        switch (cardValue)
+        {
+            case (int)Value.Jack:
+                return SuperDefenderType.Jack;
+            case (int)Value.Queen:
+                return SuperDefenderType.Queen;
+            case (int)Value.King:
+                return SuperDefenderType.King;
+            default:
+                throw new System.ArgumentException("card is not a face card. Can't be used for a super defender upgrade.");
+        }
+    }
+
     public void ApplyPassiveEffect()
     {
         superDefenderAbility?.ApplyPassiveEffect();
-    }
-
-    public SuperDefenderType GetRandomSuperDefenderType()
-    {
-        SuperDefenderType[] types = { SuperDefenderType.Jack, SuperDefenderType.Queen, SuperDefenderType.King };
-        int randomIndex = UnityEngine.Random.Range(0, types.Length);
-        return types[randomIndex];
     }
 
     public void ChangeDefenderSprite(Image _defenderImageRef)
