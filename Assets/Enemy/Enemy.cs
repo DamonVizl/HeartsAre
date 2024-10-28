@@ -1,7 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class Enemy
 {
     private static int _minDamage = 1;
@@ -18,6 +18,9 @@ public class Enemy
     private static float _numAttacksMultiplier = 1f;
     private static float _numAttacksIncreasePerTurn = .1f;
 
+    private static int _turnCounter = 0;
+    private static int _turnsToIncrease = 2; // Number of turns after which to increase values
+
     public static event Action<int> OnDamageCalculated;
 
     public Enemy(HeartDefenderManager heartDefenderRef, UI_DamageUpdater damageUpdater, UI_Enemy ui_enemy)
@@ -27,13 +30,19 @@ public class Enemy
         _ui_enemy = ui_enemy;
     }
 
-    // calls the attack method in UI_DamageUpdater so coroutines can be used for player reaction between attacks
+    // Calls the attack method in UI_DamageUpdater so coroutines can be used for player reaction between attacks
     public static void Attack()
     {
         int value = CalculateNumOfAttacks();
         List<HeartDefender> defendersForThisAttack = _heartDefenderManager.getDefendersForThisAttack();
         StartAttack(value, defendersForThisAttack);
-        //_heartDefenderRef.OnConfirmSelection += ConfirmSelection(value);
+
+        // Increase turn counter and check if values need to be increased
+        _turnCounter++;
+        if (_turnCounter % _turnsToIncrease == 0)
+        {
+            IncreaseValues();
+        }
     }
 
     public static void StartAttack(int value, List<HeartDefender> defenders)
@@ -43,7 +52,7 @@ public class Enemy
         Debug.Log("UI_DamageUpdater is attacking with the number of attacks set in the GM instance");
     }
 
-    // calculates a random number of attacks for this turn
+    // Calculates a random number of attacks for this turn
     public static int CalculateNumOfAttacks()
     {
         int randomNumAttacks = UnityEngine.Random.Range(_minNumAttacks, _maxNumAttacks);
@@ -52,7 +61,7 @@ public class Enemy
         return scaledNumOfAttacks;
     }
 
-    // calculate a random amount of damage for an attack
+    // Calculate a random amount of damage for an attack
     public static int CalculateDamage()
     {
         int randomDamage = UnityEngine.Random.Range(_minDamage, _maxDamage);
@@ -60,22 +69,19 @@ public class Enemy
         return scaledDamage;
     }
 
-    // call this at the end of each enemy turn to increase the damage for the next round
-    public void IncreaseDamage()
+    // Increase min and max values after every 2 turns
+    private static void IncreaseValues()
     {
-        _damageMultiplier += _damageIncreasePerTurn;
-    }
+        _minDamage += 1;
+        _maxDamage += 2; // Increment more for max if desired
+        _minNumAttacks += 1;
+        _maxNumAttacks += 1;
 
-    public void IncreaseNumberOfAttacks()
-    {
-        _numAttacksMultiplier += _numAttacksIncreasePerTurn;
+        Debug.Log($"Values increased! MinDamage: {_minDamage}, MaxDamage: {_maxDamage}, MinNumAttacks: {_minNumAttacks}, MaxNumAttacks: {_maxNumAttacks}");
     }
 
     public static HeartDefenderManager GetHeartDefenderManager()
     {
         return _heartDefenderManager;
     }
-
-
-
 }
