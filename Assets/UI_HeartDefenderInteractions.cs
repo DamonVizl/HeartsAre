@@ -30,7 +30,6 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
 
     public void EnableOptionsForEnemyAttack()
     {
-        //DisableAddNewDefender_Button();
         EnableConfirmSelection_Button();
         EnableSelectDefenderText();
         DisableEndTurn_Button();
@@ -47,7 +46,6 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
         EnableAddNewDefenderButton();
         DisableSelectDefenderText();
         EnableEndTurn_Button();
-        EnableLayoutGroup();
     }
 
     public void DisableAddNewDefender_Button()
@@ -79,23 +77,5 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
     public void DisableSelectDefenderText()
     {
         selectDefenderText.SetActive(false);
-    }
-
-    public void DisableLayoutGroup()
-    {
-        if (layoutGroup != null)
-        {
-            layoutGroup.enabled = false;
-        }
-
-    }
-
-    // activates horizontal layout group for defenders
-    public void EnableLayoutGroup()
-    {
-        if (layoutGroup != null)
-        {
-            layoutGroup.enabled = true;
-        }
     }
 }

@@ -102,7 +102,7 @@ MonoBehaviour:
   deathParticle: {fileID: 336853362505233834}
   isSuperDefender: 0
   _superDefenderUpgradeIconSprite: {fileID: 21300000, guid: 8ffaee0eb78e926478fe4d0a7bd5eed9, type: 3}
-  _upgradeArrowSprite: {fileID: 868371274, guid: 6507ea00aee252e4b808209509158882, type: 3}
+  _upgradeArrowSprite: {fileID: 21300000, guid: 54a11c4dec0414c49907c3c2e5b29d70, type: 3}
   _defenderSprite: {fileID: 7050270847566669898}
   _upgradeIcon_Obj: {fileID: 1478167349209710841}
   _rankCounter_Obj: {fileID: 5797290201377041477}

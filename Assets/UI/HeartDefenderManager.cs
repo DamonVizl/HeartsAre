@@ -21,6 +21,8 @@ public class HeartDefenderManager : MonoBehaviour
     [SerializeField] private const int maxDefenders = 5;
     RectTransform parentRectTransform; // UI parent reference for camera shake
 
+    public Transform battleGroundContainer;
+
 
     void Start()
     {

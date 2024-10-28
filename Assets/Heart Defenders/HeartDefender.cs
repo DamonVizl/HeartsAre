@@ -91,15 +91,9 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         if (isSuperDefender == true) return;
 
-        if (_tween.IsActive()) return;
-
-        // disable horizontal layout so tweens can operate
-        _ui_heartDefenderInteractions.DisableLayoutGroup();
+        transform.SetParent(heartDefenderManager.battleGroundContainer);
 
         heartDefenderManager.AddDefenderForAttack(this);
-        _tween = transform.DOMoveY(transform.position.y + _tweenValue, 0.2f);
-      
-
         _defenderSelected = true;
     }
 
@@ -108,8 +102,10 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         if (_tween.IsActive()) return;
 
+        transform.SetParent(heartDefenderManager.cardContainer);
+        ResetSiblingIndex();
         heartDefenderManager.RemoveDefenderForAttack(this);
-        _tween = transform.DOMoveY(transform.position.y - _tweenValue, 0.2f);
+        
 
         _defenderSelected = false;
     }
@@ -117,8 +113,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // reset defender position and turn re-enable layout group
     public void ResetPosition()
     {
-        _ui_heartDefenderInteractions.EnableLayoutGroup();
-        transform.position = new Vector2(transform.position.x, _originalPosition.y);
+        transform.SetParent(heartDefenderManager.cardContainer);
+        ResetSiblingIndex();
         _defenderSelected = false;
     }
 
@@ -182,7 +178,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // checks if player has enough money to upgrade this heart defender and is below max level (10)
     public bool IsAbleToUpgrade()
     {
-        if (CurrencyManager.GetCurrentMoney() >= GetNextUpgradeCost() && playStateMachine.GetCurrentState() == PlayState.PlayerTurn)
+        if (CurrencyManager.GetCurrentMoney() >= GetNextUpgradeCost() && playStateMachine.GetCurrentState() != PlayState.EnemyTurn)
         {
             return true;
         }
@@ -254,7 +250,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         if (playStateMachine != null)
         {
-            if (playStateMachine.GetCurrentState() == PlayState.PlayerTurn)
+            if (playStateMachine.GetCurrentState() != PlayState.EnemyTurn)
             {
                 if (IsAbleToUpgrade())
                 {
@@ -332,6 +328,11 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
 
         return totalHeartRank;
+    }
+
+    void ResetSiblingIndex()
+    {
+        transform.SetSiblingIndex(0);
     }
 
 }
