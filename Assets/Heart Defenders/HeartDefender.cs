@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +16,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private const int maxLevel = 10;
 
-    [SerializeField] private float _tweenValue = 1f;
-
     public Image upgradeArrowIcon;
     private float iconDisabledSaturation = .1f;
 
@@ -31,8 +28,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private HeartDefenderManager heartDefenderManager;
 
     bool _defenderSelected = false;
-    Tween _tween;
-
     private Vector3 _originalPosition;
 
     public bool isSuperDefender;
@@ -92,7 +87,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         if (isSuperDefender == true) return;
 
         transform.SetParent(heartDefenderManager.battleGroundContainer);
-
         heartDefenderManager.AddDefenderForAttack(this);
         _defenderSelected = true;
     }
@@ -100,13 +94,9 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private void UnSelectDefender()
     {
-        if (_tween.IsActive()) return;
-
         transform.SetParent(heartDefenderManager.cardContainer);
         ResetSiblingIndex();
         heartDefenderManager.RemoveDefenderForAttack(this);
-        
-
         _defenderSelected = false;
     }
 

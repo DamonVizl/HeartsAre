@@ -37,19 +37,24 @@ public class CardManager : MonoBehaviour
     /// </summary>
     private void DiscardCardsFromHand()
     {
-        List<Card> cardsToRemove = new List<Card>();
-        foreach (Card card in _hand.GetCurrentlySelectedCards())
+        // check if in discard state to allow player to discard cards
+        if (_psm.GetCurrentState() == PlayState.DiscardCards)
         {
-            _discardPile.AddCard(card);
-            cardsToRemove.Add(card);
-            OnCardDiscardedFromHand?.Invoke(card); 
+            List<Card> cardsToRemove = new List<Card>();
+            foreach (Card card in _hand.GetCurrentlySelectedCards())
+            {
+                _discardPile.AddCard(card);
+                cardsToRemove.Add(card);
+                OnCardDiscardedFromHand?.Invoke(card);
+            }
+            //seperate for loop so im not modifying the list while enumerating through it
+            foreach (Card card in cardsToRemove)
+            {
+                _hand.RemoveCard(card);
+            }
+            //transition to the Heart Defenders state to prepare for attack, ending the discard phase
+            _psm.TransitionToState(PlayState.HeartDefenders);
         }
-        //seperate for loop so im not modifying the list while enumerating through it
-        foreach(Card card in cardsToRemove)
-        {
-            _hand.RemoveCard(card); 
-        }
-
     }
     /// <summary>
     /// takes a card from the draw pile and puts it in the hand

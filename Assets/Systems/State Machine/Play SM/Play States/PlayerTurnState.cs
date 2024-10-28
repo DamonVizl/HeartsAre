@@ -43,7 +43,7 @@ public class PlayerTurnState : BaseState<PlayState>
     // end turn and switch to enemy turn
     public override void EndTurn()
     {
-        _stateMachine.TransitionToState(PlayState.HeartDefenders);
+        _stateMachine.TransitionToState(PlayState.DiscardCards);
     }
 
     private void CheckForSuperDefenderAbilities()
