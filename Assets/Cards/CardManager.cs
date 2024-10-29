@@ -39,41 +39,43 @@ public class CardManager : MonoBehaviour
     /// </summary>
     private void DiscardCardsFromHand()
     {
-        List<Card> cardsToRemove = new List<Card>();
         // if selects the trash bin while in ChooseSuperDefender state
         if (_psm.GetCurrentState() == PlayState.ChooseSuperDefender)
         {
-            Card _cardSelectedForSuperDefender = _hand.GetCurrentlySelectedCards()[0]; // get the card selected for the super defender sacrifice
-            DiscardCards(cardsToRemove);
-            // get the selected HeartDefender and call the ChangeSuperDefender() method with the selected face card
-            if (_superDefenderManager != null && _superDefenderManager.GetSelectedDefender() != null && _cardSelectedForSuperDefender != null)
+            List<Card> cardsToRemove = new List<Card>(_hand.GetCurrentlySelectedCards());
+            if (cardsToRemove.Count > 0)
             {
-                _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender(_cardSelectedForSuperDefender);
-                _psm.TransitionToPreviousState();
+                Card cardForSuperDefender = cardsToRemove[0]; // get the card selected for the super defender sacrifice
+                DiscardCards(cardsToRemove);
+
+                if (_superDefenderManager?.GetSelectedDefender() != null)
+                {
+                    _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender(cardForSuperDefender);
+                    _psm.TransitionToPreviousState();
+                }
             }
         }
         else if (_psm.GetCurrentState() == PlayState.DiscardCards)
         {
+            List<Card> cardsToRemove = new List<Card>(_hand.GetCurrentlySelectedCards());
             DiscardCards(cardsToRemove);
-            //transition to the Heart Defenders state to prepare for attack, ending the discard phase
             _psm.TransitionToState(PlayState.HeartDefenders);
         }
     }
 
     void DiscardCards(List<Card> cardsToRemove)
     {
-        foreach (Card card in _hand.GetCurrentlySelectedCards())
+        foreach (Card card in cardsToRemove)
         {
             _discardPile.AddCard(card);
-            cardsToRemove.Add(card);
             OnCardDiscardedFromHand?.Invoke(card);
         }
-        //seperate for loop so im not modifying the list while enumerating through it
-        foreach (Card card in cardsToRemove)
+        foreach (Card card in new List<Card>(cardsToRemove)) // Iterate over a copy to avoid modifying during removal
         {
             _hand.RemoveCard(card);
         }
     }
+
     /// <summary>
     /// takes a card from the draw pile and puts it in the hand
     /// </summary>
