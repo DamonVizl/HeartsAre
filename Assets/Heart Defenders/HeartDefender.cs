@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class HeartDefender : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int heartRank;
+    public TextMeshProUGUI dmgCounter;
     public TextMeshProUGUI rankCounter;
     [SerializeField] private float levelUpRateIncrease;
     [SerializeField] private GameManager gameManager;
@@ -63,7 +64,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         _ui_heartDefenderInteractions = FindObjectOfType<UI_HeartDefenderInteractions>();
 
         _ui_playerHand = FindObjectOfType<UI_PlayerHand>();
-
+        dmgCounter.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -336,7 +337,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     }
 
     // returns the total heart rank of the defender + any superdefender of type Kings in play
-    private int TotalHeartRank()
+    public int TotalHeartRank()
     {
         int totalHeartRank = heartRank;
         if (_superDefenderManager != null)
@@ -361,6 +362,22 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
             cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
         }
     }
+
+    public void ShowDamage(int damage, float attackDelay)
+    {
+        StartCoroutine(ShowDamageCoroutine(damage, attackDelay));
+    }
+
+    IEnumerator ShowDamageCoroutine(int damage, float attackDelay)
+    {
+        dmgCounter.gameObject.SetActive(true);
+        dmgCounter.text = damage.ToString();
+        yield return new WaitForSeconds(attackDelay);
+        dmgCounter.gameObject.SetActive(false);
+
+    }
+
+
 
 
 }
