@@ -74,11 +74,12 @@ public class UI_DamageUpdater : MonoBehaviour
 
         while (attacksRemaining > 0)
         {
+            int dmg = Enemy.CalculateDamage();
             HeartDefender randomDefender = null;
             if (defendersForThisAttack == null || defendersForThisAttack.Count == 0)
             {
                 // No defenders available, so attack the player directly
-                int dmg = Enemy.CalculateDamage();
+                
                 GameManager.Instance.ReducePlayerHealth(dmg);
                 Debug.Log("No defenders available, attacking player for " + dmg + " damage.");
                 StartCoroutine(AnimateDamageText(dmg));
@@ -91,8 +92,8 @@ public class UI_DamageUpdater : MonoBehaviour
                 randomDefender = defendersForThisAttack[randomIndex];
 
                 // Perform attack on the random defender
-                randomDefender.TakeDamage(Enemy.CalculateDamage());
-                StartCoroutine(AnimateDamageText(Enemy.CalculateDamage()));
+                randomDefender.TakeDamage(dmg);
+                StartCoroutine(AnimateDamageText(dmg));
                 ResetDamageText();
             }
             OnAttackExecuted?.Invoke(randomDefender);

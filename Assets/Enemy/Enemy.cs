@@ -5,9 +5,9 @@ using UnityEngine;
 public class Enemy
 {
     private static int _minDamage = 1;
-    private static int _maxDamage = 10;
+    private static int _maxDamage = 5;
     private static int _minNumAttacks = 1;
-    private static int _maxNumAttacks = 3;
+    private static int _maxNumAttacks = 2;
 
     private static HeartDefenderManager _heartDefenderManager;
     private static UI_DamageUpdater _ui_damageUpdater;
@@ -55,9 +55,8 @@ public class Enemy
     public static int CalculateNumOfAttacks()
     {
         int randomNumAttacks = UnityEngine.Random.Range(_minNumAttacks, _maxNumAttacks);
-        int scaledNumOfAttacks = Mathf.RoundToInt(randomNumAttacks * _numAttacksMultiplier);
 
-        return scaledNumOfAttacks;
+        return randomNumAttacks;
     }
 
     // Calculate a random amount of damage for an attack
