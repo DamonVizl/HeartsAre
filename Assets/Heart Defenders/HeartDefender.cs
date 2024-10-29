@@ -98,8 +98,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private void UnSelectDefender()
     {
-        transform.SetParent(heartDefenderManager.cardContainer);
-        ResetSiblingIndex();
+        ResetPosition();
         heartDefenderManager.RemoveDefenderForAttack(this);
         _defenderSelected = false;
     }
@@ -108,7 +107,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     public void ResetPosition()
     {
         transform.SetParent(heartDefenderManager.cardContainer);
-        ResetSiblingIndex();
+        SetSiblingIndex(0);
         _defenderSelected = false;
     }
 
@@ -214,7 +213,10 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         // if damage amount is higher than the defender's, decrease the rank of the heart by the difference between the amount of damage and the heart's rank
         if (damage > TotalHeartRank())
         {
+            Debug.Log("Total heart Rank: " + TotalHeartRank());
             overDamage = damage - heartRank;
+            Debug.Log("damage: " + damage);
+            Debug.Log("overdamage" + overDamage);
             DecreaseRank(overDamage);
         }
     }
@@ -347,10 +349,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     }
 
     // resets the layout of the heart defenders in horizontal layout
-    void ResetSiblingIndex()
-    {
-        transform.SetSiblingIndex(0);
-    }
+    private void SetSiblingIndex(int index) => transform.SetSiblingIndex(index);
+
 
     private void ShakeCamera()
     {

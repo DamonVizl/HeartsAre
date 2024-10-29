@@ -45,7 +45,6 @@ public class PlayerTurnState : BaseState<PlayState>
         // Check if the player has drawn at least one card
         if (GameManager.Instance.GetPlayerHandClass().GetCurrentNumberOfCardsInCollection() > 0)
         {
-            Debug.Log(GameManager.Instance.GetPlayerHandClass().GetPlayerHand().Length);
             _stateMachine.TransitionToState(PlayState.DiscardCards);
         }
         else

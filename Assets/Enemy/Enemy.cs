@@ -49,7 +49,6 @@ public class Enemy
     {
         _heartDefenderManager._ui_HeartDefenderInteractions.EnableOptionsForEnemyAttack();
         _ui_damageUpdater.StartAttack(value, defenders);
-        Debug.Log("UI_DamageUpdater is attacking with the number of attacks set in the GM instance");
     }
 
     // Calculates a random number of attacks for this turn
@@ -66,6 +65,7 @@ public class Enemy
     {
         int randomDamage = UnityEngine.Random.Range(_minDamage, _maxDamage);
         int scaledDamage = Mathf.RoundToInt(randomDamage * _damageMultiplier); // scale the damage to the current turn
+        Debug.Log("Damge: " + scaledDamage);
         return scaledDamage;
     }
 

@@ -19,12 +19,6 @@ public class CurrencyManager
         PlayerHand.OnTrickScore += AddMoney; //when a trick is scored, it's value is added to the currency manager
     }
 
-/*    public static void AutoGenerateCurrency()
-    {
-        int randomAmount = UnityEngine.Random.Range(0, 100);
-        AddMoney(randomAmount);
-    }*/
-
     public static void AddMoney(int value)
     {
        value = Mathf.RoundToInt(value * CurrencyMultiplier());
@@ -54,9 +48,14 @@ public class CurrencyManager
 
     private static float CurrencyMultiplier()
     {
-        float _currencyMultiplierTotal = 0f;
-        int numberOfJackSuperDefenders = Mathf.Max(1, GameManager.Instance.GetSuperDefenderManager().GetJackDefenders().Count);
-        _currencyMultiplierTotal = _currencyMultiplier * numberOfJackSuperDefenders;
+        float _currencyMultiplierTotal = 1f;
+        int numberOfJackSuperDefenders = GameManager.Instance.GetSuperDefenderManager().GetJackDefenders().Count;
+
+        if (numberOfJackSuperDefenders > 0)
+        {
+            _currencyMultiplierTotal = _currencyMultiplier * numberOfJackSuperDefenders;
+        }
+
         return _currencyMultiplierTotal;
     }
 
