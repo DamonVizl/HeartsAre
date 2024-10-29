@@ -3996,26 +3996,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2405457021151486822, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
-      propertyPath: m_enableWordWrapping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3744327897284393233, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 39.6081
-      objectReference: {fileID: 0}
-    - target: {fileID: 3744327897284393233, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 37.4202
-      objectReference: {fileID: 0}
-    - target: {fileID: 3744327897284393233, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 3.9555
-      objectReference: {fileID: 0}
-    - target: {fileID: 3744327897284393233, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 59.0206
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -94,7 +94,7 @@ public class UI_DamageUpdater : MonoBehaviour
                 // Perform attack on the random defender
                 randomDefender.TakeDamage(dmg);
                 StartCoroutine(AnimateDamageText(dmg));
-                randomDefender.ShowDamage(dmg, _attackDelay);
+                //randomDefender.ShowDamage(dmg, _attackDelay);
                 ResetDamageText();
             }
             OnAttackExecuted?.Invoke(randomDefender);

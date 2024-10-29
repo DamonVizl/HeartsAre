@@ -108,6 +108,7 @@ MonoBehaviour:
   _defenderSprite: {fileID: 7050270847566669898}
   _upgradeIcon_Obj: {fileID: 1478167349209710841}
   _rankCounter_Obj: {fileID: 5797290201377041477}
+  _attackDelay: 1.8
 --- !u!114 &2529139820758004703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5180,8 +5181,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.3, y: 60.2}
-  m_SizeDelta: {x: 23.0971, y: 39.7789}
+  m_AnchoredPosition: {x: 3.9555, y: 59.0206}
+  m_SizeDelta: {x: 39.6081, y: 37.4202}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6185763534167847242
 CanvasRenderer:
@@ -5254,7 +5255,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

@@ -45,7 +45,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private UI_HeartDefenderInteractions _ui_heartDefenderInteractions;
     private UI_PlayerHand _ui_playerHand;
-
+    public float _attackDelay;
 
     private void Start()
     {
@@ -211,6 +211,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         ShakeCamera();
         // track damage amt that surpasses defender's rank
         int overDamage = 0;
+        ShowDamage(damage, _attackDelay);
         // if damage amount is higher than the defender's, decrease the rank of the heart by the difference between the amount of damage and the heart's rank
         if (damage > TotalHeartRank())
         {
@@ -365,7 +366,13 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     public void ShowDamage(int damage, float attackDelay)
     {
-        StartCoroutine(ShowDamageCoroutine(damage, attackDelay));
+        int damageTaken = 0;
+
+        damageTaken = TotalHeartRank() - damage;
+
+        damageTaken = Mathf.Min(0, damageTaken);
+
+        StartCoroutine(ShowDamageCoroutine(damageTaken, attackDelay));
     }
 
     IEnumerator ShowDamageCoroutine(int damage, float attackDelay)
