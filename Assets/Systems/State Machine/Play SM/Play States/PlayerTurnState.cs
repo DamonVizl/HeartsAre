@@ -42,6 +42,16 @@ public class PlayerTurnState : BaseState<PlayState>
     // end turn and switch to enemy turn
     public override void EndTurn()
     {
-        _stateMachine.TransitionToState(PlayState.DiscardCards);
+        // Check if the player has drawn at least one card
+        if (GameManager.Instance.GetPlayerHandClass().GetCurrentNumberOfCardsInCollection() > 0)
+        {
+            Debug.Log(GameManager.Instance.GetPlayerHandClass().GetPlayerHand().Length);
+            _stateMachine.TransitionToState(PlayState.DiscardCards);
+        }
+        else
+        {
+            Debug.Log("Player must draw at least one card before ending their turn.");
+        }
     }
+
 }
