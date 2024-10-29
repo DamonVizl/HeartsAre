@@ -39,27 +39,38 @@ public class CardManager : MonoBehaviour
     /// </summary>
     private void DiscardCardsFromHand()
     {
-        // if selects the trash bin while in ChooseSuperDefender state
-        if (_psm.GetCurrentState() == PlayState.ChooseSuperDefender)
+        // Check if there is at least one card in hand before allowing discard
+        if (_hand.GetPlayerHand().Length > 0)
         {
-            List<Card> cardsToRemove = new List<Card>(_hand.GetCurrentlySelectedCards());
-            if (cardsToRemove.Count > 0)
+            // if selects the trash bin while in ChooseSuperDefender state
+            if (_psm.GetCurrentState() == PlayState.ChooseSuperDefender)
             {
-                Card cardForSuperDefender = cardsToRemove[0]; // get the card selected for the super defender sacrifice
-                DiscardCards(cardsToRemove);
-
-                if (_superDefenderManager?.GetSelectedDefender() != null)
+                List<Card> cardsToRemove = new List<Card>(_hand.GetCurrentlySelectedCards());
+                if (cardsToRemove.Count > 0)
                 {
-                    _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender(cardForSuperDefender);
-                    _psm.TransitionToPreviousState();
+                    Card cardForSuperDefender = cardsToRemove[0]; // get the card selected for the super defender sacrifice
+                    DiscardCards(cardsToRemove);
+
+                    if (_superDefenderManager?.GetSelectedDefender() != null)
+                    {
+                        _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender(cardForSuperDefender);
+                        _psm.TransitionToPreviousState();
+                    }
+                }
+            }
+            else if (_psm.GetCurrentState() == PlayState.DiscardCards)
+            {
+                List<Card> cardsToRemove = new List<Card>(_hand.GetCurrentlySelectedCards());
+                if (cardsToRemove.Count > 0)
+                {
+                    DiscardCards(cardsToRemove);
+                    _psm.TransitionToState(PlayState.HeartDefenders);
                 }
             }
         }
-        else if (_psm.GetCurrentState() == PlayState.DiscardCards)
+        else
         {
-            List<Card> cardsToRemove = new List<Card>(_hand.GetCurrentlySelectedCards());
-            DiscardCards(cardsToRemove);
-            _psm.TransitionToState(PlayState.HeartDefenders);
+            Debug.Log("No cards in hand to discard.");
         }
     }
 
