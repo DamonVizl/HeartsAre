@@ -110,6 +110,7 @@ MonoBehaviour:
   _upgradeIcon_Obj: {fileID: 1478167349209710841}
   _rankCounter_Obj: {fileID: 5797290201377041477}
   _attackDelay: 1.8
+  _damageAnimateSpeed: 0.25
 --- !u!114 &2529139820758004703
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,6 +47,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private UI_HeartDefenderInteractions _ui_heartDefenderInteractions;
     private UI_PlayerHand _ui_playerHand;
     public float _attackDelay;
+    public float _damageAnimateSpeed;
 
     private void Start()
     {
@@ -284,22 +285,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         return levelUpCost;
     }
 
-    // shows upgrade arrow in transparent, inactive state
-    public void DisableIcon()
-    {
-        Color iconColor = upgradeArrowIcon.color;
-        iconColor.a = iconDisabledSaturation;
-        upgradeArrowIcon.color = iconColor;
-    }
-
-    // show upgrade arrow in active state with full saturation
-    void EnableIcon()
-    {
-        Color iconColor = upgradeArrowIcon.color;
-        iconColor.a = 1f;
-        upgradeArrowIcon.color = iconColor;
-    }
-
     // updates the badge counter
     private void UpdateRankUI() => rankCounter.text = heartRank.ToString();
 
@@ -356,23 +341,45 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
             cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
         }
     }
-
-    public void ShowDamage(int damage, float attackDelay)
+    public void ShowDamage(int damage, float delay)
     {
-        int damageTaken = 0;
+        dmgCounter.text = damage.ToString();
+        dmgCounter.gameObject.SetActive(true);
 
-        damageTaken = TotalHeartRank() - damage;
+        StartCoroutine(AnimateDamageText(damage, TotalHeartRank()));
 
-        damageTaken = Mathf.Min(0, damageTaken);
-
-        StartCoroutine(ShowDamageCoroutine(damageTaken, attackDelay));
+        // Optionally, delay hiding or starting animation
+        //StartCoroutine(HideDamageAfterDelay(delay));
     }
 
-    IEnumerator ShowDamageCoroutine(int damage, float attackDelay)
+    //IEnumerator ShowDamageCoroutine(int damage, float attackDelay)
+    //{
+    //    dmgCounter.gameObject.SetActive(true);
+    //    dmgCounter.text = damage.ToString();
+    //    yield return new WaitForSeconds(attackDelay);
+    //    dmgCounter.gameObject.SetActive(false);
+
+    //}
+
+    private IEnumerator AnimateDamageText(int damage, int targetRank)
     {
-        dmgCounter.gameObject.SetActive(true);
-        dmgCounter.text = damage.ToString();
-        yield return new WaitForSeconds(attackDelay);
+
+        int rankMinusDmg = TotalHeartRank() - damage;
+        int targetDisplayValue = Mathf.Min(rankMinusDmg, 0);
+        int currentDisplayValue = damage;
+        dmgCounter.text = currentDisplayValue.ToString();
+
+        yield return new WaitForSeconds(0.5f); // Slight pause after initial display
+
+        while (currentDisplayValue > targetDisplayValue)
+        {
+            currentDisplayValue -= 1;
+            dmgCounter.text = currentDisplayValue.ToString();
+            yield return new WaitForSeconds(_damageAnimateSpeed);
+        }
+
+        dmgCounter.text = currentDisplayValue.ToString(); // Ensure final display is the target rank
+        yield return new WaitForSeconds(.5f);
         dmgCounter.gameObject.SetActive(false);
 
     }
