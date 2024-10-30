@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartRank: 1
+  fixedCost: 5
   dmgCounter: {fileID: 2405457021151486822}
   rankCounter: {fileID: 7935888062753091620}
   levelUpRateIncrease: 1.5
