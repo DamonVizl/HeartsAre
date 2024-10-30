@@ -15,6 +15,10 @@ public class UI_HeartDefender : MonoBehaviour
  
     public float _damageAnimateSpeed;
 
+    public float tweenDownDistance;
+    public float tweenDuration;
+    public float pauseDuration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,36 +31,43 @@ public class UI_HeartDefender : MonoBehaviour
 
     public void UpdateRankUI() => rankCounter.text = heartDefender.BaseHeartRank().ToString();
 
-
     public void ShowDamage(int damage)
     {
-        dmgCounter.text = damage.ToString();
+        StartCoroutine(AnimateDamage(damage));
+    }
+
+    private IEnumerator AnimateDamage(int rawDamage)
+    {
+        dmgCounter.text = rawDamage.ToString();
         dmgCounter.gameObject.SetActive(true);
 
-        StartCoroutine(AnimateDamageText(damage, heartDefender.TotalHeartRank()));
-    }
-    private IEnumerator AnimateDamageText(int damage, int targetRank)
-    {
 
-        int rankMinusDmg = heartDefender.TotalHeartRank() - damage;
+        int rankMinusDmg = heartDefender.TotalHeartRank() - rawDamage;
         int targetDisplayValue = Mathf.Min(rankMinusDmg, 0);
-        int currentDisplayValue = damage;
-        dmgCounter.text = currentDisplayValue.ToString();
 
-        yield return new WaitForSeconds(0.5f); // Slight pause after initial display
+        yield return new WaitForSeconds(pauseDuration);
 
-        while (currentDisplayValue > targetDisplayValue)
+        Vector3 originalPosition = dmgCounter.transform.localPosition;
+        Vector3 downPosition = originalPosition - new Vector3(0, tweenDownDistance, 0);
+        dmgCounter.transform.DOLocalMove(downPosition, tweenDuration).SetEase(Ease.OutQuad);
+
+        yield return new WaitForSeconds(tweenDuration);
+
+
+        for (int i = rawDamage; i >= targetDisplayValue; i--)
         {
-            currentDisplayValue -= 1;
-            dmgCounter.text = currentDisplayValue.ToString();
-            yield return new WaitForSeconds(_damageAnimateSpeed);
+            dmgCounter.text = i.ToString();
+            yield return new WaitForSeconds(0.05f); // Adjust delay to control countdown speed
         }
 
-        dmgCounter.text = currentDisplayValue.ToString(); // Ensure final display is the target rank
-        yield return new WaitForSeconds(.5f);
+        dmgCounter.transform.DOLocalMove(originalPosition, tweenDuration).SetEase(Ease.InQuad);
+
+        yield return new WaitForSeconds(tweenDuration);
+
         dmgCounter.gameObject.SetActive(false);
 
     }
+
 
     public void ShakeCamera()
     {
