@@ -10,8 +10,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int heartRank;
     public int fixedCost;
-    public TextMeshProUGUI dmgCounter;
-    public TextMeshProUGUI rankCounter;
+ 
     [SerializeField] private float levelUpRateIncrease;
     [SerializeField] private GameManager gameManager;
     private PlayerHealth playerHealth;
@@ -19,11 +18,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private const int maxLevel = 10;
 
     public Image upgradeArrowIcon;
-    private float iconDisabledSaturation = .1f;
 
     [SerializeField] private PlayStateMachine playStateMachine;
-
-    RectTransform parentRectTransform; // UI parent reference for camera shake
 
     public ParticleSystem deathParticle;
 
@@ -46,16 +42,17 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private UI_HeartDefenderInteractions _ui_heartDefenderInteractions;
     private UI_PlayerHand _ui_playerHand;
-    public float _attackDelay;
-    public float _damageAnimateSpeed;
+
+
+    public UI_HeartDefender _ui_heartDefender;
 
     private void Start()
     {
+        _ui_heartDefender = GetComponent<UI_HeartDefender>();
         gameManager = FindObjectOfType<GameManager>();
         playerHealth = GameManager.Instance.PlayerHealth;
-        UpdateRankUI();
         playStateMachine = FindObjectOfType<PlayStateMachine>();
-        parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
+
 
         heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
 
@@ -65,7 +62,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         _ui_heartDefenderInteractions = FindObjectOfType<UI_HeartDefenderInteractions>();
 
         _ui_playerHand = FindObjectOfType<UI_PlayerHand>();
-        dmgCounter.gameObject.SetActive(false);
+ 
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -122,8 +119,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         else
         {
             Debug.Log("You do not have enough money to upgrade this heart or it's at max level");
-            SFXManager.Instance.PlayRandomSound(SFXName.PurchaseFailed); 
-            ShakeCamera();
+            SFXManager.Instance.PlayRandomSound(SFXName.PurchaseFailed);
+            _ui_heartDefender.ShakeCamera();
         }
     }
 
@@ -156,7 +153,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         CurrencyManager.RemoveMoney(cost);
         heartRank++;
         // add SubtractDifferenceToPlayer()
-        UpdateRankUI();
+        _ui_heartDefender.UpdateRankUI();
         //play the sfx 
         SFXManager.Instance.PlaySoundAtIndex(SFXName.LevelUpDefender, heartRank);
 
@@ -212,10 +209,10 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // if heart takes enough damage that surpasses it's rank's damage threshold, decrease its rank
     public void TakeDamage(int damage)
     {
-        ShakeCamera();
+        _ui_heartDefender.ShakeCamera();
         // track damage amt that surpasses defender's rank
         int overDamage = 0;
-        ShowDamage(damage, _attackDelay);
+        _ui_heartDefender.ShowDamage(damage);
         // if damage amount is higher than the defender's, decrease the rank of the heart by the difference between the amount of damage and the heart's rank
         if (damage > TotalHeartRank())
         {
@@ -243,7 +240,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
         overKillDmg = Mathf.Abs(heartRank);
 
-        UpdateRankUI();
+        _ui_heartDefender.UpdateRankUI();
 
         // if heartRank is 0 or lower, destroy it and apply overkill damage to player
         if (heartRank <= 0)
@@ -286,7 +283,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     }
 
     // updates the badge counter
-    private void UpdateRankUI() => rankCounter.text = heartRank.ToString();
 
     public void PlayParticleEffect()
     {
@@ -332,56 +328,10 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private void SetSiblingIndex(int index) => transform.SetSiblingIndex(index);
 
 
-    private void ShakeCamera()
+
+    public int BaseHeartRank()
     {
-        CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
-
-        if (cameraShake != null && parentRectTransform != null)
-        {
-            cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
-        }
-    }
-    public void ShowDamage(int damage, float delay)
-    {
-        dmgCounter.text = damage.ToString();
-        dmgCounter.gameObject.SetActive(true);
-
-        StartCoroutine(AnimateDamageText(damage, TotalHeartRank()));
-
-        // Optionally, delay hiding or starting animation
-        //StartCoroutine(HideDamageAfterDelay(delay));
-    }
-
-    //IEnumerator ShowDamageCoroutine(int damage, float attackDelay)
-    //{
-    //    dmgCounter.gameObject.SetActive(true);
-    //    dmgCounter.text = damage.ToString();
-    //    yield return new WaitForSeconds(attackDelay);
-    //    dmgCounter.gameObject.SetActive(false);
-
-    //}
-
-    private IEnumerator AnimateDamageText(int damage, int targetRank)
-    {
-
-        int rankMinusDmg = TotalHeartRank() - damage;
-        int targetDisplayValue = Mathf.Min(rankMinusDmg, 0);
-        int currentDisplayValue = damage;
-        dmgCounter.text = currentDisplayValue.ToString();
-
-        yield return new WaitForSeconds(0.5f); // Slight pause after initial display
-
-        while (currentDisplayValue > targetDisplayValue)
-        {
-            currentDisplayValue -= 1;
-            dmgCounter.text = currentDisplayValue.ToString();
-            yield return new WaitForSeconds(_damageAnimateSpeed);
-        }
-
-        dmgCounter.text = currentDisplayValue.ToString(); // Ensure final display is the target rank
-        yield return new WaitForSeconds(.5f);
-        dmgCounter.gameObject.SetActive(false);
-
+        return heartRank;
     }
 
 
