@@ -53,7 +53,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         gameManager = FindObjectOfType<GameManager>();
         playerHealth = GameManager.Instance.PlayerHealth;
         UpdateRankUI();
-        DisableIcon();
         playStateMachine = FindObjectOfType<PlayStateMachine>();
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
 
@@ -66,11 +65,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
         _ui_playerHand = FindObjectOfType<UI_PlayerHand>();
         dmgCounter.gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        CheckIfCanUpgrade();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -288,25 +282,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         levelUpCost = Mathf.RoundToInt(heartRank * fixedCost);
 
         return levelUpCost;
-    }
-
-    // checks if heart defender is upgradable at runtime
-    void CheckIfCanUpgrade()
-    {
-        if (playStateMachine != null)
-        {
-            if (playStateMachine.GetCurrentState() != PlayState.EnemyTurn)
-            {
-                if (IsAbleToUpgrade())
-                {
-                    EnableIcon();
-                }
-                else
-                {
-                    DisableIcon();
-                }
-            }
-        }
     }
 
     // shows upgrade arrow in transparent, inactive state
