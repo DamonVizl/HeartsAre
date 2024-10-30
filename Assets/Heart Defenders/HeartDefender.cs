@@ -230,7 +230,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
             Debug.Log("overdamage" + overDamage);
             DecreaseRank(overDamage);
             //play the sound for the player taking damage
-            SFXManager.Instance.PlayRandomSound(SFXName.PlayerTakeDamage);
+            SFXManager.Instance.PlayRandomSound(SFXName.DestroyDefender);
         }
         else
         {
@@ -267,6 +267,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         // if this heart dies, player will receive overkill damage
         playerHealth.RemoveHealth(damage);
+        SFXManager.Instance.PlayRandomSound(SFXName.PlayerTakeDamage);
     }
 
     void DestroyHeart(int damage)
@@ -277,7 +278,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         OverKillDamage(damage);
         // destroy this heart
         Destroy(this.gameObject);
-        SFXManager.Instance.PlayRandomSound(SFXName.DestroyDefender);
+        SFXManager.Instance.PlayRandomSound(SFXName.DefenderKilled);
     }
 
     // calculates this heart defender's next upgrade cost

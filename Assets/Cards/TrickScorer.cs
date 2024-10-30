@@ -21,6 +21,7 @@ public class TrickScorer
     {
         int score = 0;
         if (cards.Count <= 1) return score; //can't make a trick from 1 card
+        cards = SortCards(cards);
         if (IsRoyalFlush(cards))
         {
             switch(cards.Count)
@@ -73,6 +74,10 @@ public class TrickScorer
             return CalculateScore(GetHighestCardValue(cards), HandValues.OnePair);
         }
         else return 0;
+    }
+    private List<Card> SortCards(List<Card> cards)
+    {
+        return cards.OrderBy(card => card.Value).ToList();
     }
     private bool IsRoyalFlush(List<Card> cards)
     {

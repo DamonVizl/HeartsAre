@@ -94,6 +94,7 @@ public class CardManager : MonoBehaviour
     {
         if (_drawPile.GetCurrentNumberOfCardsInCollection() == 0)
         {
+            Debug.Log("draw pile empty");
             ReshuffleDiscardPileIntoDrawPile();
         }
         //only draw a card if in the player turn (and haven't exceed max allowable cards in hand)
@@ -118,6 +119,7 @@ public class CardManager : MonoBehaviour
         
         foreach (Card card in takenDiscardCards)
         {
+            Debug.Log($"adding {card} to draw pile"); 
             _drawPile.AddCard(card);
         }
 
