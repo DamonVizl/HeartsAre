@@ -13,7 +13,9 @@ public class UI_CardSlot : MonoBehaviour
 {
     Card _cardInSlot;
     UI_Card _UICard;
-    CanvasGroup _cardCanvasGroup; 
+    CanvasGroup _cardCanvasGroup;
+
+    Tween _moveTween; 
     private void OnEnable()
     {
         _UICard = GetComponentInChildren<UI_Card>();
@@ -31,6 +33,7 @@ public class UI_CardSlot : MonoBehaviour
 
     public void SetCardInSlot(Card card, Transform fromTransform)
     {
+        if(_moveTween!= null &&_moveTween.active) _moveTween.Kill(); 
         _UICard.transform.position = fromTransform.position;
         _cardInSlot = card;
         _UICard.AttachCard(card );
@@ -43,9 +46,9 @@ public class UI_CardSlot : MonoBehaviour
     }
     public void RemoveCardFromSlot(Transform toTransform)
     {
-        Tween tween = _UICard.MoveCardTo(toTransform);
+        _moveTween = _UICard.MoveCardTo(toTransform);
         _UICard.RemoveCard(_cardInSlot);
-        tween.OnComplete(() =>
+        _moveTween.OnComplete(() =>
         {
             _cardInSlot = null;
             _cardCanvasGroup.alpha = 0;

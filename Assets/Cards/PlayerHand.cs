@@ -52,6 +52,8 @@ public class PlayerHand : CardCollection
                 card.CurrentCardHolder = this;
                 //update UI
                 OnCardAddedToHand?.Invoke(i, card);
+                //play sfx
+                SFXManager.Instance.PlayRandomSound(SFXName.CardDraw);
                 return true;
             }
         }
@@ -69,6 +71,8 @@ public class PlayerHand : CardCollection
             {
                 CardDeselected(card);  ///remove it from the selected list
                 OnCardRemovedFromHand?.Invoke(i, card);
+                //play sfx
+                SFXManager.Instance.PlayRandomSound(SFXName.Discard); 
                 _cards[i] = null;
             }
         }        
@@ -84,42 +88,47 @@ public class PlayerHand : CardCollection
             {
                 _selectedCards.Add(card);
                 Debug.Log("a face card has been selected to discard for a super defender");
+                //play sfx
+                SFXManager.Instance.PlayRandomSound(SFXName.CardSelect);
+
             }
         }
         else
         {
             _selectedCards.Add(card);
+            SFXManager.Instance.PlayRandomSound(SFXName.CardSelect);
         }
     }
     public void CardDeselected(Card card)
     {
         _selectedCards.Remove(card);
         //_trickAttempt.RemoveCardFromTrick(card);
+        SFXManager.Instance.PlayRandomSound(SFXName.CardDeselect);
     }
     /// <summary>
     /// submites the _selectedCards to the trickscorer, if there is a score it submits an event that the currency manager can listen to
     /// </summary>
     public void SubmitTrick()
     {
-        //print all cards in _selectedCards
-        foreach (Card card in _selectedCards) {
-
-            Debug.Log("Card: " + card.Value); 
-        }
-
         int score = _trickScorer.CalculateHand(_selectedCards);
-        if (score == 0) return;
+        if (score == 0)
+        {
+            SFXManager.Instance.PlayFirstSound(SFXName.TrickFailed);
+            return;
+        }
         else
         {
+            SFXManager.Instance.PlayFirstSound(SFXName.TrickSucceeded);
+
             List<Card> cardsToRemove = new List<Card>();
             //remove the cards
             foreach (Card card in _selectedCards)
             {
                 cardsToRemove.Add(card);
             }
-            foreach(Card card in cardsToRemove)
+            foreach (Card card in cardsToRemove)
             {
-                RemoveCard(card);   
+                RemoveCard(card);
             }
             OnTrickScore?.Invoke(score);
         }

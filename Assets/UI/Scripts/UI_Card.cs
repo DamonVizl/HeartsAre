@@ -57,7 +57,7 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
     private void UnSelectCard()
     {
         //if the card is currently tweening, return without doing anything
-        if (_moveTween.IsActive()) return;
+        //if (_moveTween.IsActive()) return;
         //deselect the card, move it down and set _cardSelected to false
         _cardReference.DeselectCard(); 
         _moveTween = transform.DOLocalMoveY(0 , 0.2f);
@@ -89,7 +89,8 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
         _rotateTween = transform.DORotate(new Vector3(0, 90, 0), 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
         {
 
-            _backOfCard.enabled = _cardFlipped; 
+            _backOfCard.enabled = _cardFlipped;
+            SFXManager.Instance.PlayRandomSound(SFXName.CardFlip); 
 /*            if (_cardFlipped) _backOfCard.enabled = true;
             else _backOfCard.enabled = false;*/
        

@@ -36,16 +36,29 @@ public class SFXManager : MonoBehaviour
             else Debug.LogWarning($"Clip name {clip.name} does not match an enum value ");
         }
     }
-    public void PlaySound(SFXName clipName)
+    public void PlayFirstSound(SFXName clipName)
     {
-        _audioSource.PlayOneShot(_sfxDictionary[clipName].GetFirstAudioClip()); 
+        PlaySound(_sfxDictionary[clipName].GetFirstAudioClip());
     }
     public void PlayRandomSound(SFXName clipName)
     {
-        _audioSource.PlayOneShot(_sfxDictionary[clipName].GetRandomAudioClip());
+        PlaySound(_sfxDictionary[clipName].GetRandomAudioClip());
     }
-    public void PlaySoundAtIndex(SFXName clipName, int index) {
-        _audioSource.PlayOneShot(_sfxDictionary[clipName].GetClipAtIndex(index));
+    public void PlaySoundAtIndex(SFXName clipName, int index) 
+    {
+        PlaySound(_sfxDictionary[clipName].GetClipAtIndex(index));
+    }
+    private void PlaySound(AudioClip clip)
+    {
+        if(_audioSource.isPlaying)
+        {
+            if(clip == _audioSource.clip)
+            {
+                //if the clip is being played, play any futher ones of the same clip quieter
+                _audioSource.PlayOneShot(clip, 0.75f); 
+            }    
+        }
+        else _audioSource.PlayOneShot(clip);
     }
 }
 public enum SFXName
