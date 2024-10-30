@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class HeartDefender : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int heartRank;
+    public int fixedCost;
     public TextMeshProUGUI dmgCounter;
     public TextMeshProUGUI rankCounter;
     [SerializeField] private float levelUpRateIncrease;
@@ -267,7 +268,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private int GetNextUpgradeCost()
     {
         int levelUpCost = 0;
-        levelUpCost = Mathf.RoundToInt(heartRank * levelUpRateIncrease);
+        levelUpCost = Mathf.RoundToInt(heartRank * fixedCost);
 
         return levelUpCost;
     }
