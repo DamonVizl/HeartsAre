@@ -25,11 +25,11 @@ public class UI_HeartDefender : MonoBehaviour
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
         dmgCounter.gameObject.SetActive(false);
         heartDefender = GetComponent<HeartDefender>();
-        UpdateRankUI();
+        UpdateRankUI(heartDefender.BaseHeartRank());
     }
 
 
-    public void UpdateRankUI() => rankCounter.text = heartDefender.BaseHeartRank().ToString();
+    public void UpdateRankUI(int rank) => rankCounter.text = rank.ToString();
 
     public void ShowDamage(int damage)
     {
@@ -67,6 +67,24 @@ public class UI_HeartDefender : MonoBehaviour
         dmgCounter.gameObject.SetActive(false);
 
     }
+
+    public void ShowRankDecrease(int damage, int rank)
+    {
+        StartCoroutine(AnimateRankDecrease(damage, rank));
+    }
+
+    private IEnumerator AnimateRankDecrease(int damage, int heartRank)
+    {
+        int currentRank = heartRank;
+        for (int i = heartRank; i >= heartRank; i--)
+        {
+            currentRank--;
+            UpdateRankUI(currentRank);
+            yield return new WaitForSeconds(0.05f);
+        }
+    
+    }
+
 
 
     public void ShakeCamera()

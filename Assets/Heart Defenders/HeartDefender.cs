@@ -153,7 +153,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         CurrencyManager.RemoveMoney(cost);
         heartRank++;
         // add SubtractDifferenceToPlayer()
-        _ui_heartDefender.UpdateRankUI();
+        _ui_heartDefender.UpdateRankUI(heartRank);
         //play the sfx 
         SFXManager.Instance.PlaySoundAtIndex(SFXName.LevelUpDefender, heartRank);
 
@@ -236,11 +236,11 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         // tracks overkill damage
         int overKillDmg = 0;
 
+        overKillDmg = Mathf.Abs(heartRank -= damage);
+
+        _ui_heartDefender.ShowRankDecrease(overKillDmg, heartRank);
+
         heartRank -= damage;
-
-        overKillDmg = Mathf.Abs(heartRank);
-
-        _ui_heartDefender.UpdateRankUI();
 
         // if heartRank is 0 or lower, destroy it and apply overkill damage to player
         if (heartRank <= 0)
