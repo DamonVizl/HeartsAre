@@ -95,6 +95,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         transform.SetParent(heartDefenderManager.battleGroundContainer);
         heartDefenderManager.AddDefenderForAttack(this);
         _defenderSelected = true;
+        SFXManager.Instance.PlayRandomSound(SFXName.SelectDefender); 
     }
 
 
@@ -103,6 +104,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         ResetPosition();
         heartDefenderManager.RemoveDefenderForAttack(this);
         _defenderSelected = false;
+        SFXManager.Instance.PlayRandomSound(SFXName.CardDeselect);
+
     }
 
     // reset defender position and turn re-enable layout group
@@ -119,10 +122,12 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         if (IsAbleToUpgrade())
         {
             UpgradeCard(GetNextUpgradeCost());
+
         }
         else
         {
             Debug.Log("You do not have enough money to upgrade this heart or it's at max level");
+            SFXManager.Instance.PlayRandomSound(SFXName.PurchaseFailed); 
             ShakeCamera();
         }
     }
@@ -157,6 +162,9 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         heartRank++;
         // add SubtractDifferenceToPlayer()
         UpdateRankUI();
+        //play the sfx 
+        SFXManager.Instance.PlaySoundAtIndex(SFXName.LevelUpDefender, heartRank);
+
 
         // check if the upgrade icon needs to change to the superdefender icon
         if (heartRank == 10)
@@ -221,6 +229,13 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
             Debug.Log("damage: " + damage);
             Debug.Log("overdamage" + overDamage);
             DecreaseRank(overDamage);
+            //play the sound for the player taking damage
+            SFXManager.Instance.PlayRandomSound(SFXName.PlayerTakeDamage);
+        }
+        else
+        {
+            //play the sound for when the defender succesffuly defends
+            SFXManager.Instance.PlayRandomSound(SFXName.DefenderDefends);
         }
     }
 
@@ -262,6 +277,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         OverKillDamage(damage);
         // destroy this heart
         Destroy(this.gameObject);
+        SFXManager.Instance.PlayRandomSound(SFXName.DestroyDefender);
     }
 
     // calculates this heart defender's next upgrade cost
