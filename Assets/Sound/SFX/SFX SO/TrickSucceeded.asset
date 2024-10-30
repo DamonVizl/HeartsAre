@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528dfa59885d4c94c98b9671c0ef7741, type: 3}
+  m_Name: TrickSucceeded
+  m_EditorClassIdentifier: 
+  _clips:
+  - {fileID: 8300000, guid: ec2c64749ef0dbd418dc7eb8c28808ab, type: 3}
+  - {fileID: 8300000, guid: ab9c7110704df48479990a56011b62dc, type: 3}
+  - {fileID: 8300000, guid: fd3d18bcb13ccc24781a99b97f7f9b70, type: 3}

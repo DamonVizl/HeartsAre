@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528dfa59885d4c94c98b9671c0ef7741, type: 3}
+  m_Name: DefenderDefends
+  m_EditorClassIdentifier: 
+  _clips:
+  - {fileID: 8300000, guid: 622080179d5c26440ad33ce171084985, type: 3}
+  - {fileID: 8300000, guid: e2b19cce892cf9e4b854680365226c44, type: 3}
+  - {fileID: 8300000, guid: ed538662ddca05342b8578ca937f5671, type: 3}
+  - {fileID: 8300000, guid: 16331f28e4421ae4bba5ca29864d06ab, type: 3}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528dfa59885d4c94c98b9671c0ef7741, type: 3}
+  m_Name: CardDraw
+  m_EditorClassIdentifier: 
+  _clips:
+  - {fileID: 8300000, guid: 681fab15d5e8db9469e5dcdfa6e76c10, type: 3}
+  - {fileID: 8300000, guid: 94866163a248dee48b62f8f423020269, type: 3}
+  - {fileID: 8300000, guid: 763f735c59144c8489fee2eb78a7ac97, type: 3}
+  - {fileID: 8300000, guid: a403d80be1a27e246ada9b56fb02d024, type: 3}
+  - {fileID: 8300000, guid: c14b87006998bd54fa646becd189be4a, type: 3}
+  - {fileID: 8300000, guid: 2fa030f363dd1c345b6b69c69962b779, type: 3}
+  - {fileID: 8300000, guid: d48286cbfacc2be41a2e403bf5286015, type: 3}
+  - {fileID: 8300000, guid: a60e8433877007447aca6ca123732f79, type: 3}

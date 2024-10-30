@@ -24,6 +24,11 @@ public class UI_PlayerHand : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// subs to the PlayerHand (model) Card added method and updates the UI. 
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="card"></param>
     private void AddCardAtSlot(int index, Card card)
     {
         if(index < _cardSlots.Length)

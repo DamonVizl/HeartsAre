@@ -65,7 +65,17 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
     }
     public Tween MoveCardTo(Transform transform)
     {
-        return this.transform.DOMove(transform.position, 1.0f);
+        //kill all tweens and reset the card's rotation
+        ResetCardTweens(); 
+        _moveTween = this.transform.DOMove(transform.position, 1.0f);
+        return _moveTween;
+    }
+    private void ResetCardTweens()
+    {
+        _moveTween.Kill(); 
+        _rotateTween.Kill();
+        _backgroundCardImage.enabled = true; 
+        transform.rotation = Quaternion.identity;
     }
     public void FlipCard()
     {

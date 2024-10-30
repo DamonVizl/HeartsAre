@@ -67,7 +67,7 @@ public class PlayerHand : CardCollection
         {
             if (_cards[i] == card)
             {
-                //CardDeselected(card);  ///remove it from the selected list
+                CardDeselected(card);  ///remove it from the selected list
                 OnCardRemovedFromHand?.Invoke(i, card);
                 _cards[i] = null;
             }
@@ -101,6 +101,12 @@ public class PlayerHand : CardCollection
     /// </summary>
     public void SubmitTrick()
     {
+        //print all cards in _selectedCards
+        foreach (Card card in _selectedCards) {
+
+            Debug.Log("Card: " + card.Value); 
+        }
+
         int score = _trickScorer.CalculateHand(_selectedCards);
         if (score == 0) return;
         else
