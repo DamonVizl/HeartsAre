@@ -317,8 +317,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         int totalHeartRank = heartRank;
         if (_superDefenderManager != null)
         {
-            int numberOfKingSupefendersInPlay = _superDefenderManager.GetKingDefenders().Count;
-            totalHeartRank = heartRank += numberOfKingSupefendersInPlay;
+            int numberOfKingSuperdefendersInPlay = _superDefenderManager.GetKingDefenders().Count;
+            totalHeartRank = heartRank += numberOfKingSuperdefendersInPlay;
         }
 
         return totalHeartRank;
@@ -328,10 +328,18 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private void SetSiblingIndex(int index) => transform.SetSiblingIndex(index);
 
 
-
+    // actual heartRank of the defender without including buffs
     public int BaseHeartRank()
     {
         return heartRank;
+    }
+
+    public void CheckAndShowBuffer()
+    {
+        if (_superDefenderManager != null && _superDefenderManager.GetKingDefenders().Count > 0)
+        {
+            _ui_heartDefender.ShowBufferCounter(_superDefenderManager.GetKingDefenders().Count);
+        }
     }
 
 

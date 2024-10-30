@@ -11,14 +11,15 @@ public class UI_HeartDefender : MonoBehaviour
     public TextMeshProUGUI dmgCounter;
     public TextMeshProUGUI rankCounter;
     public HeartDefender heartDefender;
+    public TextMeshProUGUI bufferCounter;
 
- 
+
     public float _damageAnimateSpeed;
 
     public float tweenDownDistance;
     public float tweenDuration;
     public float pauseDuration;
-
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +27,12 @@ public class UI_HeartDefender : MonoBehaviour
         dmgCounter.gameObject.SetActive(false);
         heartDefender = GetComponent<HeartDefender>();
         UpdateRankUI(heartDefender.BaseHeartRank());
+        HideBufferCounter();
     }
 
 
     public void UpdateRankUI(int rank) => rankCounter.text = rank.ToString();
+    public void UpdateBufferUI(int value) => bufferCounter.text = "+" + value.ToString();
 
     public void ShowDamage(int damage)
     {
@@ -83,6 +86,18 @@ public class UI_HeartDefender : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
     
+    }
+
+
+    public void ShowBufferCounter(int numOfKingsInPlay)
+    {
+        bufferCounter.gameObject.SetActive(true);
+        UpdateBufferUI(numOfKingsInPlay);
+    }
+
+    public void HideBufferCounter()
+    {
+        bufferCounter.gameObject.SetActive(false);
     }
 
 

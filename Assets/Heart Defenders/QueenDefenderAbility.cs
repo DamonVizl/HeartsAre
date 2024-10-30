@@ -7,7 +7,7 @@ public class QueenDefenderAbility : ISuperDefenderAbility
     public int _healingAmount = 5;
 
 
-    public void Activate()
+    public void Activate(SuperDefenderManager value)
     {
         Debug.Log("Queen super defender is in play");
     }

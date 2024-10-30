@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JackDefenderAbility : ISuperDefenderAbility
 {
-    public void Activate()
+    public void Activate(SuperDefenderManager value)
     {
         Debug.Log("This should activate the Jack Super Defender ability.");
     }

@@ -15,9 +15,16 @@ public class SuperDefenderManager : MonoBehaviour
 
     private HeartDefender _selectedHeartDefender;
 
+    private HeartDefenderManager _heartDefenderManager;
+
 
     public List<SuperDefender> ActiveSuperDefenders { get; private set; } = new List<SuperDefender>();
 
+
+    private void Start()
+    {
+        _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
+    }
 
     public void AddSuperDefender(SuperDefender defender)
     {
@@ -81,6 +88,11 @@ public class SuperDefenderManager : MonoBehaviour
         bool threeOfSameInPlay = _jackDefenders.Count == 3 || _queenDefenders.Count == 3 || _kingDefenders.Count == 3;
 
         return allThreeInPlay || threeOfSameInPlay;
+    }
+
+    public HeartDefenderManager GetHeartDefenderManager()
+    {
+        return _heartDefenderManager;
     }
 
 }

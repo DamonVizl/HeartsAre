@@ -18,7 +18,7 @@ public class HeartDefenderManager : MonoBehaviour
 
     public UI_HeartDefenderInteractions _ui_HeartDefenderInteractions;
 
-    [SerializeField] private const int maxDefenders = 5;
+    [SerializeField] private int maxDefenders = 5;
     RectTransform parentRectTransform; // UI parent reference for camera shake
 
     public Transform battleGroundContainer;
@@ -54,7 +54,7 @@ public class HeartDefenderManager : MonoBehaviour
     // if player has enough $ and hasn't exceeded the defender limit, add a new defender
     public void BuyDefender()
     {
-        if (heartDefenders.Count < maxDefenders)
+        if (heartDefenders.Count < MaxDefenders())
         {
             if (CurrencyManager.GetCurrentMoney() >= addDefenderCost)
             {
@@ -90,6 +90,7 @@ public class HeartDefenderManager : MonoBehaviour
         newDefenderObj.transform.SetSiblingIndex(cardContainer.childCount - 2);
 
         HeartDefender heartDefender = newDefenderObj.GetComponent<HeartDefender>();
+        heartDefender.CheckAndShowBuffer();
         AddToDefenderList(heartDefender);
     }
 
@@ -143,6 +144,17 @@ public class HeartDefenderManager : MonoBehaviour
     public void EnableOptionsForEnemyAttack()
     {
         _ui_HeartDefenderInteractions.EnableOptionsForEnemyAttack();
+    }
+
+    public int MaxDefenders()
+    {
+        return maxDefenders;
+    }
+
+    // reduces number of max defenders when a superdefender is created
+    public void ReduceMaxDefenders()
+    {
+        maxDefenders--;
     }
 
 

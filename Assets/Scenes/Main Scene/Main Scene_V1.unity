@@ -5108,7 +5108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -15}
+  m_AnchoredPosition: {x: -137, y: -15}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &989841966
@@ -14753,6 +14753,7 @@ MonoBehaviour:
   addDefenderButton: {fileID: 1467862331}
   cardContainer: {fileID: 2027400872}
   _ui_HeartDefenderInteractions: {fileID: 2027400875}
+  maxDefenders: 5
   battleGroundContainer: {fileID: 1834606679}
 --- !u!114 &2027400874
 MonoBehaviour:

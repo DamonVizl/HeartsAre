@@ -15,13 +15,16 @@ public class SuperDefender : MonoBehaviour
     public SuperDefenderType superDefenderType;
     private ISuperDefenderAbility superDefenderAbility;
     private SuperDefenderManager _superDefenderManager;
+    private HeartDefenderManager _heartDefenderManager;
 
     void Initialize(SuperDefenderType type, Image _defenderImageRef)
     {
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
+        _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
         ChangeDefenderSprite(_defenderImageRef);
         AssignAbility(type);
-        superDefenderAbility?.Activate();
+        superDefenderAbility?.Activate(_superDefenderManager);
+        _heartDefenderManager.ReduceMaxDefenders();
     }
 
     public void InitializeFromCard(Card card, Image _defenderImageRef)

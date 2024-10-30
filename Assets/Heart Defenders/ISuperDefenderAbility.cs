@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ISuperDefenderAbility
 {
-    void Activate();
+    void Activate(SuperDefenderManager value);
     void Deactivate();
     void ApplyPassiveEffect();
 }
