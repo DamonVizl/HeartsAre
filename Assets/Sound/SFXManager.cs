@@ -9,7 +9,10 @@ public class SFXManager : MonoBehaviour
     private AudioSource _audioSource;
 
     [SerializeField] private SO_SFX[] _audioClips;
-    private Dictionary<SFXName, SO_SFX> _sfxDictionary; 
+    private Dictionary<SFXName, SO_SFX> _sfxDictionary;
+
+    SFXName _previousClip;
+    //float _previousClipTimer = 0f; 
 
     private void OnEnable()
     {
@@ -38,27 +41,25 @@ public class SFXManager : MonoBehaviour
     }
     public void PlayFirstSound(SFXName clipName)
     {
-        PlaySound(_sfxDictionary[clipName].GetFirstAudioClip());
+        PlaySound(clipName, _sfxDictionary[clipName].GetFirstAudioClip());
     }
     public void PlayRandomSound(SFXName clipName)
     {
-        PlaySound(_sfxDictionary[clipName].GetRandomAudioClip());
+        PlaySound(clipName, _sfxDictionary[clipName].GetRandomAudioClip());
     }
     public void PlaySoundAtIndex(SFXName clipName, int index) 
     {
-        PlaySound(_sfxDictionary[clipName].GetClipAtIndex(index));
+        PlaySound(clipName, _sfxDictionary[clipName].GetClipAtIndex(index));
     }
-    private void PlaySound(AudioClip clip)
+    private void PlaySound(SFXName clipName, AudioClip clip)
     {
-        if(_audioSource.isPlaying)
+        if(clipName == _previousClip && _audioSource.isPlaying)
         {
-            if(clip == _audioSource.clip)
-            {
-                //if the clip is being played, play any futher ones of the same clip quieter
-                _audioSource.PlayOneShot(clip, 0.75f); 
-            }    
+            _audioSource.PlayOneShot(clip, 0.5f);
         }
         else _audioSource.PlayOneShot(clip);
+
+        _previousClip = clipName;
     }
 }
 public enum SFXName
