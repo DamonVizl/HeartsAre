@@ -104,7 +104,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     public void ResetPosition()
     {
         transform.SetParent(heartDefenderManager.cardContainer);
-        SetSiblingIndex(0);
+        _ui_heartDefender.SetSiblingIndex(0);
         _defenderSelected = false;
     }
 
@@ -113,7 +113,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         if (IsAbleToUpgrade())
         {
-            UpgradeCard(GetNextUpgradeCost());
+            UpgradeDefender(GetNextUpgradeCost());
 
         }
         else
@@ -124,7 +124,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    void UpgradeCard(int cost)
+    void UpgradeDefender(int cost)
     {
         // if player is already in ChooseSuperDefender state and clicks the X icon on defender, transition back to player state and switch back the icon
         if (playStateMachine.GetCurrentState() == PlayState.ChooseSuperDefender)
@@ -136,7 +136,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         {
             if (!isSuperDefender)
             {
-                if (heartRank == maxLevel)
+                if (BaseHeartRank() >= maxLevel)
                 {
                     CheckForSuperDefender();
                 }
@@ -151,15 +151,15 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     void UpgradeRank(int cost)
     {
         CurrencyManager.RemoveMoney(cost);
-        heartRank++;
+        IncreaseHeartRank();
         // add SubtractDifferenceToPlayer()
-        _ui_heartDefender.UpdateRankUI(heartRank);
+        _ui_heartDefender.UpdateRankUI(BaseHeartRank());
         //play the sfx 
         SFXManager.Instance.PlaySoundAtIndex(SFXName.LevelUpDefender, heartRank);
 
 
         // check if the upgrade icon needs to change to the superdefender icon
-        if (heartRank == 10)
+        if (BaseHeartRank() == 10)
         {
             SwitchUpgradeIcon();
         }
@@ -184,6 +184,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         _superDefenderManager.ClearSelectedDefender();
         Destroy(_upgradeIcon_Obj);
         Destroy(_rankCounter_Obj);
+        Destroy(_ui_heartDefender.bufferCounter.gameObject);
         Destroy(this);
         _ui_playerHand.EnablePlayerHandInteractionBtns();
 
@@ -207,20 +208,17 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     }
 
     // if heart takes enough damage that surpasses it's rank's damage threshold, decrease its rank
-    public void TakeDamage(int damage)
+    public void TakeDamage(int attackPower)
     {
         _ui_heartDefender.ShakeCamera();
         // track damage amt that surpasses defender's rank
-        int overDamage = 0;
-        _ui_heartDefender.ShowDamage(damage);
+        int actualDamage = 0;
+        _ui_heartDefender.ShowDamage(attackPower);
         // if damage amount is higher than the defender's, decrease the rank of the heart by the difference between the amount of damage and the heart's rank
-        if (damage > TotalHeartRank())
+        if (attackPower > TotalHeartRank())
         {
-            Debug.Log("Total heart Rank: " + TotalHeartRank());
-            overDamage = damage - heartRank;
-            Debug.Log("damage: " + damage);
-            Debug.Log("overdamage" + overDamage);
-            DecreaseRank(overDamage);
+            actualDamage = attackPower - TotalHeartRank();
+            DamageDefender(actualDamage);
             //play the sound for the player taking damage
             SFXManager.Instance.PlayRandomSound(SFXName.DestroyDefender);
         }
@@ -231,31 +229,30 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    void DecreaseRank(int damage)
+    void DamageDefender(int damage)
     {
         // tracks overkill damage
         int overKillDmg = 0;
 
-        overKillDmg = Mathf.Abs(heartRank -= damage);
+        overKillDmg = Mathf.Abs(TotalHeartRank() - damage);
 
-        _ui_heartDefender.ShowRankDecrease(overKillDmg, heartRank);
-
-        heartRank -= damage;
+        _ui_heartDefender.ShowRankDecrease(damage, TotalHeartRank());
+        DecreaseHeartRank(damage);
 
         // if heartRank is 0 or lower, destroy it and apply overkill damage to player
-        if (heartRank <= 0)
+        if (TotalHeartRank() <= 0)
         {
             DestroyHeart(overKillDmg);
         }
 
         // check if need to revert upgrade icon back to arrow icon
-        if (heartRank < maxLevel)
+        if (TotalHeartRank() < maxLevel)
         {
             SwitchUpgradeIcon();
         }
     }
 
-    void OverKillDamage(int damage)
+    void ApplyOverKillDamage(int damage)
     {
         // if this heart dies, player will receive overkill damage
         playerHealth.RemoveHealth(damage);
@@ -266,8 +263,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         heartDefenderManager.RemoveFromDefenderList(this);
         heartDefenderManager.RemoveDefenderForAttack(this);
-        // apply overkill
-        OverKillDamage(damage);
+        // apply overkill damage to palyer
+        ApplyOverKillDamage(damage);
         // destroy this heart
         Destroy(this.gameObject);
         SFXManager.Instance.PlayRandomSound(SFXName.DefenderKilled);
@@ -277,7 +274,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private int GetNextUpgradeCost()
     {
         int levelUpCost = 0;
-        levelUpCost = Mathf.RoundToInt(heartRank * fixedCost);
+        levelUpCost = Mathf.RoundToInt(BaseHeartRank() * fixedCost);
 
         return levelUpCost;
     }
@@ -300,7 +297,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            if (heartRank == 10)
+            if (BaseHeartRank() == 10)
             {
                 upgradeArrowIcon.sprite = _superDefenderUpgradeIconSprite;
             }
@@ -314,18 +311,15 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // returns the total heart rank of the defender + any superdefender of type Kings in play
     public int TotalHeartRank()
     {
-        int totalHeartRank = heartRank;
+        int totalHeartRank = BaseHeartRank();
         if (_superDefenderManager != null)
         {
             int numberOfKingSuperdefendersInPlay = _superDefenderManager.GetKingDefenders().Count;
-            totalHeartRank = heartRank += numberOfKingSuperdefendersInPlay;
+            totalHeartRank = BaseHeartRank() + numberOfKingSuperdefendersInPlay;
         }
 
         return totalHeartRank;
     }
-
-    // resets the layout of the heart defenders in horizontal layout
-    private void SetSiblingIndex(int index) => transform.SetSiblingIndex(index);
 
 
     // actual heartRank of the defender without including buffs
@@ -342,6 +336,15 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    public void IncreaseHeartRank()
+    {
+        heartRank++;
+    }
+
+    public void DecreaseHeartRank(int value)
+    {
+        heartRank -= value;
+    }
 
 
 

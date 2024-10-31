@@ -100,6 +100,7 @@ public class UI_HeartDefender : MonoBehaviour
         bufferCounter.gameObject.SetActive(false);
     }
 
+    public void SetSiblingIndex(int index) => transform.SetSiblingIndex(index);
 
 
     public void ShakeCamera()

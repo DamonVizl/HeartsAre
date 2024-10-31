@@ -14753,7 +14753,6 @@ MonoBehaviour:
   addDefenderButton: {fileID: 1467862331}
   cardContainer: {fileID: 2027400872}
   _ui_HeartDefenderInteractions: {fileID: 2027400875}
-  maxDefenders: 5
   battleGroundContainer: {fileID: 1834606679}
 --- !u!114 &2027400874
 MonoBehaviour:

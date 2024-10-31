@@ -6,10 +6,10 @@ public class KingDefenderAbility : ISuperDefenderAbility
 {
     private SuperDefenderManager _superDefenderManager;
 
-    public void Activate(SuperDefenderManager value)
+    public void Activate(SuperDefenderManager sdm)
     {
         Debug.Log("King super defender is in play");
-        _superDefenderManager = value;
+        _superDefenderManager = sdm;
         ApplyPassiveEffect();
         
     }

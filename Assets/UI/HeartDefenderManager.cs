@@ -155,10 +155,5 @@ public class HeartDefenderManager : MonoBehaviour
     {
         return maxDefenders;
     }
-
-    // reduces number of max defenders when a superdefender is created
-   
-
-
-
+  
 }
