@@ -14,9 +14,6 @@ public class Enemy
     private static UI_Enemy _ui_enemy;
 
     private static float _damageMultiplier = 1f;
-    private static float _damageIncreasePerTurn = .1f;
-    private static float _numAttacksMultiplier = 1f;
-    private static float _numAttacksIncreasePerTurn = .1f;
 
     private static int _turnCounter = 0;
     private static int _turnsToIncrease = 2; // Number of turns after which to increase values
@@ -37,12 +34,10 @@ public class Enemy
         List<HeartDefender> defendersForThisAttack = _heartDefenderManager.getDefendersForThisAttack();
         StartAttack(value, defendersForThisAttack);
 
-        // Increase turn counter and check if values need to be increased
-        _turnCounter++;
-        if (_turnCounter % _turnsToIncrease == 0)
-        {
-            IncreaseValues();
-        }
+        // Increment turn counter 
+        UpdateTurnCounter();
+        // check if values need to be increased
+        UpdateAttackPower();
     }
 
     public static void StartAttack(int value, List<HeartDefender> defenders)
@@ -82,5 +77,18 @@ public class Enemy
     public static HeartDefenderManager GetHeartDefenderManager()
     {
         return _heartDefenderManager;
+    }
+
+    public static void UpdateTurnCounter()
+    {
+        _turnCounter++;
+    }
+
+    public static void UpdateAttackPower()
+    {
+        if (_turnCounter % _turnsToIncrease == 0)
+        {
+            IncreaseValues();
+        }
     }
 }
