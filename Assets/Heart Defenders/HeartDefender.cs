@@ -159,7 +159,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
 
         // check if the upgrade icon needs to change to the superdefender icon
-        if (BaseHeartRank() == 10)
+        if (BaseHeartRank() == maxLevel)
         {
             SwitchUpgradeIcon();
         }
@@ -179,8 +179,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         isSuperDefender = true; // set this flag to true so player can no longer use to block attacks
         SuperDefender superDefender = gameObject.AddComponent<SuperDefender>();
         heartDefenderManager.RemoveFromDefenderList(this);
-        superDefender.InitializeFromCard(card, _defenderSprite);
         _superDefenderManager.AddSuperDefender(superDefender);
+        superDefender.InitializeFromCard(card, _defenderSprite);
         _superDefenderManager.ClearSelectedDefender();
         Destroy(_upgradeIcon_Obj);
         Destroy(_rankCounter_Obj);
@@ -297,7 +297,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            if (BaseHeartRank() == 10)
+            if (BaseHeartRank() == maxLevel)
             {
                 upgradeArrowIcon.sprite = _superDefenderUpgradeIconSprite;
             }
