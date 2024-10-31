@@ -24,7 +24,6 @@ public class SuperDefender : MonoBehaviour
         ChangeDefenderSprite(_defenderImageRef);
         AssignAbility(type);
         superDefenderAbility?.Activate(_superDefenderManager);
-        _heartDefenderManager.ReduceMaxDefenders();
     }
 
     public void InitializeFromCard(Card card, Image _defenderImageRef)
