@@ -89,8 +89,10 @@ public class HeartDefenderManager : MonoBehaviour
         newDefenderObj.transform.SetSiblingIndex(cardContainer.childCount - 2);
 
         HeartDefender heartDefender = newDefenderObj.GetComponent<HeartDefender>();
-        heartDefender.CheckAndShowBuffer();
+        UI_HeartDefender ui_heartDefender = newDefenderObj.GetComponent<UI_HeartDefender>();
         AddToDefenderList(heartDefender);
+        CheckForKingSuperDefenderBuff();
+        heartDefender.CheckAndShowBuffer();
     }
 
     public void AddToDefenderList(HeartDefender defender)
@@ -148,6 +150,18 @@ public class HeartDefenderManager : MonoBehaviour
     public int MaxDefenders()
     {
         return maxDefenders;
+    }
+
+    public void CheckForKingSuperDefenderBuff()
+    {
+        SuperDefender kingSuperDefender = null;
+
+        if (_superDefenderManager.GetKingDefenders().Count > 0)
+        {
+            kingSuperDefender = _superDefenderManager.GetKingDefenders()[0];
+            kingSuperDefender.ApplyPassiveEffect();
+        }
+
     }
   
 }

@@ -27,7 +27,7 @@ public class UI_HeartDefender : MonoBehaviour
         dmgCounter.gameObject.SetActive(false);
         heartDefender = GetComponent<HeartDefender>();
         UpdateRankUI(heartDefender.BaseHeartRank());
-        HideBufferCounter();
+        //HideBufferCounter();
     }
 
 
