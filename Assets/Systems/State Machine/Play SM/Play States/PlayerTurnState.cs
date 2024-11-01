@@ -22,7 +22,7 @@ public class PlayerTurnState : BaseState<PlayState>
 
         //reset the number of tricks and number of hand refills 
         GameManager.Instance.TricksPlayedThisTurn = 0; 
-        GameManager.Instance.HandRefillsThisTurn = 0;
+        GameManager.Instance.DiscardsThisTurn = 0;
         
     }
 

@@ -58,8 +58,8 @@ public class CardManager : MonoBehaviour
                     }
                 }
             }
-            else if(GameManager.Instance.HandRefillsThisTurn >= GameManager.Instance.MaxHandRefillsPerTurn) {
-                UI_MessageManager.Instance.ShowMessage("Max draws exceeded"); 
+            else if(GameManager.Instance.DiscardsThisTurn >= GameManager.Instance.MaxDiscardsPerTurn) {
+                UI_MessageManager.Instance.ShowMessage("Max discards exceeded"); 
                 return;  
             }
             {
@@ -67,6 +67,7 @@ public class CardManager : MonoBehaviour
                 if (cardsToRemove.Count > 0)
                 {
                     DiscardCards(cardsToRemove);
+                    GameManager.Instance.DiscardsThisTurn++; 
                     //_psm.TransitionToState(PlayState.HeartDefenders);
                 }
             }
@@ -103,13 +104,7 @@ public class CardManager : MonoBehaviour
         //only draw a card if in the player turn 
         if (_psm.GetCurrentState() == PlayState.PlayerTurn)
         {
-            if (GameManager.Instance.HandRefillsThisTurn >= GameManager.Instance.MaxHandRefillsPerTurn)
-            {
-                //if too many hands have been refilled, return
-                UI_MessageManager.Instance.ShowMessage("Hand refills have exceeded maximum"); 
-                return; 
-            }
-            if (_hand.GetCurrentNumberOfCardsInCollection() >= _hand.MaxCollectionSize)
+             if (_hand.GetCurrentNumberOfCardsInCollection() >= _hand.MaxCollectionSize)
             {
                 //if the hand is full, don't draw
                 UI_MessageManager.Instance.ShowMessage("Hand full, cannot draw"); 
@@ -125,10 +120,7 @@ public class CardManager : MonoBehaviour
                     //if the card couldn't be added, return it back to the original. TODO: I don't think this is putting it back to original spot, it's putting it into the first empty (which may be...)
                     _drawPile.AddCard(drawnCard);
                 }
-            }
-            //increase the number of draws
-            GameManager.Instance.HandRefillsThisTurn++; 
-            
+            }            
         }
     }
     /// <summary>

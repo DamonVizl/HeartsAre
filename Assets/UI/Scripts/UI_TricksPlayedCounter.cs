@@ -9,12 +9,12 @@ public class UI_TricksPlayedCounter : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
-        GameManager.OnTrickPlayed += UpdateTrickPlayed; 
+        GameManager.OnTrickPlayedValueChanged += UpdateTrickPlayed; 
     }
     private void OnDisable()
     {
         _tricksCounter.text = string.Empty;
-        GameManager.OnTrickPlayed -= UpdateTrickPlayed;
+        GameManager.OnTrickPlayedValueChanged -= UpdateTrickPlayed;
     }
     private void UpdateTrickPlayed(int tricksPlayed)
     {

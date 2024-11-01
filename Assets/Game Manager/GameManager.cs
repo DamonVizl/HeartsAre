@@ -12,18 +12,18 @@ public class GameManager : MonoBehaviour
     private int _startingMoney = 900;
     public int TurnsSurvived { get; private set; } = 0; //the number of turns the player has survived, if it exceeds a threshold the player wins the round
     public int TurnsRequiredToWin { get; private set; } = 20; //how many turns the player must survive to pass the level. 
-    private int _handRefillsThisTurn = 0; //this field tracks how many times the player has drawn cards 
-    public int HandRefillsThisTurn 
+    private int _discardsThisTurn = 0; //this field tracks how many times the player has drawn cards 
+    public int DiscardsThisTurn 
     { 
-        get { return _handRefillsThisTurn;  } 
+        get { return _discardsThisTurn;  } 
         set{ 
-            _handRefillsThisTurn = value;  
-            OnHandRefill?.Invoke(value); 
+            _discardsThisTurn = value;  
+            OnCardsDiscardedValueChanged?.Invoke(value); 
         } 
     }  
-    public int MaxHandRefillsPerTurn 
+    public int MaxDiscardsPerTurn 
     { get; private set; } = 3; //max number of draws (hand refills) per turn
-    public static event Action<int> OnHandRefill;  //an event to sub to to change UI
+    public static event Action<int> OnCardsDiscardedValueChanged;  //an event to sub to to change UI
     private int _tricksPlayedThisTurn = 0;//how many tricks have been played this turn
 
     public int TricksPlayedThisTurn
@@ -32,12 +32,12 @@ public class GameManager : MonoBehaviour
         set
         {
             _tricksPlayedThisTurn = value;
-            OnTrickPlayed?.Invoke(value);
+            OnTrickPlayedValueChanged?.Invoke(value);
         }
     }
 
     public int MaxNumberOfTricksPlayablePerTurn { get; private set; } = 3; //max number of tricks playable in a turn
-    public static event Action<int> OnTrickPlayed; //an event to sub to to change the UI
+    public static event Action<int> OnTrickPlayedValueChanged; //an event to sub to to change the UI
     public PlayerHealth PlayerHealth { get; private set; } //player's health class. 
     public CurrencyManager CurrencyManager { get; private set; }
     public Enemy Enemy { get; private set; }

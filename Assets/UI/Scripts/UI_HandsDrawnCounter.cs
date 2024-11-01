@@ -9,15 +9,15 @@ public class UI_HandsDrawnCounter : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
-        GameManager.OnHandRefill += UpdateTrickPlayed; 
+        GameManager.OnCardsDiscardedValueChanged += UpdateTrickPlayed; 
     }
     private void OnDisable()
     {
         _handsDrawnCounter.text = string.Empty;
-        GameManager.OnHandRefill -= UpdateTrickPlayed;
+        GameManager.OnCardsDiscardedValueChanged -= UpdateTrickPlayed;
     }
     private void UpdateTrickPlayed(int handsDrawn)
     {
-        _handsDrawnCounter.text = $"{handsDrawn}/{GameManager.Instance.MaxHandRefillsPerTurn}"; 
+        _handsDrawnCounter.text = $"{handsDrawn}/{GameManager.Instance.MaxDiscardsPerTurn}"; 
     }
 }
