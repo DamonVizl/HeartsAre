@@ -31,7 +31,7 @@ public class DiscardCardState : BaseState<PlayState>
 
     public override PlayState GetNextState()
     {
-        return PlayState.DiscardCards; 
+        return PlayState.PlayerTurn; 
     }
 
     public override void UpdateState()

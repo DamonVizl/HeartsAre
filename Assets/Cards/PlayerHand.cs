@@ -110,12 +110,19 @@ public class PlayerHand : CardCollection
     /// </summary>
     public void SubmitTrick()
     {
+        if (GameManager.Instance.TricksPlayedThisTurn >= GameManager.Instance.MaxNumberOfTricksPlayablePerTurn)
+        {
+            UI_MessageManager.Instance.ShowMessage("Max tricks played this turn"); 
+            return; //if too many tricks have been played, return
+        }
         int score = _trickScorer.CalculateHand(_selectedCards);
+        //trick failed
         if (score == 0)
         {
             SFXManager.Instance.PlayFirstSound(SFXName.TrickFailed);
             return;
         }
+        //trick succeeded
         else
         {
             SFXManager.Instance.PlayFirstSound(SFXName.TrickSucceeded);
@@ -131,6 +138,13 @@ public class PlayerHand : CardCollection
                 RemoveCard(card);
             }
             OnTrickScore?.Invoke(score);
+            GameManager.Instance.TricksPlayedThisTurn++; 
+            //once max tricks have been played, 
+            if(GameManager.Instance.TricksPlayedThisTurn == GameManager.Instance.MaxNumberOfTricksPlayablePerTurn )
+            {
+                UI_MessageManager.Instance.ShowMessage("Max tricks played this turn, select end turn");
+
+            }
         }
 
 

@@ -58,13 +58,16 @@ public class CardManager : MonoBehaviour
                     }
                 }
             }
-            else if (_psm.GetCurrentState() == PlayState.DiscardCards)
+            else if(GameManager.Instance.HandRefillsThisTurn >= GameManager.Instance.MaxHandRefillsPerTurn) {
+                UI_MessageManager.Instance.ShowMessage("Max draws exceeded"); 
+                return;  
+            }
             {
                 List<Card> cardsToRemove = new List<Card>(_hand.GetCurrentlySelectedCards());
                 if (cardsToRemove.Count > 0)
                 {
                     DiscardCards(cardsToRemove);
-                    _psm.TransitionToState(PlayState.HeartDefenders);
+                    //_psm.TransitionToState(PlayState.HeartDefenders);
                 }
             }
         }
@@ -97,16 +100,35 @@ public class CardManager : MonoBehaviour
             Debug.Log("draw pile empty");
             ReshuffleDiscardPileIntoDrawPile();
         }
-        //only draw a card if in the player turn (and haven't exceed max allowable cards in hand)
-        if (_psm.GetCurrentState() == PlayState.PlayerTurn && _hand.GetCurrentNumberOfCardsInCollection() < _hand.MaxCollectionSize)
+        //only draw a card if in the player turn 
+        if (_psm.GetCurrentState() == PlayState.PlayerTurn)
         {
-            //Debug.Log("Drawing a card"); 
-            Card drawnCard = _drawPile.DrawCard();
-            if (!_hand.AddCard(drawnCard))
+            if (GameManager.Instance.HandRefillsThisTurn >= GameManager.Instance.MaxHandRefillsPerTurn)
             {
-                //if the card couldn't be added, return it back to the original. TODO: I don't think this is putting it back to original spot, it's putting it into the first empty (which may be...)
-                _drawPile.AddCard(drawnCard);
+                //if too many hands have been refilled, return
+                UI_MessageManager.Instance.ShowMessage("Hand refills have exceeded maximum"); 
+                return; 
             }
+            if (_hand.GetCurrentNumberOfCardsInCollection() >= _hand.MaxCollectionSize)
+            {
+                //if the hand is full, don't draw
+                UI_MessageManager.Instance.ShowMessage("Hand full, cannot draw"); 
+                return;  
+            }
+                         //fill the hand with cards
+                while (_hand.GetCurrentNumberOfCardsInCollection() < _hand.MaxCollectionSize)
+            {
+                Debug.Log("Drawing a card"); 
+                Card drawnCard = _drawPile.DrawCard();
+                if (!_hand.AddCard(drawnCard))
+                {
+                    //if the card couldn't be added, return it back to the original. TODO: I don't think this is putting it back to original spot, it's putting it into the first empty (which may be...)
+                    _drawPile.AddCard(drawnCard);
+                }
+            }
+            //increase the number of draws
+            GameManager.Instance.HandRefillsThisTurn++; 
+            
         }
     }
     /// <summary>

@@ -13,7 +13,7 @@ public class PlayStateMachine : BaseStateMachine<PlayState>
         States.Add(PlayState.Menu, new MenuState( this, PlayState.Menu));
         States.Add(PlayState.PlayerTurn, new PlayerTurnState(this, PlayState.PlayerTurn));
         States.Add(PlayState.HeartDefenders, new HeartDefenderState(this, PlayState.HeartDefenders));
-        States.Add(PlayState.DiscardCards, new DiscardCardState(this, PlayState.DiscardCards));
+        //States.Add(PlayState.DiscardCards, new DiscardCardState(this, PlayState.DiscardCards));
         States.Add(PlayState.ChooseSuperDefender, new ChooseSuperDefenderState(this, PlayState.ChooseSuperDefender));
         States.Add(PlayState.EnemyTurn, new EnemyTurnState(this, PlayState.EnemyTurn));
         States.Add(PlayState.Lose, new LoseState(this, PlayState.Lose));
@@ -43,7 +43,7 @@ public enum PlayState
     PlayerTurn,
     HeartDefenders,
     ChooseSuperDefender,
-    DiscardCards,
+    //DiscardCards,
     EnemyTurn,
     Lose,
     Win,

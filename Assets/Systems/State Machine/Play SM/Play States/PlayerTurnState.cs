@@ -19,6 +19,10 @@ public class PlayerTurnState : BaseState<PlayState>
         //update UI to show that it's the players turn
         //enable player control
         UI_Button_EndPlayerTurn.OnEndTurnButtonPressed += EndTurn; // subscribe end turn function to End Turn button
+
+        //reset the number of tricks and number of hand refills 
+        GameManager.Instance.TricksPlayedThisTurn = 0; 
+        GameManager.Instance.HandRefillsThisTurn = 0;
         
     }
 
@@ -42,7 +46,8 @@ public class PlayerTurnState : BaseState<PlayState>
     // end turn and switch to enemy turn
     public override void EndTurn()
     {
-        // Check if the player has drawn at least one card
+        _stateMachine.TransitionToState(PlayState.HeartDefenders); 
+/*        // Check if the player has drawn at least one card
         if (GameManager.Instance.GetPlayerHandClass().GetCurrentNumberOfCardsInCollection() > 0)
         {
             _stateMachine.TransitionToState(PlayState.DiscardCards);
@@ -50,7 +55,7 @@ public class PlayerTurnState : BaseState<PlayState>
         else
         {
             Debug.Log("Player must draw at least one card before ending their turn.");
-        }
+        }*/
     }
 
 }
