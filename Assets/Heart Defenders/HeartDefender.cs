@@ -183,8 +183,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         isSuperDefender = true; // set this flag to true so player can no longer use to block attacks
         SuperDefender superDefender = gameObject.AddComponent<SuperDefender>();
         heartDefenderManager.RemoveFromDefenderList(this);
-        _superDefenderManager.AddSuperDefender(superDefender);
         superDefender.InitializeFromCard(card, _defenderSprite);
+        _superDefenderManager.AddSuperDefender(superDefender);
         _superDefenderManager.ClearSelectedDefender();
         Destroy(_upgradeIcon_Obj);
         Destroy(_rankCounter_Obj);
