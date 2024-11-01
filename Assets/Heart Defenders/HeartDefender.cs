@@ -40,7 +40,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject _upgradeIcon_Obj;
     [SerializeField] private GameObject _rankCounter_Obj;
 
-    private UI_HeartDefenderInteractions _ui_heartDefenderInteractions;
     private UI_PlayerHand _ui_playerHand;
 
 
@@ -58,8 +57,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
         _originalPosition = transform.position;
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
-
-        _ui_heartDefenderInteractions = FindObjectOfType<UI_HeartDefenderInteractions>();
 
         _ui_playerHand = FindObjectOfType<UI_PlayerHand>();
  
@@ -136,13 +133,20 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         {
             if (!isSuperDefender)
             {
-                if (BaseHeartRank() >= maxLevel)
+                // if defender is at the max level and is not selected for defense this round, then check if super defender is upgrade is plausible
+                if (BaseHeartRank() >= maxLevel && !_defenderSelected)
                 {
                     CheckForSuperDefender();
                 }
-                else
+                else if (BaseHeartRank() < maxLevel)
                 {
                     UpgradeRank(cost);
+                }
+                else
+                {
+                    // play error fx
+                    SFXManager.Instance.PlayRandomSound(SFXName.PurchaseFailed);
+                    _ui_heartDefender.ShakeCamera();
                 }
             }
         }
