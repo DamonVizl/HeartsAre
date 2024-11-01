@@ -10,7 +10,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int heartRank;
     public int fixedCost;
- 
+
     [SerializeField] private float levelUpRateIncrease;
     [SerializeField] private GameManager gameManager;
     private PlayerHealth playerHealth;
@@ -59,7 +59,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
 
         _ui_playerHand = FindObjectOfType<UI_PlayerHand>();
- 
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -84,7 +84,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         transform.SetParent(heartDefenderManager.battleGroundContainer);
         heartDefenderManager.AddDefenderForAttack(this);
         _defenderSelected = true;
-        SFXManager.Instance.PlayRandomSound(SFXName.SelectDefender); 
+        SFXManager.Instance.PlayRandomSound(SFXName.SelectDefender);
     }
 
 
@@ -202,7 +202,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         {
             playStateMachine.TransitionToState(PlayState.Win);
         }
-        
+
     }
 
 
@@ -226,7 +226,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         // if damage amount is higher than the defender's, decrease the rank of the heart by the difference between the amount of damage and the heart's rank
         if (attackPower > TotalHeartRank())
         {
-            actualDamage = attackPower - TotalHeartRank();
+            actualDamage = Mathf.Abs(TotalHeartRank() - attackPower);
+            Debug.Log("actual damage: " + actualDamage);
             DamageDefender(actualDamage);
             //play the sound for the player taking damage
             SFXManager.Instance.PlayRandomSound(SFXName.DestroyDefender);
@@ -241,17 +242,20 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     void DamageDefender(int damage)
     {
         // tracks overkill damage
-        int overKillDmg = 0;
 
-        overKillDmg = Mathf.Abs(TotalHeartRank() - damage);
 
-        _ui_heartDefender.ShowRankDecrease(damage, TotalHeartRank());
-        DecreaseHeartRank(damage);
+        int totalDamage = damage;
+
+        int currentHeartRank = TotalHeartRank();
+        _ui_heartDefender.ShowRankDecrease(totalDamage, BaseHeartRank());
+        DecreaseHeartRank(totalDamage);
 
         // if heartRank is 0 or lower, destroy it and apply overkill damage to player
         if (TotalHeartRank() <= 0)
         {
-            DestroyHeart(overKillDmg);
+            ApplyOverKillDamage(totalDamage);
+            DestroyHeart();
+            //Debug.Log("over kill damage: " + totalDamage);
         }
 
         // check if need to revert upgrade icon back to arrow icon
@@ -260,24 +264,25 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
             SwitchUpgradeIcon();
         }
     }
+    void DestroyHeart()
+    {
+        heartDefenderManager.RemoveFromDefenderList(this);
+        heartDefenderManager.RemoveDefenderForAttack(this);
+        // apply overkill damage to palyer
+      
+        // destroy this heart
+        Destroy(this.gameObject);
+        SFXManager.Instance.PlayRandomSound(SFXName.DefenderKilled);
+    }
 
     void ApplyOverKillDamage(int damage)
     {
+ 
         // if this heart dies, player will receive overkill damage
         playerHealth.RemoveHealth(damage);
         SFXManager.Instance.PlayRandomSound(SFXName.PlayerTakeDamage);
     }
 
-    void DestroyHeart(int damage)
-    {
-        heartDefenderManager.RemoveFromDefenderList(this);
-        heartDefenderManager.RemoveDefenderForAttack(this);
-        // apply overkill damage to palyer
-        ApplyOverKillDamage(damage);
-        // destroy this heart
-        Destroy(this.gameObject);
-        SFXManager.Instance.PlayRandomSound(SFXName.DefenderKilled);
-    }
 
     // calculates this heart defender's next upgrade cost
     private int GetNextUpgradeCost()

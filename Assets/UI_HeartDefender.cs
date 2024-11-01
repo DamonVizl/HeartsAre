@@ -19,7 +19,7 @@ public class UI_HeartDefender : MonoBehaviour
     public float tweenDownDistance;
     public float tweenDuration;
     public float pauseDuration;
-  
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,6 @@ public class UI_HeartDefender : MonoBehaviour
         dmgCounter.gameObject.SetActive(false);
         heartDefender = GetComponent<HeartDefender>();
         UpdateRankUI(heartDefender.BaseHeartRank());
-        //HideBufferCounter();
     }
 
 
@@ -79,13 +78,12 @@ public class UI_HeartDefender : MonoBehaviour
     private IEnumerator AnimateRankDecrease(int damage, int heartRank)
     {
         int currentRank = heartRank;
-        for (int i = heartRank; i >= heartRank; i--)
+        for (int i = damage; i > 0; i--)
         {
             currentRank--;
             UpdateRankUI(currentRank);
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.5f);
         }
-    
     }
 
 

@@ -59,7 +59,7 @@ public class Enemy
     {
         int randomDamage = UnityEngine.Random.Range(_minDamage, _maxDamage);
         int scaledDamage = Mathf.RoundToInt(randomDamage * _damageMultiplier); // scale the damage to the current turn
-        Debug.Log("Damge: " + scaledDamage);
+        Debug.Log("Damage: " + scaledDamage);
         return scaledDamage;
     }
 
