@@ -186,6 +186,11 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         superDefender.InitializeFromCard(card, _defenderSprite);
         _superDefenderManager.AddSuperDefender(superDefender);
         _superDefenderManager.ClearSelectedDefender();
+        // check if this is super defender type king so that buff shows in this turn
+        if (superDefender.superDefenderType == SuperDefender.SuperDefenderType.King)
+        {
+            superDefender.ApplyPassiveEffect();
+        }
         Destroy(_upgradeIcon_Obj);
         Destroy(_rankCounter_Obj);
         Destroy(_ui_heartDefender.bufferCounter.gameObject);
