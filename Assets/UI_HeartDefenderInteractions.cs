@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_HeartDefenderInteractions : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
     public GameObject noDefenderOption_UI;
     public GameObject addDefenderObj_UI;
     public GameObject endTurnButton;
+
+    public TextMeshProUGUI defenderCounter;
 
     [SerializeField] private HorizontalLayoutGroup layoutGroup;
 
@@ -63,4 +66,6 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
     {
         endTurnButton.SetActive(false);
     }
+
+    public void UpdateInventoryCounter(int remainingInventory) => defenderCounter.text = remainingInventory.ToString();
 }

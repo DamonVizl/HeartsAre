@@ -19,6 +19,7 @@ public class HeartDefenderManager : MonoBehaviour
     public UI_HeartDefenderInteractions _ui_HeartDefenderInteractions;
 
     [SerializeField] private const int maxDefenders = 5;
+    [SerializeField] private int heartDefenderInventory = 10;
     RectTransform parentRectTransform; // UI parent reference for camera shake
 
     public Transform battleGroundContainer;
@@ -34,6 +35,8 @@ public class HeartDefenderManager : MonoBehaviour
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
         CheckForStartingDefenders(); // check if there are any heart defenders in play at start of game and add to heartDefenders
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
+        _ui_HeartDefenderInteractions.UpdateInventoryCounter(GetRemainingDefenderInventory());
+
     }
 
     // checks if there are any heart defenders in play and adds them to the heartDefenders list - should be used at Start()
@@ -51,9 +54,9 @@ public class HeartDefenderManager : MonoBehaviour
     // if player has enough $ and hasn't exceeded the defender limit, add a new defender
     public void BuyDefender()
     {
-        int totalDefenders = heartDefenders.Count + _superDefenderManager.ActiveSuperDefenders.Count;
+        int totalDefenders = heartDefenders.Count;
 
-        if (totalDefenders < MaxDefenders())
+        if (totalDefenders < MaxDefenders() && GetRemainingDefenderInventory() > 0)
         {
             if (CurrencyManager.GetCurrentMoney() >= addDefenderCost)
             {
@@ -93,6 +96,7 @@ public class HeartDefenderManager : MonoBehaviour
         AddToDefenderList(heartDefender);
         CheckForKingSuperDefenderBuff();
         heartDefender.CheckAndShowBuffer();
+        RemoveDefenderFromInventory();
     }
 
     public void AddToDefenderList(HeartDefender defender)
@@ -162,6 +166,17 @@ public class HeartDefenderManager : MonoBehaviour
             kingSuperDefender.ApplyPassiveEffect();
         }
 
+    }
+
+    public int GetRemainingDefenderInventory()
+    {
+        return heartDefenderInventory;
+    }
+
+    public void RemoveDefenderFromInventory()
+    {
+        heartDefenderInventory -= 1;
+        _ui_HeartDefenderInteractions.UpdateInventoryCounter(GetRemainingDefenderInventory());
     }
   
 }

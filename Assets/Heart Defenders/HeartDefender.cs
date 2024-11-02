@@ -12,7 +12,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     public int fixedCost;
 
     [SerializeField] private float levelUpRateIncrease;
-    [SerializeField] private GameManager gameManager;
     private PlayerHealth playerHealth;
 
     private const int maxLevel = 10;
@@ -45,10 +44,8 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private void Start()
     {
         _ui_heartDefender = GetComponent<UI_HeartDefender>();
-        gameManager = FindObjectOfType<GameManager>();
         playerHealth = GameManager.Instance.PlayerHealth;
         playStateMachine = FindObjectOfType<PlayStateMachine>();
-
 
         heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
 
