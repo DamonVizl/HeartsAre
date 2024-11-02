@@ -10,6 +10,7 @@ public class QueenDefenderAbility : ISuperDefenderAbility
     public void Activate(SuperDefenderManager value)
     {
         Debug.Log("Queen super defender is in play");
+        GameManager.Instance.PlayerHealth.AddHealth(_healingAmount);
     }
 
     public void Deactivate()
