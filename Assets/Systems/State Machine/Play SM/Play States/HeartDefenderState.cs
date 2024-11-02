@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class HeartDefenderState : BaseState<PlayState>
 {
-    private PlayStateMachine _stateMachine; 
+    private PlayStateMachine _stateMachine;
+
     public HeartDefenderState(PlayStateMachine sm, PlayState key) : base(key)
     {
         _stateMachine = sm;
@@ -20,7 +21,7 @@ public class HeartDefenderState : BaseState<PlayState>
     {
         //show message about what to do in this state
         UI_MessageManager.Instance.ShowMessage("Click the plus sign to increase the HP of the card, click on the card to select it to take the hit!");
-        Enemy.GetHeartDefenderManager().EnableOptionsForEnemyAttack();
+        Enemy.Instance.GetHeartDefenderManager().EnableOptionsForEnemyAttack();
     }
 
     public override void ExitState()

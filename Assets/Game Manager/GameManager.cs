@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public static event Action<int> OnTrickPlayedValueChanged; //an event to sub to to change the UI
     public PlayerHealth PlayerHealth { get; private set; } //player's health class. 
     public CurrencyManager CurrencyManager { get; private set; }
-    public Enemy Enemy { get; private set; }
+    public Enemy _enemy;
     private HeartDefenderManager _heartDefenderManager;
     private UI_HeartDefenderInteractions _ui_HeartDefenderActions;
     private UI_DamageUpdater _ui_DamageUpdater;
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         TurnsSurvived = 0;
         OnTurnUpdated?.Invoke(TurnsSurvived);
         CurrencyManager = new CurrencyManager(_startingMoney);
-        Enemy = new Enemy(_heartDefenderManager, _ui_DamageUpdater, _ui_enemy);
+        _enemy = FindObjectOfType<Enemy>();
         _playerHand = FindObjectOfType<PlayerHand>();
     }
     #endregion

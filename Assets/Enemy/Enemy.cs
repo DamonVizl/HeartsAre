@@ -1,34 +1,47 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using System;
 
-public class Enemy
+public class Enemy : MonoBehaviour
 {
-    private static int _minDamage = 1;
-    private static int _maxDamage = 5;
-    private static int _minNumAttacks = 1;
-    private static int _maxNumAttacks = 2;
+    public static Enemy Instance;
 
-    private static HeartDefenderManager _heartDefenderManager;
-    private static UI_DamageUpdater _ui_damageUpdater;
-    private static UI_Enemy _ui_enemy;
+    private int _minDamage = 1;
+    private int _maxDamage = 5;
+    private int _minNumAttacks = 1;
+    private int _maxNumAttacks = 2;
 
-    private static float _damageMultiplier = 1f;
+    private HeartDefenderManager _heartDefenderManager;
+    private UI_DamageUpdater _ui_damageUpdater;
+    private UI_Enemy _ui_enemy;
 
-    private static int _turnCounter = 0;
-    private static int _turnsToIncrease = 2; // Number of turns after which to increase values
+    private float _damageMultiplier = 1f;
 
-    public static event Action<int> OnDamageCalculated;
+    private int _turnCounter = 0;
+    private int _turnsToIncrease = 2; // Number of turns after which to increase values
 
-    public Enemy(HeartDefenderManager heartDefenderRef, UI_DamageUpdater damageUpdater, UI_Enemy ui_enemy)
+    public event Action<int> OnDamageCalculated;
+
+    public void OnEnable()
     {
-        _heartDefenderManager = heartDefenderRef;
-        _ui_damageUpdater = damageUpdater;
-        _ui_enemy = ui_enemy;
+        //setup singleton
+        if (Instance == null) Instance = this;
+        else Destroy(this);
     }
 
+    private void Start()
+    {
+        _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
+        _ui_damageUpdater = FindObjectOfType<UI_DamageUpdater>();
+        _ui_enemy = FindObjectOfType<UI_Enemy>(); ;
+    }
+
+
+
     // Calls the attack method in UI_DamageUpdater so coroutines can be used for player reaction between attacks
-    public static void Attack()
+    public void Attack()
     {
         int value = CalculateNumOfAttacks();
         List<HeartDefender> defendersForThisAttack = _heartDefenderManager.getDefendersForThisAttack();
@@ -40,14 +53,14 @@ public class Enemy
         UpdateAttackPower();
     }
 
-    public static void StartAttack(int value, List<HeartDefender> defenders)
+    public void StartAttack(int value, List<HeartDefender> defenders)
     {
         _heartDefenderManager._ui_HeartDefenderInteractions.EnableOptionsForEnemyAttack();
         _ui_damageUpdater.StartAttack(value, defenders);
     }
 
     // Calculates a random number of attacks for this turn
-    public static int CalculateNumOfAttacks()
+    public int CalculateNumOfAttacks()
     {
         int randomNumAttacks = UnityEngine.Random.Range(_minNumAttacks, _maxNumAttacks);
 
@@ -55,7 +68,7 @@ public class Enemy
     }
 
     // Calculate a random amount of damage for an attack
-    public static int CalculateDamage()
+    public int CalculateDamage()
     {
         int randomDamage = UnityEngine.Random.Range(_minDamage, _maxDamage);
         int scaledDamage = Mathf.RoundToInt(randomDamage * _damageMultiplier); // scale the damage to the current turn
@@ -64,7 +77,7 @@ public class Enemy
     }
 
     // Increase min and max values after every 2 turns
-    private static void IncreaseValues()
+    private void IncreaseValues()
     {
         _minDamage += 1;
         _maxDamage += 2; // Increment more for max if desired
@@ -74,17 +87,17 @@ public class Enemy
         Debug.Log($"Values increased! MinDamage: {_minDamage}, MaxDamage: {_maxDamage}, MinNumAttacks: {_minNumAttacks}, MaxNumAttacks: {_maxNumAttacks}");
     }
 
-    public static HeartDefenderManager GetHeartDefenderManager()
+    public HeartDefenderManager GetHeartDefenderManager()
     {
         return _heartDefenderManager;
     }
 
-    public static void UpdateTurnCounter()
+    public void UpdateTurnCounter()
     {
         _turnCounter++;
     }
 
-    public static void UpdateAttackPower()
+    public void UpdateAttackPower()
     {
         if (_turnCounter % _turnsToIncrease == 0)
         {

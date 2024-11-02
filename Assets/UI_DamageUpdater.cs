@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class UI_DamageUpdater : MonoBehaviour
 {
-    public static event Action<HeartDefender> OnAttackExecuted; 
+    public static event Action<HeartDefender> OnAttackExecuted;
     TextMeshProUGUI _damageTMP;
 
     public float _attackDelay;
@@ -23,27 +23,66 @@ public class UI_DamageUpdater : MonoBehaviour
     private void Start()
     {
         _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
+
+        // Initialize _damageTMP in Start
+        _damageTMP = GetComponent<TextMeshProUGUI>();
+
+        // Check if _damageLabelTMP is assigned
+        if (_damageLabelTMP == null)
+        {
+            Debug.LogWarning("_damageLabelTMP is not assigned in the inspector.");
+        }
+
         HideDamageUI();
     }
 
     private void OnEnable()
     {
-        _damageTMP = GetComponent<TextMeshProUGUI>();
-        Enemy.OnDamageCalculated += UpdateDamageUI;
-
+        // Subscribe to the event if Enemy.Instance is not null
+        if (Enemy.Instance != null)
+        {
+            Enemy.Instance.OnDamageCalculated += UpdateDamageUI;
+        }
+        else
+        {
+            Debug.LogWarning("Enemy.Instance is null in OnEnable.");
+        }
     }
 
     private void OnDisable()
     {
-        Enemy.OnDamageCalculated -= UpdateDamageUI;
+        // Unsubscribe safely by checking if Enemy.Instance is not null
+        if (Enemy.Instance != null)
+        {
+            Enemy.Instance.OnDamageCalculated -= UpdateDamageUI;
+        }
+        else
+        {
+            Debug.LogWarning("Enemy.Instance is null in OnDisable.");
+        }
     }
 
     public void HideDamageUI()
     {
-        _damageLabelTMP.gameObject.SetActive(false);
-        _damageTMP.gameObject.SetActive(false);
-    }
+        // Check _damageLabelTMP and _damageTMP to avoid null errors
+        if (_damageLabelTMP != null)
+        {
+            _damageLabelTMP.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("_damageLabelTMP is null when attempting to hide it.");
+        }
 
+        if (_damageTMP != null)
+        {
+            _damageTMP.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("_damageTMP is null when attempting to hide it.");
+        }
+    }
     void ShowDamageUI()
     {
         _damageLabelTMP.gameObject.SetActive(true);
@@ -74,12 +113,12 @@ public class UI_DamageUpdater : MonoBehaviour
 
         while (attacksRemaining > 0)
         {
-            int dmg = Enemy.CalculateDamage();
+            int dmg = Enemy.Instance.CalculateDamage();
             HeartDefender randomDefender = null;
             if (defendersForThisAttack == null || defendersForThisAttack.Count == 0)
             {
                 // No defenders available, so attack the player directly
-                
+
                 GameManager.Instance.ReducePlayerHealth(dmg);
                 Debug.Log("No defenders available, attacking player for " + dmg + " damage.");
                 StartCoroutine(AnimateDamageText(dmg));
