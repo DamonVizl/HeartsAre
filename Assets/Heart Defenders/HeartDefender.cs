@@ -40,6 +40,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
 
     public UI_HeartDefender _ui_heartDefender;
+    public Animator _animator;
 
     private void Start()
     {
@@ -53,6 +54,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
 
         _ui_playerHand = FindObjectOfType<UI_PlayerHand>();
+        _animator = GetComponentInChildren<Animator>();
 
     }
 
@@ -253,6 +255,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         {
             ApplyOverKillDamage(totalDamage);
             DestroyHeart();
+           
         }
 
         // check if need to revert upgrade icon back to arrow icon
@@ -261,14 +264,14 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
             SwitchUpgradeIcon();
         }
     }
-    void DestroyHeart()
+    public void DestroyHeart()
     {
         heartDefenderManager.RemoveFromDefenderList(this);
         heartDefenderManager.RemoveDefenderForAttack(this);
         // apply overkill damage to palyer
-      
+
         // destroy this heart
-        Destroy(this.gameObject);
+        _animator.SetTrigger("Death");
         SFXManager.Instance.PlayRandomSound(SFXName.DefenderKilled);
     }
 
