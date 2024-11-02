@@ -82,7 +82,7 @@ public class UI_HeartDefender : MonoBehaviour
         {
             currentRank--;
             UpdateRankUI(currentRank);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

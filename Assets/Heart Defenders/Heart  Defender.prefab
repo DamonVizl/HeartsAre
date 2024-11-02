@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2640476892449232777}
   - component: {fileID: 6937183213971376672}
   - component: {fileID: 4467520538887708274}
-  - component: {fileID: 8301675286725281247}
+  - component: {fileID: 2094286738396814959}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc184264e343c2499a43fd43b6a120e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8301675286725281247
+--- !u!114 &2094286738396814959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,9 +120,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 153217972174040123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cc184264e343c2499a43fd43b6a120e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1119f154a793eeb4e83dd3f93a58a972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _headerText: Heart Defender
+  _bodyText: Place these in defense of your castle by selecting them after ending
+    your turn.
 --- !u!1 &790789692090551906
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +137,6 @@ GameObject:
   - component: {fileID: 1370522508620305041}
   - component: {fileID: 1431532237865530619}
   - component: {fileID: 2501639042924358325}
-  - component: {fileID: 2529139820758004703}
   - component: {fileID: 5560007189719337653}
   m_Layer: 5
   m_Name: Heart  Defender
@@ -202,20 +204,6 @@ MonoBehaviour:
   _rankCounter_Obj: {fileID: 5797290201377041477}
   _ui_heartDefender: {fileID: 5560007189719337653}
   _animator: {fileID: 0}
---- !u!114 &2529139820758004703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790789692090551906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1119f154a793eeb4e83dd3f93a58a972, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _headerText: Heart Defender
-  _bodyText: Takes Damage before your gate does. Press the plus to upgrade health
 --- !u!114 &5560007189719337653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +236,7 @@ GameObject:
   - component: {fileID: 7279331639315749855}
   - component: {fileID: 1094671589504198560}
   - component: {fileID: 602118938766206603}
+  - component: {fileID: 4505482177521163510}
   m_Layer: 5
   m_Name: Upgrade_Arrow
   m_TagString: Untagged
@@ -368,6 +357,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4505482177521163510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478167349209710841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1119f154a793eeb4e83dd3f93a58a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _headerText: Upgrade Defense
+  _bodyText: Use $ to upgrade this defender's defense level.
 --- !u!1 &1939773225263146726
 GameObject:
   m_ObjectHideFlags: 0
