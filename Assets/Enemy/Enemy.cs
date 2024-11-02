@@ -14,15 +14,12 @@ public class Enemy : MonoBehaviour
     private int _maxNumAttacks = 2;
 
     private HeartDefenderManager _heartDefenderManager;
-    private UI_DamageUpdater _ui_damageUpdater;
     private UI_Enemy _ui_enemy;
 
     private float _damageMultiplier = 1f;
 
     private int _turnCounter = 0;
     private int _turnsToIncrease = 2; // Number of turns after which to increase values
-
-    public event Action<int> OnDamageCalculated;
 
     public void OnEnable()
     {
@@ -34,7 +31,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
-        _ui_damageUpdater = FindObjectOfType<UI_DamageUpdater>();
         _ui_enemy = FindObjectOfType<UI_Enemy>(); ;
     }
 
@@ -56,7 +52,7 @@ public class Enemy : MonoBehaviour
     public void StartAttack(int value, List<HeartDefender> defenders)
     {
         _heartDefenderManager._ui_HeartDefenderInteractions.EnableOptionsForEnemyAttack();
-        _ui_damageUpdater.StartAttack(value, defenders);
+        GameManager.Instance.GetUI_DamageUpdater().StartAttack(value, defenders);
     }
 
     // Calculates a random number of attacks for this turn

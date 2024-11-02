@@ -38,28 +38,12 @@ public class UI_DamageUpdater : MonoBehaviour
 
     private void OnEnable()
     {
-        // Subscribe to the event if Enemy.Instance is not null
-        if (Enemy.Instance != null)
-        {
-            Enemy.Instance.OnDamageCalculated += UpdateDamageUI;
-        }
-        else
-        {
-            Debug.LogWarning("Enemy.Instance is null in OnEnable.");
-        }
+        GameManager.OnDamageCalculated += UpdateDamageUI;
     }
 
     private void OnDisable()
     {
-        // Unsubscribe safely by checking if Enemy.Instance is not null
-        if (Enemy.Instance != null)
-        {
-            Enemy.Instance.OnDamageCalculated -= UpdateDamageUI;
-        }
-        else
-        {
-            Debug.LogWarning("Enemy.Instance is null in OnDisable.");
-        }
+        GameManager.OnDamageCalculated -= UpdateDamageUI;
     }
 
     public void HideDamageUI()

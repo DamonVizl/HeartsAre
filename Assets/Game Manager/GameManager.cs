@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     #region Events
     public static event Action<int> OnTurnUpdated;
+    public static event Action<int> OnDamageCalculated;
     #endregion
     #region SetupMethods
     public void OnEnable()
