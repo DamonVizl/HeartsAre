@@ -27,9 +27,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     bool _defenderSelected = false;
     private Vector3 _originalPosition;
-
-    public bool isSuperDefender;
-
     public Sprite _superDefenderUpgradeIconSprite;
     public Sprite _upgradeArrowSprite;
     public Sprite _cancelUpgradeSprite;
@@ -79,7 +76,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private void SelectDefender()
     {
-        if (isSuperDefender == true) return;
 
         transform.SetParent(heartDefenderManager.battleGroundContainer);
         heartDefenderManager.AddDefenderForAttack(this);
@@ -131,23 +127,20 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            if (!isSuperDefender)
+            // if defender is at the max level, is not selected for defense this round, and max super defenders haven't been reached, then check if super defender is upgrade is plausible
+            if (BaseHeartRank() >= maxLevel && !_defenderSelected && _superDefenderManager.ActiveSuperDefenders.Count < _superDefenderManager.GetMaxSuperDefenders())
             {
-                // if defender is at the max level and is not selected for defense this round, then check if super defender is upgrade is plausible
-                if (BaseHeartRank() >= maxLevel && !_defenderSelected)
-                {
-                    CheckForSuperDefender();
-                }
-                else if (BaseHeartRank() < maxLevel)
-                {
-                    UpgradeRank(cost);
-                }
-                else
-                {
-                    // play error fx
-                    SFXManager.Instance.PlayRandomSound(SFXName.PurchaseFailed);
-                    _ui_heartDefender.ShakeCamera();
-                }
+                CheckForSuperDefender();
+            }
+            else if (BaseHeartRank() < maxLevel)
+            {
+                UpgradeRank(cost);
+            }
+            else
+            {
+                // play error fx
+                SFXManager.Instance.PlayRandomSound(SFXName.PurchaseFailed);
+                _ui_heartDefender.ShakeCamera();
             }
         }
     }
@@ -252,8 +245,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     void DamageDefender(int damage)
     {
         // tracks overkill damage
-
-
         int totalDamage = damage;
 
         int currentHeartRank = TotalHeartRank();
@@ -265,7 +256,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         {
             ApplyOverKillDamage(totalDamage);
             DestroyHeart();
-            //Debug.Log("over kill damage: " + totalDamage);
         }
 
         // check if need to revert upgrade icon back to arrow icon
@@ -302,8 +292,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
         return levelUpCost;
     }
-
-    // updates the badge counter
 
     public void PlayParticleEffect()
     {
