@@ -288,7 +288,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private int GetNextUpgradeCost()
     {
         int levelUpCost = 0;
-        levelUpCost = Mathf.RoundToInt(BaseHeartRank() * fixedCost);
+        levelUpCost = BaseHeartRank() * fixedCost;
 
         return levelUpCost;
     }
