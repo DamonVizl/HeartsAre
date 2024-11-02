@@ -180,30 +180,40 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     // use this to upgrade to super defender
     public void ChangeToSuperDefender(Card card)
     {
-        isSuperDefender = true; // set this flag to true so player can no longer use to block attacks
-        SuperDefender superDefender = gameObject.AddComponent<SuperDefender>();
-        heartDefenderManager.RemoveFromDefenderList(this);
-        superDefender.InitializeFromCard(card, _defenderSprite);
+
+        // Step 1: Instantiate a new GameObject for the SuperDefender
+        GameObject superDefenderObj = new GameObject("SuperDefender");
+        //superDefenderObj.transform.SetParent(_superDefenderManager.SuperDefenderPanel.transform, false); // Set as child of SuperDefenderPanel
+        SuperDefender superDefender = superDefenderObj.AddComponent<SuperDefender>();
+
+        // Step 2: Initialize the new SuperDefender component
+        Image superDefenderImage = superDefenderObj.AddComponent<Image>(); // Add an Image component for the defender icon
+        superDefender.InitializeFromCard(card, superDefenderImage);
+
+        // Step 3: Add to SuperDefenderManager
         _superDefenderManager.AddSuperDefender(superDefender);
         _superDefenderManager.ClearSelectedDefender();
-        // check if this is super defender type king so that buff shows in this turn
+
+        // Step 4: Apply any immediate effects for specific types
         if (superDefender.superDefenderType == SuperDefender.SuperDefenderType.King)
         {
             superDefender.ApplyPassiveEffect();
         }
-        Destroy(_upgradeIcon_Obj);
-        Destroy(_rankCounter_Obj);
-        Destroy(_ui_heartDefender.bufferCounter.gameObject);
-        Destroy(this);
+
+        // Step 5: Clean up the current object
+        heartDefenderManager.RemoveFromDefenderList(this);
+        Destroy(this.gameObject); // Remove this component
+
+        // Re-enable player hand interaction buttons
         _ui_playerHand.EnablePlayerHandInteractionBtns();
 
-        // if adding this super defender satisfies the superdefender win state, win the game
+        // Step 6: Check for win state after adding the SuperDefender
         if (_superDefenderManager.SuperDefenderWinStateMet())
         {
             playStateMachine.TransitionToState(PlayState.Win);
         }
-
     }
+
 
 
     // checks if player has enough money to upgrade this heart defender and is below max level (10)

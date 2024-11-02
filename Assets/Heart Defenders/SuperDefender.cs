@@ -73,20 +73,18 @@ public class SuperDefender : MonoBehaviour
     {
         if (_superDefenderManager == null) return;
 
-        // Set the sprite based on the defender type
-        switch (superDefenderType)
+        // Use the dictionary in SuperDefenderManager to get the correct sprite
+        Sprite defenderSprite = _superDefenderManager.GetSpriteForDefenderType(superDefenderType);
+        if (defenderSprite != null)
         {
-            case SuperDefenderType.Jack:
-                _defenderImageRef.sprite = _superDefenderManager._jackSuperDefenderSprite;
-                break;
-            case SuperDefenderType.Queen:
-                _defenderImageRef.sprite = _superDefenderManager._queenSuperDefenderSprite;
-                break;
-            case SuperDefenderType.King:
-                _defenderImageRef.sprite = _superDefenderManager._kingSuperDefenderSprite;
-                break;
+            _defenderImageRef.sprite = defenderSprite;
+        }
+        else
+        {
+            Debug.LogWarning("Sprite for this SuperDefenderType is not defined in SuperDefenderManager.");
         }
     }
+
 
 
 }

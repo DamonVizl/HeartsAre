@@ -14,20 +14,29 @@ public class SuperDefenderManager : MonoBehaviour
     public Sprite _kingSuperDefenderSprite;
 
     private HeartDefender _selectedHeartDefender;
-
     private HeartDefenderManager _heartDefenderManager;
 
+    // Dictionary to map SuperDefenderType to their corresponding sprites
+    private Dictionary<SuperDefender.SuperDefenderType, Sprite> _superDefenderSprites;
 
     public List<SuperDefender> ActiveSuperDefenders { get; private set; } = new List<SuperDefender>();
-
 
     private void Start()
     {
         _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
+
+        // Initialize the dictionary with sprites for each SuperDefenderType
+        _superDefenderSprites = new Dictionary<SuperDefender.SuperDefenderType, Sprite>
+        {
+            { SuperDefender.SuperDefenderType.Jack, _jackSuperDefenderSprite },
+            { SuperDefender.SuperDefenderType.Queen, _queenSuperDefenderSprite },
+            { SuperDefender.SuperDefenderType.King, _kingSuperDefenderSprite }
+        };
     }
 
     public void AddSuperDefender(SuperDefender defender)
     {
+        // Add defender to the appropriate list
         switch (defender.superDefenderType)
         {
             case SuperDefender.SuperDefenderType.Jack:
@@ -41,25 +50,16 @@ public class SuperDefenderManager : MonoBehaviour
                 break;
         }
 
+        // Add to active list and update UI
         ActiveSuperDefenders.Add(defender);
+        FindObjectOfType<SuperDefenderUI>().UpdateSuperDefenderIcons(ActiveSuperDefenders);
     }
 
-    public void RemoveSuperDefender(SuperDefender defender)
-    {
-        switch (defender.superDefenderType)
-        {
-            case SuperDefender.SuperDefenderType.Jack:
-                _jackDefenders.Remove(defender);
-                break;
-            case SuperDefender.SuperDefenderType.Queen:
-                _queenDefenders.Remove(defender);
-                break;
-            case SuperDefender.SuperDefenderType.King:
-                _kingDefenders.Remove(defender);
-                break;
-        }
 
-        ActiveSuperDefenders.Remove(defender);
+    // Method to get the sprite based on SuperDefenderType
+    public Sprite GetSpriteForDefenderType(SuperDefender.SuperDefenderType type)
+    {
+        return _superDefenderSprites.TryGetValue(type, out var sprite) ? sprite : null;
     }
 
     // Get lists for each type
