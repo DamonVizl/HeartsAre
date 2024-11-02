@@ -19,7 +19,8 @@ public class Enemy : MonoBehaviour
     private float _damageMultiplier = 1f;
 
     private int _turnCounter = 0;
-    private int _turnsToIncrease = 2; // Number of turns after which to increase values
+    private int _turnsToIncreaseDmg = 2; // Number of turns after which to increase values
+    private int _turnsToIncreaseAttacks = 4;
 
     public void OnEnable()
     {
@@ -73,15 +74,20 @@ public class Enemy : MonoBehaviour
     }
 
     // Increase min and max values after every 2 turns
-    private void IncreaseValues()
+    private void IncreaseDamage()
     {
-        _minDamage += 1;
-        _maxDamage += 2; // Increment more for max if desired
+        _maxDamage += 1;
+        Debug.Log($"Values increased! MinDamage: {_minDamage}, MaxDamage: {_maxDamage}, MinNumAttacks: {_minNumAttacks}, MaxNumAttacks: {_maxNumAttacks}");
+
+    }
+    private void IncreaseNumberOfAttacks()
+    {
         _minNumAttacks += 1;
         _maxNumAttacks += 1;
-
         Debug.Log($"Values increased! MinDamage: {_minDamage}, MaxDamage: {_maxDamage}, MinNumAttacks: {_minNumAttacks}, MaxNumAttacks: {_maxNumAttacks}");
+
     }
+
 
     public HeartDefenderManager GetHeartDefenderManager()
     {
@@ -95,9 +101,14 @@ public class Enemy : MonoBehaviour
 
     public void UpdateAttackPower()
     {
-        if (_turnCounter % _turnsToIncrease == 0)
+        if (_turnCounter % _turnsToIncreaseAttacks == 0)
         {
-            IncreaseValues();
+            IncreaseNumberOfAttacks();
+        }
+
+        if (_turnCounter % _turnsToIncreaseDmg == 0)
+        {
+            IncreaseDamage();
         }
     }
 }
