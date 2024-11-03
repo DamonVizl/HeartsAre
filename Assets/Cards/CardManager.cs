@@ -107,6 +107,10 @@ public class CardManager : MonoBehaviour
 
                     if (_superDefenderManager?.GetSelectedDefender() != null)
                     {
+                        if (cardForSuperDefender.GetCardValueAsInt() < 11)
+                        {
+                            return;
+                        }
                         _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender(cardForSuperDefender);
                         _psm.TransitionToPreviousState();
                     }
