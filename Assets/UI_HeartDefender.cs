@@ -71,6 +71,11 @@ public class UI_HeartDefender : MonoBehaviour
 
         dmgCounter.gameObject.SetActive(false);
 
+        if (rankMinusDmg < 0)
+        {
+            StartCoroutine(AnimateRankDecrease(Mathf.Abs(rankMinusDmg), heartRank));
+        }
+
     }
 
     public void ShowRankDecrease(int damage, int rank)
@@ -83,10 +88,6 @@ public class UI_HeartDefender : MonoBehaviour
         int currentRank = heartRank;
         for (int i = damage; i > 0; i--)
         {
-            if (currentRank <= 0)
-            {
-                break;
-            }
             currentRank--;
             UpdateRankUI(currentRank);
             yield return new WaitForSeconds(0.05f);

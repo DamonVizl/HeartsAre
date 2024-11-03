@@ -241,10 +241,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     {
         // tracks overkill damage
         int totalDamage = damage;
-
-        int currentHeartRank = BaseHeartRank();
-        _ui_heartDefender.ShowRankDecrease(totalDamage, currentHeartRank);
-
         DecreaseHeartRank(totalDamage);
 
         // if heartRank is 0 or lower, destroy it and apply overkill damage to player
