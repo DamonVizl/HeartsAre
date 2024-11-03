@@ -254,8 +254,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         if (TotalHeartRank() <= 0)
         {
             ApplyOverKillDamage(totalDamage);
-            DestroyHeart();
-           
         }
 
         // check if need to revert upgrade icon back to arrow icon
@@ -277,7 +275,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     void ApplyOverKillDamage(int damage)
     {
- 
+        DestroyHeart();
         // if this heart dies, player will receive overkill damage
         playerHealth.RemoveHealth(damage);
         SFXManager.Instance.PlayRandomSound(SFXName.PlayerTakeDamage);

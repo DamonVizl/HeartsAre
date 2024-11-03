@@ -8463,7 +8463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.3, y: 3.7}
+  m_AnchoredPosition: {x: 4, y: 3.7}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1176955702
@@ -8486,9 +8486,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'End Turn
-
-'
+  m_text: Done
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 629f75b272cf02549b4ca4de38f3e699, type: 2}
   m_sharedMaterial: {fileID: 1242389540105641787, guid: 629f75b272cf02549b4ca4de38f3e699, type: 2}
