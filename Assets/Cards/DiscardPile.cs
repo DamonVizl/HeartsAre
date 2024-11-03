@@ -13,7 +13,7 @@ public class DiscardPile : CardCollection
     }
     public Card[] GetAllCards()
     {
-        Debug.Log("discard pule size" + GetCurrentNumberOfCardsInCollection()); 
+        //Debug.Log("discard pule size" + GetCurrentNumberOfCardsInCollection()); 
         return _cards;
     }
 }

@@ -81,6 +81,7 @@ public class CardCollection : MonoBehaviour
                 if (_cards[i] == null)
                 {
                     _cards[i] = card;
+                    //Debug.Log($"Adding {card.Value} of {card.Suit} to index {i} in {this}");
                     //sets this as the card collection that the card is in (i.e. if it's just been added to the hand from the deck)
                     card.CurrentCardHolder = this;
                     return true;

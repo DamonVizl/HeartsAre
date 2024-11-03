@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
+[Serializable]
 public class Card
 {
     #region Fields

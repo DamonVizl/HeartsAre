@@ -19,7 +19,7 @@ public class PlayerHand : CardCollection
     private Trick _trickAttempt;*/ //removed this in favour of selectedCards, that way we can do more with the selected cards (discard them, burn them to make super defenders, etc)
 
     //a list of currently selected cards
-    List<Card> _selectedCards = new List<Card>();
+    [SerializeField] List<Card> _selectedCards = new List<Card>();
 
     protected override void Start()
     {
@@ -71,7 +71,8 @@ public class PlayerHand : CardCollection
         {
             if (_cards[i] == card)
             {
-                Debug.Log("removing " + card.Value + card.Suit);
+                card.OnCardSelectedInHand -= CardSelected;
+                card.OnCardDeselectedInHand -= CardDeselected;
                 CardDeselected(card);  ///remove it from the selected list
                 OnCardRemovedFromHand?.Invoke(i, card);
                 //_cardManager.DiscardCards(new List<Card> { card });
@@ -100,7 +101,6 @@ public class PlayerHand : CardCollection
         else
         {
             _selectedCards.Add(card);
-            Debug.Log("number of selected cards is: " + _selectedCards.Count);
 
             SFXManager.Instance.PlayRandomSound(SFXName.CardSelect);
         }

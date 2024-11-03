@@ -13,7 +13,7 @@ public class TrickScorer
     {
         int score = (int)handValue; 
         score *= (int)value;
-        Debug.Log("Scored a " + value.ToString() + " high " + handValue.ToString() + " " + score); 
+        //Debug.Log("Scored a " + value.ToString() + " high " + handValue.ToString() + " " + score); 
         OnTrickScored?.Invoke("Scored a " + value.ToString() + " high " + handValue.ToString()+". Adding $"+ score);
         return score; 
     }
