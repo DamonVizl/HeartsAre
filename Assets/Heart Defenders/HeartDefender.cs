@@ -16,8 +16,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     private const int maxLevel = 10;
 
-    public Image upgradeArrowIcon;
-
     [SerializeField] private PlayStateMachine playStateMachine;
 
     public ParticleSystem deathParticle;
@@ -26,9 +24,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     bool _defenderSelected = false;
     private Vector3 _originalPosition;
-    public Sprite _superDefenderUpgradeIconSprite;
-    public Sprite _upgradeArrowSprite;
-    public Sprite _cancelUpgradeSprite;
 
     private SuperDefenderManager _superDefenderManager;
     [SerializeField] private Image _defenderSprite;
@@ -118,7 +113,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         if (playStateMachine.GetCurrentState() == PlayState.ChooseSuperDefender)
         {
             playStateMachine.TransitionToPreviousState();
-            SwitchUpgradeIcon();
+            _ui_heartDefender.SwitchUpgradeIcon();
         }
         else
         {
@@ -153,7 +148,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         // check if the upgrade icon needs to change to the superdefender icon
         if (BaseHeartRank() == maxLevel)
         {
-            SwitchUpgradeIcon();
+            _ui_heartDefender.SwitchUpgradeIcon();
         }
     }
 
@@ -162,7 +157,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         playStateMachine.TransitionToState(PlayState.ChooseSuperDefender);
         _superDefenderManager.SetSelectedHeartDefender(this);
         _ui_playerHand.DisablePlayerHandInteractionBtns();
-        SwitchUpgradeIcon(); // change upgrade icon to the X so player can cancel
+        _ui_heartDefender.SwitchUpgradeIcon(); // change upgrade icon to the X so player can cancel
     }
 
     // use this to upgrade to super defender
@@ -252,7 +247,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         // check if need to revert upgrade icon back to arrow icon
         if (TotalHeartRank() < maxLevel)
         {
-            SwitchUpgradeIcon();
+            _ui_heartDefender.SwitchUpgradeIcon();
         }
     }
     void DestroyHeart()
@@ -276,7 +271,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
 
     // calculates this heart defender's next upgrade cost
-    private int GetNextUpgradeCost()
+    public int GetNextUpgradeCost()
     {
         int levelUpCost = 0;
         levelUpCost = BaseHeartRank() * fixedCost;
@@ -289,25 +284,6 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         if (deathParticle != null)
         {
             deathParticle.Play();
-        }
-    }
-
-    public void SwitchUpgradeIcon()
-    {
-        if (playStateMachine.GetCurrentState() == PlayState.ChooseSuperDefender)
-        {
-            upgradeArrowIcon.sprite = _cancelUpgradeSprite;
-        }
-        else
-        {
-            if (BaseHeartRank() == maxLevel)
-            {
-                upgradeArrowIcon.sprite = _superDefenderUpgradeIconSprite;
-            }
-            else
-            {
-                upgradeArrowIcon.sprite = _upgradeArrowSprite;
-            }
         }
     }
 
@@ -347,6 +323,11 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     public void DecreaseHeartRank(int value)
     {
         heartRank -= value;
+    }
+
+    public int GetMaxLevel()
+    {
+        return maxLevel;
     }
 
 

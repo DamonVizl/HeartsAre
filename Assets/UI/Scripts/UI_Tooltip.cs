@@ -5,15 +5,15 @@ using UnityEngine.EventSystems;
 
 public class UI_Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private string _headerText; 
-    [SerializeField] private string _bodyText;
+    [SerializeField] protected string _headerText; 
+    [SerializeField] protected string _bodyText;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         StopAllCoroutines();
         StartCoroutine(ShowUI(eventData)); 
     }
-    private IEnumerator ShowUI(PointerEventData eventData)
+    protected virtual IEnumerator ShowUI(PointerEventData eventData)
     {
         yield return new WaitForSeconds(1f); 
         RectTransform rectTransform = GetComponent<RectTransform>();

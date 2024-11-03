@@ -193,15 +193,9 @@ MonoBehaviour:
   heartRank: 1
   fixedCost: 5
   levelUpRateIncrease: 1.5
-  upgradeArrowIcon: {fileID: 1094671589504198560}
   playStateMachine: {fileID: 0}
   deathParticle: {fileID: 336853362505233834}
-  _superDefenderUpgradeIconSprite: {fileID: 21300000, guid: e672cb81f1c340b41bcc9e3aa0e0c97a, type: 3}
-  _upgradeArrowSprite: {fileID: 21300000, guid: 54a11c4dec0414c49907c3c2e5b29d70, type: 3}
-  _cancelUpgradeSprite: {fileID: 1089409602, guid: 6507ea00aee252e4b808209509158882, type: 3}
   _defenderSprite: {fileID: 0}
-  _upgradeIcon_Obj: {fileID: 1478167349209710841}
-  _rankCounter_Obj: {fileID: 5797290201377041477}
   _ui_heartDefender: {fileID: 5560007189719337653}
   _animator: {fileID: 0}
 --- !u!114 &5560007189719337653
@@ -224,6 +218,11 @@ MonoBehaviour:
   tweenDownDistance: 20
   tweenDuration: 0.5
   pauseDuration: 0.3
+  _superDefenderUpgradeIconSprite: {fileID: 21300000, guid: e672cb81f1c340b41bcc9e3aa0e0c97a, type: 3}
+  _upgradeArrowSprite: {fileID: 21300000, guid: 54a11c4dec0414c49907c3c2e5b29d70, type: 3}
+  _cancelUpgradeSprite: {fileID: 1089409602, guid: 6507ea00aee252e4b808209509158882, type: 3}
+  upgradeArrowIcon: {fileID: 1094671589504198560}
+  playStateMachine: {fileID: 0}
 --- !u!1 &1478167349209710841
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +235,7 @@ GameObject:
   - component: {fileID: 7279331639315749855}
   - component: {fileID: 1094671589504198560}
   - component: {fileID: 602118938766206603}
-  - component: {fileID: 4505482177521163510}
+  - component: {fileID: 8886641244415134562}
   m_Layer: 5
   m_Name: Upgrade_Arrow
   m_TagString: Untagged
@@ -260,7 +259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -16.5, y: -19.3}
+  m_AnchoredPosition: {x: -19, y: -23.2}
   m_SizeDelta: {x: 23.02, y: 21.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7279331639315749855
@@ -357,7 +356,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4505482177521163510
+--- !u!114 &8886641244415134562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -366,11 +365,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1478167349209710841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1119f154a793eeb4e83dd3f93a58a972, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b1cd848efe219549b2b9ced77682001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _headerText: Upgrade Defense
-  _bodyText: Use $ to upgrade this defender's defense level.
+  _bodyText: 'Upgrades this Heart Defender''s level. Next Level: ${0}'
+  _altHeaderText: Create Super Defender
+  _altBodyText: Select this crown then discard a face card (J, Q, K) to create a
+    Super Defender!
 --- !u!1 &1939773225263146726
 GameObject:
   m_ObjectHideFlags: 0

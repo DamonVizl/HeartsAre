@@ -13,16 +13,25 @@ public class UI_HeartDefender : MonoBehaviour
     public HeartDefender heartDefender;
     public TextMeshProUGUI bufferCounter;
 
-
     public float _damageAnimateSpeed;
 
     public float tweenDownDistance;
     public float tweenDuration;
     public float pauseDuration;
 
+    public Sprite _superDefenderUpgradeIconSprite;
+    public Sprite _upgradeArrowSprite;
+    public Sprite _cancelUpgradeSprite;
+    public Image upgradeArrowIcon;
+
+    [SerializeField] private PlayStateMachine playStateMachine;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        playStateMachine = FindObjectOfType<PlayStateMachine>();
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
         dmgCounter.gameObject.SetActive(false);
         heartDefender = GetComponent<HeartDefender>();
@@ -116,6 +125,25 @@ public class UI_HeartDefender : MonoBehaviour
         if (cameraShake != null && parentRectTransform != null)
         {
             cameraShake.StartCameraShake(.2f, .5f, parentRectTransform); // shake camera to signal unable to perform action
+        }
+    }
+
+    public void SwitchUpgradeIcon()
+    {
+        if (playStateMachine.GetCurrentState() == PlayState.ChooseSuperDefender)
+        {
+            upgradeArrowIcon.sprite = _cancelUpgradeSprite;
+        }
+        else
+        {
+            if (heartDefender.BaseHeartRank() == heartDefender.GetMaxLevel())
+            {
+                upgradeArrowIcon.sprite = _superDefenderUpgradeIconSprite;
+            }
+            else
+            {
+                upgradeArrowIcon.sprite = _upgradeArrowSprite;
+            }
         }
     }
 }
