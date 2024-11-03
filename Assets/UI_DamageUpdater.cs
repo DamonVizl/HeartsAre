@@ -20,6 +20,9 @@ public class UI_DamageUpdater : MonoBehaviour
     private HeartDefenderManager _heartDefenderManager;
     public TextMeshProUGUI _damageLabelTMP;
 
+    public GameObject attackIconPrefab;
+    public Transform attackIconContainer;
+
     private void Start()
     {
         _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
@@ -172,5 +175,28 @@ public class UI_DamageUpdater : MonoBehaviour
     {
         UpdateDamageUI(0);
     }
+
+    public void ShowAttackIcons(int numberOfAttacks)
+    {
+        ClearAttackIcons(); // Clear previous icons if necessary
+
+        for (int i = 0; i < numberOfAttacks; i++)
+        {
+            GameObject attackIcon = Instantiate(attackIconPrefab);
+            attackIcon.transform.SetParent(attackIconContainer);
+        }
+    }
+
+    public void ClearAttackIcons()
+    {
+        // Logic to clear existing attack icons
+        foreach (Transform child in attackIconContainer)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+
+
 
 }

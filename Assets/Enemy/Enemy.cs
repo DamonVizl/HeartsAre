@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     private int _turnsToIncreaseDmg = 2; // Number of turns after which to increase values
     private int _turnsToIncreaseAttacks = 4;
 
+    private int _nextAttackCount;
+
     public void OnEnable()
     {
         //setup singleton
@@ -32,7 +34,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
-        _ui_enemy = FindObjectOfType<UI_Enemy>(); ;
+        _ui_enemy = FindObjectOfType<UI_Enemy>();
+        _nextAttackCount = 1;
     }
 
 
@@ -40,9 +43,8 @@ public class Enemy : MonoBehaviour
     // Calls the attack method in UI_DamageUpdater so coroutines can be used for player reaction between attacks
     public void Attack()
     {
-        int value = CalculateNumOfAttacks();
         List<HeartDefender> defendersForThisAttack = _heartDefenderManager.getDefendersForThisAttack();
-        StartAttack(value, defendersForThisAttack);
+        StartAttack(_nextAttackCount, defendersForThisAttack);
 
         // Increment turn counter 
         UpdateTurnCounter();
@@ -111,4 +113,15 @@ public class Enemy : MonoBehaviour
             IncreaseDamage();
         }
     }
+
+    public void SetNumberOfAttacks(int numAttacksNextRound)
+    {
+        _nextAttackCount = numAttacksNextRound;
+    }
+
+    public int GetNextAttackCount()
+    {
+        return _nextAttackCount;
+    }
+
 }

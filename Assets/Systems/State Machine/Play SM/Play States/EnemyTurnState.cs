@@ -38,6 +38,11 @@ public class EnemyTurnState : BaseState<PlayState>
 
         Enemy.Instance.GetHeartDefenderManager().ClearDefenseList();
         CheckForSuperDefenderAbilities(); // check for any passive defender abilities and apply them
+
+        int nextAttackCount = Enemy.Instance.CalculateNumOfAttacks();
+        Enemy.Instance.SetNumberOfAttacks(nextAttackCount);
+        GameManager.Instance.GetUI_DamageUpdater().ShowAttackIcons(Enemy.Instance.GetNextAttackCount()); // Show icons for the next turn
+
     }
 
     public override PlayState GetNextState()
