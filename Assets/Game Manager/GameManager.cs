@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     #region Fields
     public static GameManager Instance;
     private int _startingHealth = 25;
-    private int _startingMoney = 900;
+    private int _startingMoney = 0;
     public int TurnsSurvived { get; private set; } = 0; //the number of turns the player has survived, if it exceeds a threshold the player wins the round
     public int TurnsRequiredToWin { get; private set; } = 20; //how many turns the player must survive to pass the level. 
     private int _discardsThisTurn = 0; //this field tracks how many times the player has drawn cards 
@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     private SuperDefenderManager _superDefenderManager;
     private UI_PlayerHand _ui_playerHand;
     private PlayerHand _playerHand;
+    private GameSettingsManager _gameSettingsManager;
     #endregion
 
 
@@ -64,6 +65,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        _gameSettingsManager = FindObjectOfType<GameSettingsManager>();
+        _startingMoney = _gameSettingsManager.GetStartingMoney();
         _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
         _ui_DamageUpdater = FindObjectOfType<UI_DamageUpdater>();
         _ui_enemy = FindObjectOfType<UI_Enemy>();
