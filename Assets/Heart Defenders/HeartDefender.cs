@@ -33,11 +33,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     private SuperDefenderManager _superDefenderManager;
     [SerializeField] private Image _defenderSprite;
 
-    [SerializeField] private GameObject _upgradeIcon_Obj;
-    [SerializeField] private GameObject _rankCounter_Obj;
-
     private UI_PlayerHand _ui_playerHand;
-
 
     public UI_HeartDefender _ui_heartDefender;
     public Animator _animator;
@@ -246,8 +242,9 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
         // tracks overkill damage
         int totalDamage = damage;
 
-        int currentHeartRank = TotalHeartRank();
-        _ui_heartDefender.ShowRankDecrease(totalDamage, BaseHeartRank());
+        int currentHeartRank = BaseHeartRank();
+        _ui_heartDefender.ShowRankDecrease(totalDamage, currentHeartRank);
+
         DecreaseHeartRank(totalDamage);
 
         // if heartRank is 0 or lower, destroy it and apply overkill damage to player
@@ -262,7 +259,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
             SwitchUpgradeIcon();
         }
     }
-    public void DestroyHeart()
+    void DestroyHeart()
     {
         heartDefenderManager.RemoveFromDefenderList(this);
         heartDefenderManager.RemoveDefenderForAttack(this);
@@ -275,10 +272,10 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
 
     void ApplyOverKillDamage(int damage)
     {
-        DestroyHeart();
         // if this heart dies, player will receive overkill damage
         playerHealth.RemoveHealth(damage);
         SFXManager.Instance.PlayRandomSound(SFXName.PlayerTakeDamage);
+        DestroyHeart();
     }
 
 

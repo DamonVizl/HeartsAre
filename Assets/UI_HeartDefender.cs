@@ -35,7 +35,7 @@ public class UI_HeartDefender : MonoBehaviour
 
     public void ShowDamage(int damage)
     {
-        StartCoroutine(AnimateDamage(damage));
+        StartCoroutine(AnimateDamage(damage));   
     }
 
     private IEnumerator AnimateDamage(int rawDamage)
@@ -43,10 +43,12 @@ public class UI_HeartDefender : MonoBehaviour
         dmgCounter.text = rawDamage.ToString();
         dmgCounter.gameObject.SetActive(true);
 
+        int heartRank = heartDefender.BaseHeartRank();
 
-        int rankMinusDmg = heartDefender.TotalHeartRank() - rawDamage;
+
+        int rankMinusDmg = heartRank - rawDamage;
+        
         int targetDisplayValue = Mathf.Min(rankMinusDmg, 0);
-
         yield return new WaitForSeconds(pauseDuration);
 
         Vector3 originalPosition = dmgCounter.transform.localPosition;
@@ -59,8 +61,9 @@ public class UI_HeartDefender : MonoBehaviour
         for (int i = rawDamage; i >= targetDisplayValue; i--)
         {
             dmgCounter.text = i.ToString();
-            yield return new WaitForSeconds(0.05f); // Adjust delay to control countdown speed
+            yield return new WaitForSeconds(0.05f);
         }
+
 
         dmgCounter.transform.DOLocalMove(originalPosition, tweenDuration).SetEase(Ease.InQuad);
 
@@ -80,6 +83,10 @@ public class UI_HeartDefender : MonoBehaviour
         int currentRank = heartRank;
         for (int i = damage; i > 0; i--)
         {
+            if (currentRank <= 0)
+            {
+                break;
+            }
             currentRank--;
             UpdateRankUI(currentRank);
             yield return new WaitForSeconds(0.05f);
