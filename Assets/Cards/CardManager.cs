@@ -96,25 +96,27 @@ public class CardManager : MonoBehaviour
     /// </summary>
     private void DrawCardFromDeckToHand()
     {
-        if (_drawPile.GetCurrentNumberOfCardsInCollection() == 0)
-        {
-            Debug.Log("draw pile empty");
-            ReshuffleDiscardPileIntoDrawPile();
-        }
+        
         //only draw a card if in the player turn 
         if (_psm.GetCurrentState() == PlayState.PlayerTurn)
         {
-             if (_hand.GetCurrentNumberOfCardsInCollection() >= _hand.MaxCollectionSize)
+            if (_hand.GetCurrentNumberOfCardsInCollection() >= _hand.MaxCollectionSize)
             {
                 //if the hand is full, don't draw
                 UI_MessageManager.Instance.ShowMessage("Hand full, cannot draw"); 
                 return;  
             }
-                         //fill the hand with cards
-                while (_hand.GetCurrentNumberOfCardsInCollection() < _hand.MaxCollectionSize)
+            //fill the hand with cards
+            while (_hand.GetCurrentNumberOfCardsInCollection() < _hand.MaxCollectionSize)
             {
-                Debug.Log("Drawing a card"); 
+                //when the draw pile is empty, refill it with shuffled cards from the discard pile
+                if (_drawPile.GetCurrentNumberOfCardsInCollection() == 0)
+                {
+                    Debug.Log("draw pile empty");
+                    ReshuffleDiscardPileIntoDrawPile();
+                }
                 Card drawnCard = _drawPile.DrawCard();
+                if (drawnCard == null) break; //if there was no card to be drawn, break from the while loop
                 if (!_hand.AddCard(drawnCard))
                 {
                     //if the card couldn't be added, return it back to the original. TODO: I don't think this is putting it back to original spot, it's putting it into the first empty (which may be...)

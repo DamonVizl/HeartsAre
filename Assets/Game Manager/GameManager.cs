@@ -84,6 +84,10 @@ public class GameManager : MonoBehaviour
     public void NextTurn()
     {
         TurnsSurvived++;
+        if(TurnsSurvived >= TurnsRequiredToWin)
+        {
+            //Win! 
+        }
         OnTurnUpdated?.Invoke(TurnsSurvived);
     }
 

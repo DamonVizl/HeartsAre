@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class PlayerTurnState : BaseState<PlayState> 
 {
     PlayStateMachine _stateMachine; //hold a reference to the statemachine 
+    public static event Action OnPlayerTurnStateEnter, OnPlayerTurnStateExit;
     public PlayerTurnState(PlayStateMachine sm, PlayState key) : base(key)
     {
         _stateMachine = sm;
@@ -12,9 +14,11 @@ public class PlayerTurnState : BaseState<PlayState>
 
     public override void EnterState()
     {
-        GameManager.Instance.Get_uiPlayerHand().EnablePlayerHandInteractionBtns();
+        OnPlayerTurnStateEnter?.Invoke(); 
+        //TODO: we shouldn't pull through the gamemanager to do this, maybe an event OnPlayerTurnStateEntered, and OnPlayerTurnStateExit, then listen in the appropriate thing. 
+        //GameManager.Instance.Get_uiPlayerHand().EnablePlayerHandInteractionBtns();
 
-        GameManager.Instance.GetHeartDefenderManager()._ui_HeartDefenderInteractions.EnableOptionsForPlayerTurn();
+        //GameManager.Instance.GetHeartDefenderManager()._ui_HeartDefenderInteractions.EnableOptionsForPlayerTurn();
         Debug.Log("Entering Player Turn state. This is where the player will draw cards, play rummy hands and set themselves up for the enemy's turn");
         //update UI to show that it's the players turn
         //enable player control
@@ -28,6 +32,7 @@ public class PlayerTurnState : BaseState<PlayState>
 
     public override void ExitState()
     {
+        OnPlayerTurnStateExit?.Invoke();
         //remove player control
         UI_Button_EndPlayerTurn.OnEndTurnButtonPressed -= EndTurn; // unsubscribe end turn button functionality
     }

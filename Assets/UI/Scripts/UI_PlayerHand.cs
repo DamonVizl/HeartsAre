@@ -16,11 +16,17 @@ public class UI_PlayerHand : MonoBehaviour
         _cardSlots = GetComponentsInChildren<UI_CardSlot>(); //fill the array with the children slots
         PlayerHand.OnCardAddedToHand += AddCardAtSlot;
         PlayerHand.OnCardRemovedFromHand += RemoveCardAtSlot;
+        PlayerTurnState.OnPlayerTurnStateEnter += EnablePlayerHandInteractionBtns;
+        PlayerTurnState.OnPlayerTurnStateExit += DisablePlayerHandInteractionBtns;
     }
     private void OnDisable()
     {
         PlayerHand.OnCardAddedToHand -= AddCardAtSlot;
         PlayerHand.OnCardRemovedFromHand -= RemoveCardAtSlot;
+        PlayerTurnState.OnPlayerTurnStateEnter -= EnablePlayerHandInteractionBtns;
+        PlayerTurnState.OnPlayerTurnStateExit -= DisablePlayerHandInteractionBtns;
+
+
 
     }
 

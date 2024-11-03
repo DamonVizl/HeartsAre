@@ -22,7 +22,15 @@ public class UI_HeartDefenderInteractions : MonoBehaviour
         DisableNoDefenderOption();
         layoutGroup = GetComponent<HorizontalLayoutGroup>();
     }
+    private void OnEnable()
+    {
+        PlayerTurnState.OnPlayerTurnStateEnter += EnableOptionsForPlayerTurn; 
+    }
+    private void OnDisable()
+    {
+        PlayerTurnState.OnPlayerTurnStateEnter -= EnableOptionsForPlayerTurn;
 
+    }
     public void DisableNoDefenderOption()
     {
         noDefenderOption_UI.SetActive(false);
