@@ -26,7 +26,7 @@ public class Deck : CardCollection
         // generate all standard cards in the deck
         foreach (Suit suit in (Suit[])System.Enum.GetValues(typeof(Suit)))
         {
-            for(int j = 1; j< 14; j++) //counts from 1 to 13
+            for(int j = 1; j< 3; j++) //counts from 1 to 13
             {
                 Card card = new Card(suit, j); //the card sets it's self up. check Card.cs constructor for details
                 AddCard(card);

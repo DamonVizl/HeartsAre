@@ -14,15 +14,21 @@ public class CardManager : MonoBehaviour
     [SerializeField] DiscardPile _discardPile; 
     PlayStateMachine _psm;
     SuperDefenderManager _superDefenderManager;
+    TrickScorer _trickScorer;
+
 
 
     #region Events
-    public static event Action<Card> OnCardAddedToHandFromDrawPile, OnCardDiscardedFromHand; 
+    public static event Action<Card> OnCardAddedToHandFromDrawPile, OnCardDiscardedFromHand;
+    public static event Action<int> OnTrickScore;
     #endregion
     private void OnEnable()
     {
         UI_DrawPile.OnDrawDeckClicked += DrawCardFromDeckToHand;
         UI_DiscardCardsButton.OnDiscardCardButtonPressed += DiscardCardsFromHand;
+        UI_Button_SubmitTrick.OnSubmitButtonPressed += SubmitTrick;
+        _trickScorer = new TrickScorer();
+
 
         _psm = GameObject.FindFirstObjectByType<PlayStateMachine>(); //TODO: hacky, fix later. 
         _superDefenderManager = FindObjectOfType<SuperDefenderManager>();
@@ -31,9 +37,57 @@ public class CardManager : MonoBehaviour
     {
         UI_DrawPile.OnDrawDeckClicked -= DrawCardFromDeckToHand;
         UI_DiscardCardsButton.OnDiscardCardButtonPressed -= DiscardCardsFromHand;
+        UI_Button_SubmitTrick.OnSubmitButtonPressed -= SubmitTrick;
+
 
     }
+    private void SubmitTrick()
+    {
+        if (GameManager.Instance.TricksPlayedThisTurn >= GameManager.Instance.MaxNumberOfTricksPlayablePerTurn)
+        {
+            UI_MessageManager.Instance.ShowMessage("Max tricks played this turn");
+            return; //if too many tricks have been played, return
+        }
+        int score = _trickScorer.CalculateHand(_hand.GetCurrentlySelectedCards());
+        //trick failed
+        if (score == 0)
+        {
+            SFXManager.Instance.PlayFirstSound(SFXName.TrickFailed);
+            return;
+        }
+        //trick succeeded
+        else
+        {
+            SFXManager.Instance.PlayFirstSound(SFXName.TrickSucceeded);
 
+            /*            List<Card> cardsToRemove = new List<Card>();
+
+                        //remove the cards
+                        foreach (Card card in _selectedCards)
+                        {
+                            cardsToRemove.Add(card);
+                        }
+                        Debug.Log("cards to remove" + cardsToRemove.Count);*/
+            DiscardCards(_hand.GetCurrentlySelectedCards());
+            //_hand.GetCurrentlySelectedCards().Clear();
+
+            /*            foreach (Card card in cardsToRemove)
+                        {
+                            RemoveCard(card);
+                        }*/
+            /*            //have the cardManager discard hte cards from the hand to the discard pile
+                        _cardManager.DiscardCards(_selectedCards);*/
+
+            OnTrickScore?.Invoke(score);
+            GameManager.Instance.TricksPlayedThisTurn++;
+            //once max tricks have been played, 
+            if (GameManager.Instance.TricksPlayedThisTurn == GameManager.Instance.MaxNumberOfTricksPlayablePerTurn)
+            {
+                UI_MessageManager.Instance.ShowMessage("Max tricks played this turn, select end turn");
+
+            }
+        }
+    }
     /// <summary>
     /// takes the selected cards from the player hand and discards them
     /// </summary>
@@ -78,7 +132,11 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    void DiscardCards(List<Card> cardsToRemove)
+    /// <summary>
+    /// this is called locally, after a discard button press has occured and also after a successful trick (from player hand)
+    /// </summary>
+    /// <param name="cardsToRemove"></param>
+    public void DiscardCards(List<Card> cardsToRemove)
     {
         foreach (Card card in cardsToRemove)
         {
@@ -87,6 +145,7 @@ public class CardManager : MonoBehaviour
         }
         foreach (Card card in new List<Card>(cardsToRemove)) // Iterate over a copy to avoid modifying during removal
         {
+            Debug.Log("removing" + card.Value);
             _hand.RemoveCard(card);
         }
     }
@@ -130,7 +189,19 @@ public class CardManager : MonoBehaviour
     /// </summary>
     private void ReshuffleDiscardPileIntoDrawPile()
     {
-        //take all the cards from the discard pile
+        _drawPile.ClearCardArray(); 
+        Card[] tempCards = _discardPile.GetAllCards(); 
+        for(int i = 0; i < tempCards.Length; i++)
+        {
+            if (tempCards[i] != null)
+            {
+                Debug.Log(tempCards[i].Value + "added to draw pile");
+                _drawPile.AddCard(tempCards[i]);
+            }
+        }
+
+        _discardPile.ClearCardArray(); 
+/*        //take all the cards from the discard pile
         List<Card> takenDiscardCards = _discardPile.TakeAllCards(); 
         
         foreach (Card card in takenDiscardCards)
@@ -138,7 +209,7 @@ public class CardManager : MonoBehaviour
             Debug.Log($"adding {card} to draw pile"); 
             _drawPile.AddCard(card);
         }
-
+*/
         //shuffle cards.
         _drawPile.ShuffleCards(); 
     }

@@ -60,7 +60,7 @@ public class CardCollection : MonoBehaviour
         return card;
 
     }
-    /// <summary>
+/*    /// <summary>
     /// draws each card from this cardCollection (probably only used by discard pile
     /// </summary>
     /// <returns></returns>
@@ -69,7 +69,7 @@ public class CardCollection : MonoBehaviour
         List<Card> cards = new List<Card>();
         cards.Add(DrawCard());
         return cards; 
-    }
+    }*/
     //base AddCard method, adds the card to the list. extend this in the children classes to update UI in a bespoke way etc
     public virtual bool AddCard(Card card)
     {
@@ -90,6 +90,14 @@ public class CardCollection : MonoBehaviour
         return false;
     }
 
+    public void ClearCardArray()
+    {
+        for(int i = 0; i<_cards.Length; i++) 
+        {
+            _cards[i] = null;
+        }
+
+    }
     public int GetCurrentNumberOfCardsInCollection()
     {
         int count = 0; 

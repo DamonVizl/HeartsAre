@@ -16,7 +16,7 @@ public class CurrencyManager
     {
         _currentMoney = startingValue;
         OnCurrencyChanged?.Invoke(_currentMoney);
-        PlayerHand.OnTrickScore += AddMoney; //when a trick is scored, it's value is added to the currency manager
+        CardManager.OnTrickScore += AddMoney; //when a trick is scored, it's value is added to the currency manager
     }
 
     public static void AddMoney(int value)

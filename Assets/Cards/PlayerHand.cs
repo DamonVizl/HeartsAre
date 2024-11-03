@@ -9,9 +9,11 @@ public class PlayerHand : CardCollection
     public int startingHandSize = 5;
     public static event Action<int, Card> OnCardAddedToHand, OnCardRemovedFromHand;
 
-    public static event Action<int> OnTrickScore;
 
-    TrickScorer _trickScorer; 
+
+    [SerializeField] private CardManager _cardManager; 
+
+    //TrickScorer _trickScorer; 
 
 /*    //a trick is a collection of cards used to score
     private Trick _trickAttempt;*/ //removed this in favour of selectedCards, that way we can do more with the selected cards (discard them, burn them to make super defenders, etc)
@@ -22,16 +24,16 @@ public class PlayerHand : CardCollection
     protected override void Start()
     {
         MaxCollectionSize = 7;
-        _trickScorer = new TrickScorer();
-        base.Start();
+/*        _trickScorer = new TrickScorer();
+*/        base.Start();
     }
     private void OnEnable()
     {
-        UI_Button_SubmitTrick.OnSubmitButtonPressed += SubmitTrick;
+        //UI_Button_SubmitTrick.OnSubmitButtonPressed += SubmitTrick;
     }
     private void OnDisable()
     {
-        UI_Button_SubmitTrick.OnSubmitButtonPressed -= SubmitTrick;
+        //UI_Button_SubmitTrick.OnSubmitButtonPressed -= SubmitTrick;
     }
 
     public Card[] GetPlayerHand()
@@ -69,8 +71,10 @@ public class PlayerHand : CardCollection
         {
             if (_cards[i] == card)
             {
+                Debug.Log("removing " + card.Value + card.Suit);
                 CardDeselected(card);  ///remove it from the selected list
                 OnCardRemovedFromHand?.Invoke(i, card);
+                //_cardManager.DiscardCards(new List<Card> { card });
                 //play sfx
                 SFXManager.Instance.PlayRandomSound(SFXName.Discard); 
                 _cards[i] = null;
@@ -96,6 +100,8 @@ public class PlayerHand : CardCollection
         else
         {
             _selectedCards.Add(card);
+            Debug.Log("number of selected cards is: " + _selectedCards.Count);
+
             SFXManager.Instance.PlayRandomSound(SFXName.CardSelect);
         }
     }
@@ -105,7 +111,7 @@ public class PlayerHand : CardCollection
         //_trickAttempt.RemoveCardFromTrick(card);
         SFXManager.Instance.PlayRandomSound(SFXName.CardDeselect);
     }
-    /// <summary>
+  /*  /// <summary>
     /// submites the _selectedCards to the trickscorer, if there is a score it submits an event that the currency manager can listen to
     /// </summary>
     public void SubmitTrick()
@@ -127,16 +133,24 @@ public class PlayerHand : CardCollection
         {
             SFXManager.Instance.PlayFirstSound(SFXName.TrickSucceeded);
 
-            List<Card> cardsToRemove = new List<Card>();
+*//*            List<Card> cardsToRemove = new List<Card>();
+
             //remove the cards
             foreach (Card card in _selectedCards)
             {
                 cardsToRemove.Add(card);
             }
-            foreach (Card card in cardsToRemove)
-            {
-                RemoveCard(card);
-            }
+            Debug.Log("cards to remove" + cardsToRemove.Count);*//*
+            _cardManager.DiscardCards(_selectedCards);
+            _selectedCards.Clear();
+
+            *//*            foreach (Card card in cardsToRemove)
+                        {
+                            RemoveCard(card);
+                        }*/
+            /*            //have the cardManager discard hte cards from the hand to the discard pile
+                        _cardManager.DiscardCards(_selectedCards);*//*
+
             OnTrickScore?.Invoke(score);
             GameManager.Instance.TricksPlayedThisTurn++; 
             //once max tricks have been played, 
@@ -148,7 +162,7 @@ public class PlayerHand : CardCollection
         }
 
 
-    }
+    }*/
     public List<Card> GetCurrentlySelectedCards()
     {
         return _selectedCards; 
