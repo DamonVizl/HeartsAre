@@ -104,13 +104,15 @@ public class CardManager : MonoBehaviour
                 {
                     Card cardForSuperDefender = cardsToRemove[0]; // get the card selected for the super defender sacrifice
                     DiscardCards(cardsToRemove);
-
+                    // if there is a level 10 defender selected
                     if (_superDefenderManager?.GetSelectedDefender() != null)
                     {
+                        // if the card is not a face card, return the method
                         if (cardForSuperDefender.GetCardValueAsInt() < 11)
                         {
                             return;
                         }
+                        // if card is a face card, add the super defender and transition to the previous state
                         _superDefenderManager.GetSelectedDefender().ChangeToSuperDefender(cardForSuperDefender);
                         _psm.TransitionToPreviousState();
                     }

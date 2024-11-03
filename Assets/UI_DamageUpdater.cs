@@ -111,6 +111,7 @@ public class UI_DamageUpdater : MonoBehaviour
                 StartCoroutine(AnimateDamageText(dmg));
                 ResetDamageText();
                 RemoveAttackIcon();
+                SFXManager.Instance.PlayRandomSound(SFXName.PlayerTakeDamage);
             }
             else
             {
