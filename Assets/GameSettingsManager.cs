@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameSettingsManager : MonoBehaviour
 {
     //public int _startingHP;
-    public int _startingMoney;
+    [SerializeField] private int _startingMoney;
     //public int _turnsRequiredToWin;
 
     public int GetStartingMoney()
