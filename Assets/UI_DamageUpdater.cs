@@ -110,6 +110,7 @@ public class UI_DamageUpdater : MonoBehaviour
                 Debug.Log("No defenders available, attacking player for " + dmg + " damage.");
                 StartCoroutine(AnimateDamageText(dmg));
                 ResetDamageText();
+                RemoveAttackIcon();
             }
             else
             {
@@ -122,6 +123,7 @@ public class UI_DamageUpdater : MonoBehaviour
                 StartCoroutine(AnimateDamageText(dmg));
                 //randomDefender.ShowDamage(dmg, _attackDelay);
                 ResetDamageText();
+                RemoveAttackIcon();
             }
             OnAttackExecuted?.Invoke(randomDefender);
             // Wait for a delay before the next attack
@@ -196,7 +198,13 @@ public class UI_DamageUpdater : MonoBehaviour
         }
     }
 
-
-
+    public void RemoveAttackIcon()
+    {
+        if (attackIconContainer.childCount > 0)
+        {
+            Transform iconToDestroy = attackIconContainer.GetChild(0);
+            Destroy(iconToDestroy.gameObject);
+        }
+    }
 
 }
