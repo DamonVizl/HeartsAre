@@ -8,6 +8,7 @@ using DG.Tweening;
 public class UI_HeartDefender : MonoBehaviour
 {
     RectTransform parentRectTransform; // UI parent reference for camera shake
+    public GameObject attackIcon;
     public TextMeshProUGUI dmgCounter;
     public TextMeshProUGUI rankCounter;
     public HeartDefender heartDefender;
@@ -33,7 +34,8 @@ public class UI_HeartDefender : MonoBehaviour
     {
         playStateMachine = FindObjectOfType<PlayStateMachine>();
         parentRectTransform = GetComponent<RectTransform>().parent.GetComponent<RectTransform>();
-        dmgCounter.gameObject.SetActive(false);
+        //dmgCounter.gameObject.SetActive(false);
+        attackIcon.SetActive(false);
         heartDefender = GetComponent<HeartDefender>();
         UpdateRankUI(heartDefender.BaseHeartRank());
     }
@@ -50,8 +52,8 @@ public class UI_HeartDefender : MonoBehaviour
     private IEnumerator AnimateDamage(int rawDamage)
     {
         dmgCounter.text = rawDamage.ToString();
-        dmgCounter.gameObject.SetActive(true);
-
+        //dmgCounter.gameObject.SetActive(true);
+        attackIcon.SetActive(true);
         int heartRank = heartDefender.BaseHeartRank();
 
 
@@ -60,9 +62,9 @@ public class UI_HeartDefender : MonoBehaviour
         int targetDisplayValue = Mathf.Min(rankMinusDmg, 0);
         yield return new WaitForSeconds(pauseDuration);
 
-        Vector3 originalPosition = dmgCounter.transform.localPosition;
+        Vector3 originalPosition = attackIcon.transform.localPosition;
         Vector3 downPosition = originalPosition - new Vector3(0, tweenDownDistance, 0);
-        dmgCounter.transform.DOLocalMove(downPosition, tweenDuration).SetEase(Ease.OutQuad);
+        attackIcon.transform.DOLocalMove(downPosition, tweenDuration).SetEase(Ease.OutQuad);
 
         yield return new WaitForSeconds(tweenDuration);
 
@@ -74,11 +76,11 @@ public class UI_HeartDefender : MonoBehaviour
         }
 
 
-        dmgCounter.transform.DOLocalMove(originalPosition, tweenDuration).SetEase(Ease.InQuad);
+        attackIcon.transform.DOLocalMove(originalPosition, tweenDuration).SetEase(Ease.InQuad);
 
         yield return new WaitForSeconds(tweenDuration);
 
-        dmgCounter.gameObject.SetActive(false);
+        attackIcon.gameObject.SetActive(false);
 
         if (rankMinusDmg < 0)
         {
