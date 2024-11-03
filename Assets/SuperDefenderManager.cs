@@ -16,7 +16,7 @@ public class SuperDefenderManager : MonoBehaviour
     private HeartDefender _selectedHeartDefender;
     private HeartDefenderManager _heartDefenderManager;
 
-    private const int maxSuperDefenders = 5;
+    private const int maxSuperDefenders = 3;
 
     // Dictionary to map SuperDefenderType to their corresponding sprites
     private Dictionary<SuperDefender.SuperDefenderType, Sprite> _superDefenderSprites;
