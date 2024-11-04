@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ceb71d6071936d4994889a47e119969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startingHealth: 25
+  _startingMoney: 30
+  <TurnsRequiredToWin>k__BackingField: 5
   _enemy: {fileID: 0}

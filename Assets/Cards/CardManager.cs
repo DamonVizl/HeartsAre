@@ -151,7 +151,6 @@ public class CardManager : MonoBehaviour
         }
         foreach (Card card in new List<Card>(cardsToRemove)) // Iterate over a copy to avoid modifying during removal
         {
-            Debug.Log("removing" + card.Value);
             _hand.RemoveCard(card);
         }
     }

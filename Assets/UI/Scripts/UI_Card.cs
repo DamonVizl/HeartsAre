@@ -73,22 +73,26 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
     private void ResetCardTweens()
     {
         _moveTween.Kill(); 
-        _rotateTween.Kill();
+        //_rotateTween.Kill();
         _backgroundCardImage.enabled = true; 
         transform.rotation = Quaternion.identity;
     }
     public void FlipCard()
     {
-        if (_rotateTween != null)
+
+ 
+        if (_rotateTween.IsActive())
         {
-            _rotateTween.Kill(); 
-            
+
+            _rotateTween.Kill();
+            _cardFlipped = false; 
+
+            //_backOfCard.enabled = _cardFlipped;
         }
          
         //first half of flip
         _rotateTween = transform.DORotate(new Vector3(0, 90, 0), 0.3f).SetEase(Ease.OutQuad).OnComplete(() =>
         {
-
             _backOfCard.enabled = _cardFlipped;
             SFXManager.Instance.PlayRandomSound(SFXName.CardFlip); 
 /*            if (_cardFlipped) _backOfCard.enabled = true;
@@ -99,7 +103,9 @@ public class UI_Card : MonoBehaviour, IPointerClickHandler
             {
                 //reset the rotation
                 //transform.rotation = Quaternion.Euler(0, 0, 0);
+                
                 _cardFlipped = !_cardFlipped;
+
             });
         });
     }

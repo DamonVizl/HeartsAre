@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 
 public class HeartDefender : MonoBehaviour, IPointerClickHandler
@@ -12,7 +13,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     public int fixedCost;
 
     [SerializeField] private float levelUpRateIncrease;
-    private PlayerHealth playerHealth;
+    //private PlayerHealth playerHealth;
 
     private const int maxLevel = 10;
 
@@ -33,10 +34,13 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     public UI_HeartDefender _ui_heartDefender;
     public Animator _animator;
 
+
+    public static event Action<int> OnOverKillDamageApplied; 
+
     private void Start()
     {
         _ui_heartDefender = GetComponent<UI_HeartDefender>();
-        playerHealth = GameManager.Instance.PlayerHealth;
+        //playerHealth = GameManager.Instance.PlayerHealth;
         playStateMachine = FindObjectOfType<PlayStateMachine>();
 
         heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
@@ -264,7 +268,7 @@ public class HeartDefender : MonoBehaviour, IPointerClickHandler
     void ApplyOverKillDamage(int damage)
     {
         // if this heart dies, player will receive overkill damage
-        playerHealth.RemoveHealth(damage);
+        OnOverKillDamageApplied?.Invoke(damage);
         SFXManager.Instance.PlayRandomSound(SFXName.PlayerTakeDamage);
         DestroyHeart();
     }

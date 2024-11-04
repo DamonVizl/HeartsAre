@@ -12,8 +12,14 @@ public class PlayerHealth
     {
         _currentHealth = startingValue;
         OnHealthChange?.Invoke(_currentHealth); //push an event with current health (for UI)
-
+        HeartDefender.OnOverKillDamageApplied += RemoveHealth; 
     }
+
+    public void CleanUp()
+    {
+        HeartDefender.OnOverKillDamageApplied -= RemoveHealth;  
+    }
+
     //returns true if the health is above 0. returns false if not.
     public void RemoveHealth(int value)
     {
