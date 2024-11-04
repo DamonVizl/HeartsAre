@@ -20,7 +20,7 @@ public class HeartDefenderState : BaseState<PlayState>
     public override void EnterState()
     {
         //show message about what to do in this state
-        UI_MessageManager.Instance.ShowMessage("Click the plus sign to increase the HP of the card, click on the card to select it to take the hit!");
+        UI_MessageManager.Instance.ShowMessage("Upgrade and select your Heart Defenders for this attack!");
         Enemy.Instance.GetHeartDefenderManager().EnableOptionsForEnemyAttack();
     }
 
