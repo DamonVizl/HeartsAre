@@ -7058,6 +7058,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7935888062753091620, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.72156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 7935888062753091620, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.92941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 7935888062753091620, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7935888062753091620, guid: 8b87593cc3f8f4247906d91e2408120c, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290309631
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9877,12 +9893,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7196765616703492105, guid: 7bfc3e2f402e7ea45a009fe394ca1d29, type: 3}
+      propertyPath: _startingMoney
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196765616703492105, guid: 7bfc3e2f402e7ea45a009fe394ca1d29, type: 3}
       propertyPath: _startingHealth
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7196765616703492105, guid: 7bfc3e2f402e7ea45a009fe394ca1d29, type: 3}
       propertyPath: <TurnsRequiredToWin>k__BackingField
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7950462518918301808, guid: 7bfc3e2f402e7ea45a009fe394ca1d29, type: 3}
       propertyPath: m_Name

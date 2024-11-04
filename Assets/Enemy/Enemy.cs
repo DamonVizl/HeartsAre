@@ -20,9 +20,10 @@ public class Enemy : MonoBehaviour
 
     private int _turnCounter = 0;
     private int _turnsToIncreaseDmg = 2; // Number of turns after which to increase values
-    private int _turnsToIncreaseAttacks = 4;
+    private int _turnsToIncreaseAttacks = 2;
 
     private int _nextAttackCount;
+    private const int _numAttacksLimit = 5;
 
     public void Awake()
     {
@@ -68,7 +69,7 @@ public class Enemy : MonoBehaviour
     {
         int randomNumAttacks = UnityEngine.Random.Range(_minNumAttacks, _maxNumAttacks);
 
-        return randomNumAttacks;
+        return Mathf.Min(randomNumAttacks, _numAttacksLimit);
     }
 
     // Calculate a random amount of damage for an attack
@@ -89,10 +90,8 @@ public class Enemy : MonoBehaviour
     }
     private void IncreaseNumberOfAttacks()
     {
-        _minNumAttacks += 1;
         _maxNumAttacks += 1;
         Debug.Log($"Values increased! MinDamage: {_minDamage}, MaxDamage: {_maxDamage}, MinNumAttacks: {_minNumAttacks}, MaxNumAttacks: {_maxNumAttacks}");
-
     }
 
 
