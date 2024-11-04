@@ -13,6 +13,7 @@ public class LoseState : BaseState<PlayState>
 
     public override void EnterState()
     {
+        SceneController.Instance.SetScene(2); 
         Debug.Log("Player Lost, return to menu and set next state as Setup for when we are using the PlaySM again");
     }
 

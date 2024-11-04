@@ -9876,6 +9876,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7196765616703492105, guid: 7bfc3e2f402e7ea45a009fe394ca1d29, type: 3}
+      propertyPath: _startingHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196765616703492105, guid: 7bfc3e2f402e7ea45a009fe394ca1d29, type: 3}
+      propertyPath: <TurnsRequiredToWin>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7950462518918301808, guid: 7bfc3e2f402e7ea45a009fe394ca1d29, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -17269,6 +17277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98b937b342497443aa95733f9788849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageTMP: {fileID: 1524172678}
   _attackDelay: 1.8
   _animateSpeed: 0.25
   _damageLabelTMP: {fileID: 1307372466}

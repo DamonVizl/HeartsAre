@@ -56,10 +56,14 @@ public class GameManager : MonoBehaviour
     public static event Action<int> OnDamageCalculated;
     #endregion
     #region SetupMethods
-    public void OnEnable()
+    public void Awake()
     {
         //setup singleton
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            //DontDestroyOnLoad(this); 
+        }
         else Destroy(this);
     }
     private void Start()

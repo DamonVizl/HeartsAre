@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
+//[RequireComponent(typeof(TextMeshProUGUI))]
 
 public class UI_DamageUpdater : MonoBehaviour
 {
     public static event Action<HeartDefender> OnAttackExecuted;
-    TextMeshProUGUI _damageTMP;
+    [SerializeField] TextMeshProUGUI _damageTMP;
 
     public float _attackDelay;
     public float _animateSpeed;
@@ -17,24 +17,24 @@ public class UI_DamageUpdater : MonoBehaviour
     private EnemyTurnState _enemyTurnState;
     private bool playerTakesDamage;
 
-    private HeartDefenderManager _heartDefenderManager;
-    public TextMeshProUGUI _damageLabelTMP;
+    //private HeartDefenderManager _heartDefenderManager;
+    [SerializeField] private TextMeshProUGUI _damageLabelTMP;
 
     public GameObject attackIconPrefab;
     public Transform attackIconContainer;
 
     private void Start()
     {
-        _heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
+        //_heartDefenderManager = FindObjectOfType<HeartDefenderManager>();
 
-        // Initialize _damageTMP in Start
+/*        // Initialize _damageTMP in Start
         _damageTMP = GetComponent<TextMeshProUGUI>();
 
         // Check if _damageLabelTMP is assigned
         if (_damageLabelTMP == null)
         {
             Debug.LogWarning("_damageLabelTMP is not assigned in the inspector.");
-        }
+        }*/
 
         HideDamageUI();
     }

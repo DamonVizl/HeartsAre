@@ -13,6 +13,7 @@ public class WinState : BaseState<PlayState>
 
     public override void EnterState()
     {
+        SceneController.Instance.SetScene(3); 
         Debug.Log("Player has won, give rewards. set next state as setup and return to menu's. no longer using the PlaySM for right now.");
     }
 

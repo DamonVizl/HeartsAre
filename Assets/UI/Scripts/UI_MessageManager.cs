@@ -11,13 +11,14 @@ public class UI_MessageManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _messageText;
     [SerializeField] private float _messageShowTime = 2.0f;  
     
-    private void OnEnable()
+    private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             _image = GetComponent<Image>();
-            TrickScorer.OnTrickScored += ShowMessage; 
+            TrickScorer.OnTrickScored += ShowMessage;
+            //DontDestroyOnLoad(this); 
         }
         else Destroy(this);
     }

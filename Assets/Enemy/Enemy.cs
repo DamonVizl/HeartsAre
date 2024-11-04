@@ -24,10 +24,15 @@ public class Enemy : MonoBehaviour
 
     private int _nextAttackCount;
 
-    public void OnEnable()
+    public void Awake()
     {
         //setup singleton
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            //DontDestroyOnLoad(this);
+        }
+
         else Destroy(this);
     }
 
