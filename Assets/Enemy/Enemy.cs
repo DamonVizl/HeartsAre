@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
     public void StartAttack(int value, List<HeartDefender> defenders)
     {
         _heartDefenderManager._ui_HeartDefenderInteractions.EnableOptionsForEnemyAttack();
-        GameManager.Instance.GetUI_DamageUpdater().StartAttack(value, defenders);
+        GameManager.Instance.StartAttack(value, defenders);
     }
 
     // Calculates a random number of attacks for this turn

@@ -10,13 +10,13 @@ public class UI_Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        UI_DamageUpdater.OnAttackExecuted += AnimateAttack;
+        GameManager.OnAttackExecuted += AnimateAttack;
         _anim = GetComponent<Animator>();
         _globalEffectsManager = FindObjectOfType<GlobalEffectsManager>();
     }
     private void OnDisable()
     {
-        UI_DamageUpdater.OnAttackExecuted -= AnimateAttack;
+        GameManager.OnAttackExecuted -= AnimateAttack;
     }
 
     private void AnimateAttack(HeartDefender defender)

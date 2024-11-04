@@ -17,19 +17,19 @@ public class EnemyTurnState : BaseState<PlayState>
 
     public override void EnterState()
     {
-        GameManager.Instance.GetUI_DamageUpdater().SetEnemyTurnState(this);
+        GameManager.Instance.SetEnemyTurnState(this);
         Debug.Log("Entering Enemy Turn state. This is where the enemy will do damage to the players cards. The player can't do anything for now.");
         //show some UI to say that it's the enemy's turn
 
         //Do damage
-        Enemy.Instance.Attack(); 
+        Enemy.Instance.Attack();
         //temporary player health reduction. make something a little more sophisticated than this. Also need to encorporate the hearts defence part. 
         //I think I'll make this an event and then the playerhand or whatever can react to it by reducing hearts or taking damage, depending on how many hearts are left.
     }
 
     public override void ExitState()
     {
-        GameManager.Instance.GetUI_DamageUpdater().HideDamageUI();
+        //GameManager.Instance.GetUI_DamageUpdater().HideDamageUI();
         // increase the turn survived counter if the player hasn't reached the turns required to win yet
         if (GameManager.Instance.TurnsSurvived < GameManager.Instance.TurnsRequiredToWin)
         {
@@ -41,7 +41,7 @@ public class EnemyTurnState : BaseState<PlayState>
 
         int nextAttackCount = Enemy.Instance.CalculateNumOfAttacks();
         Enemy.Instance.SetNumberOfAttacks(nextAttackCount);
-        GameManager.Instance.GetUI_DamageUpdater().ShowAttackIcons(Enemy.Instance.GetNextAttackCount()); // Show icons for the next turn
+        //GameManager.Instance.GetUI_DamageUpdater().ShowAttackIcons(Enemy.Instance.GetNextAttackCount()); // Show icons for the next turn
 
     }
 
@@ -60,7 +60,7 @@ public class EnemyTurnState : BaseState<PlayState>
             return PlayState.Win;
         }
 
- 
+
         return PlayState.EnemyTurn;
 
     }
@@ -89,5 +89,7 @@ public class EnemyTurnState : BaseState<PlayState>
             }
         }
     }
+
+
 
 }
