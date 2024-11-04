@@ -100,7 +100,7 @@ public class CardManager : MonoBehaviour
             if (_psm.GetCurrentState() == PlayState.ChooseSuperDefender)
             {
                 List<Card> cardsToRemove = new List<Card>(_hand.GetCurrentlySelectedCards());
-                if (cardsToRemove.Count > 0)
+                if (cardsToRemove.Count ==1)
                 {
                     Card cardForSuperDefender = cardsToRemove[0]; // get the card selected for the super defender sacrifice
                     DiscardCards(cardsToRemove);

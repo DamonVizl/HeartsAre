@@ -7,8 +7,6 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController Instance; 
 
-    [SerializeField] SceneAsset[] _scenes;
-
     private void OnEnable()
     {
         if (Instance == null)

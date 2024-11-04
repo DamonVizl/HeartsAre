@@ -13,6 +13,7 @@ public class UI_MessageManager : MonoBehaviour
     
     private void Awake()
     {
+        Debug.Log("message maanager Awake");
         if (Instance == null)
         {
             Instance = this;
